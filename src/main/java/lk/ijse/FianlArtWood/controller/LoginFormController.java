@@ -9,7 +9,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.FianlArtWood.UsersJobRole;
 import lk.ijse.FianlArtWood.dto.LoginDto;
 import lk.ijse.FianlArtWood.model.LoginFormModel;
 
@@ -35,9 +34,9 @@ public class LoginFormController {
             LoginDto dto = model.login(user_name, pw);
 
             if (dto != null){
-                System.out.println(dto.getJob_role());
-                if (dto.getJob_role().equals(UsersJobRole.owner)){
-                    Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/owner_dashboard.fxml"));
+
+                if (dto.getJob_role().equals("owner")){
+                    Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/dashboard_pane.fxml"));
 
                     Scene scene = new Scene(rootNode);
                     Stage stage = (Stage) this.rootNode.getScene().getWindow();
@@ -46,7 +45,7 @@ public class LoginFormController {
                     stage.setScene(scene);
                     stage.centerOnScreen();
 
-                }else if (dto.getJob_role().equals(UsersJobRole.stock_manager)){
+                }else if (dto.getJob_role().equals("stock_manager")){
                     Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/stock_manager_dashboard.fxml"));
 
                     Scene scene = new Scene(rootNode);
@@ -56,7 +55,7 @@ public class LoginFormController {
                     stage.setScene(scene);
                     stage.centerOnScreen();
 
-                }else if (dto.getJob_role().equals(UsersJobRole.cashier)){
+                }else if (dto.getJob_role().equals("cashier")){
                     Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/cashier_dashboard.fxml"));
 
                     Scene scene = new Scene(rootNode);

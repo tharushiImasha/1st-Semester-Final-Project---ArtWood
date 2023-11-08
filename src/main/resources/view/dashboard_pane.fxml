@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" prefHeight="900.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.FianlArtWood.controller.OwnerDashboardController">
+   <children>
+      <ImageView fitHeight="919.0" fitWidth="1403.0" layoutX="-6.0">
+         <image>
+            <Image url="@../images/bg.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="783.0" fitWidth="1213.0" layoutX="89.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/bgpan.png" />
+         </image></ImageView>
+      <ImageView fitHeight="25.0" fitWidth="145.0" layoutX="149.0" layoutY="127.0">
+         <image>
+            <Image url="@../images/ArtWood1.png" />
+         </image>
+      </ImageView>
+      <Group layoutX="153.0" layoutY="209.0">
+         <children>
+            <ImageView fx:id="rectUsers" fitHeight="45.0" fitWidth="200.0" layoutX="-22.0" layoutY="416.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Rectangle1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="rectAccounts" fitHeight="45.0" fitWidth="200.0" layoutX="-22.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Rectangle1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="rectCustomers" fitHeight="45.0" fitWidth="200.0" layoutX="-22.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Rectangle1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="rectStocks" fitHeight="45.0" fitWidth="200.0" layoutX="-22.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Rectangle1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="rectOrders" fitHeight="45.0" fitWidth="200.0" layoutX="-22.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Rectangle1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="rectProduct" fitHeight="45.0" fitWidth="200.0" layoutX="-22.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Rectangle1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="rectEmployees" fitHeight="45.0" fitWidth="200.0" layoutX="-21.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Rectangle1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="rectDashboard" fitHeight="45.0" fitWidth="200.0" layoutX="-22.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Rectangle1.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="36.0" layoutY="78.0" text="Employees" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <ImageView fitHeight="25.0" fitWidth="23.0" layoutY="74.0">
+               <image>
+                  <Image url="@../icons/employee.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="34.0" layoutY="134.0" text="Product" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label layoutX="38.0" layoutY="193.0" text="Orders" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label layoutX="39.0" layoutY="252.0" text="Stocks" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label layoutX="37.0" layoutY="312.0" text="Customers" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label layoutX="37.0" layoutY="370.0" text="Accounts" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <ImageView fitHeight="25.0" fitWidth="23.0" layoutY="130.0">
+               <image>
+                  <Image url="@../icons/stock.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="23.0" fitWidth="25.0" layoutX="-1.0" layoutY="191.0">
+               <image>
+                  <Image url="@../icons/orders.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="23.0" layoutY="249.0">
+               <image>
+                  <Image url="@../icons/stock.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="-1.0" layoutY="309.0">
+               <image>
+                  <Image url="@../icons/customer.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="-1.0" layoutY="368.0">
+               <image>
+                  <Image url="@../icons/accounting.png" />
+               </image>
+            </ImageView>
+            <Label accessibleRole="BUTTON" layoutX="36.0" layoutY="20.0" text="Dashboard" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <ImageView fitHeight="19.0" fitWidth="18.0" layoutX="2.0" layoutY="20.0">
+               <image>
+                  <Image url="@../icons/dashboard.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="37.0" layoutY="430.0" text="Users" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutY="426.0">
+               <image>
+                  <Image url="@../icons/user.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="borderEmployees" fitHeight="45.0" fitWidth="200.0" layoutX="-22.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/lblboarder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="borderProducts" fitHeight="45.0" fitWidth="200.0" layoutX="-22.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/lblboarder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="borderOrders" fitHeight="45.0" fitWidth="200.0" layoutX="-22.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/lblboarder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="borderStocks" fitHeight="45.0" fitWidth="200.0" layoutX="-22.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/lblboarder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="borderCustomers" fitHeight="45.0" fitWidth="200.0" layoutX="-22.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/lblboarder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="borderAccounts" fitHeight="45.0" fitWidth="200.0" layoutX="-22.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/lblboarder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="borderUsers" fitHeight="45.0" fitWidth="200.0" layoutX="-22.0" layoutY="416.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/lblboarder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="borderDashboard" fitHeight="45.0" fitWidth="200.0" layoutX="-22.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/lblboarder.png" />
+               </image>
+            </ImageView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="25.0" layoutX="-11.0" layoutY="17.0" onMouseClicked="#lblDashboardOnAction" onMouseEntered="#lblDashboardEntered" onMouseExited="#lblDashboardExited" stroke="TRANSPARENT" strokeType="INSIDE" width="153.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Rectangle>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="25.0" layoutX="-12.0" layoutY="75.0" onMouseClicked="#lblEmployeeOnAction" onMouseEntered="#lblEmployeesEntered" onMouseExited="#lblEmployeesExited" stroke="TRANSPARENT" strokeType="INSIDE" width="153.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Rectangle>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="25.0" layoutX="-10.0" layoutY="130.0" onMouseClicked="#lblProductOnAction" onMouseEntered="#lblProductEntered" onMouseExited="#lblProductExited" stroke="TRANSPARENT" strokeType="INSIDE" width="153.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Rectangle>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="25.0" layoutX="-10.0" layoutY="190.0" onMouseClicked="#lblOrdersOnAction" onMouseEntered="#lblOrdersEntered" onMouseExited="#lblOrdersExited" stroke="TRANSPARENT" strokeType="INSIDE" width="153.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Rectangle>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="25.0" layoutX="-8.0" layoutY="249.0" onMouseClicked="#lblStockOnAction" onMouseEntered="#lblStockEntered" onMouseExited="#lblStockExited" stroke="TRANSPARENT" strokeType="INSIDE" width="153.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Rectangle>
+            <Rectangle fx:id="employeeRec" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="25.0" layoutX="-9.0" layoutY="309.0" onMouseClicked="#lblCustomerOnAction" onMouseEntered="#lblCustomerEntered" onMouseExited="#lblCustomerExited" stroke="TRANSPARENT" strokeType="INSIDE" width="153.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Rectangle>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="25.0" layoutX="-14.0" layoutY="367.0" onMouseClicked="#lblAccountOnAction" onMouseEntered="#lblAccountsEntered" onMouseExited="#lblAccountsExited" stroke="TRANSPARENT" strokeType="INSIDE" width="153.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Rectangle>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="25.0" layoutX="-10.0" layoutY="427.0" onMouseClicked="#lblUsersOnAction" onMouseEntered="#lblUsersEntered" onMouseExited="#lblUsersExited" stroke="TRANSPARENT" strokeType="INSIDE" width="153.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Rectangle>
+         </children>
+      </Group>
+      <Label layoutX="195.0" layoutY="739.0" onMouseClicked="#lblLogoutOnAction" text="Logout" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <ImageView fitHeight="23.0" fitWidth="25.0" layoutX="156.0" layoutY="737.0">
+         <image>
+            <Image url="@../icons/logout.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="secondaryNode" layoutX="368.0" layoutY="118.0" prefHeight="650.0" prefWidth="875.0" />
+   </children>
+</AnchorPane>

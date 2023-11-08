@@ -10,13 +10,13 @@ import java.sql.SQLException;
 
 public class LoginFormModel {
 
-    public LoginDto login(String userName, String pw) throws SQLException {
+    public LoginDto login(String user_name, String pw) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "select e.job_role, l.* from employee e join login l on e.emp_id = l.emp_id where user_name = ?";
 
         PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setString(1, userName);
+        pstm.setString(1, user_name);
 
         ResultSet resultSet = pstm.executeQuery();
 
@@ -32,8 +32,8 @@ public class LoginFormModel {
                 String emp_id = resultSet.getString(4);
 
                 dto = new LoginDto(log_user_name, log_pw, emp_id, job_role);
+
             }
-            System.out.println(dto.getJob_role());
         }
 
         return dto;
