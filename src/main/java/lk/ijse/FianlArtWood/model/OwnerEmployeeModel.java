@@ -1,6 +1,7 @@
 package lk.ijse.FianlArtWood.model;
 
 import lk.ijse.FianlArtWood.db.DbConnection;
+import lk.ijse.FianlArtWood.dto.CustomerDto;
 import lk.ijse.FianlArtWood.dto.EmployeeDto;
 import lk.ijse.FianlArtWood.dto.LoginDto;
 
@@ -8,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OwnerEmployeeModel {
 
@@ -78,5 +81,29 @@ public class OwnerEmployeeModel {
         }
 
         return dto;
+    }
+
+    public List<EmployeeDto> getAllEmployees() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT * FROM employee";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        List<EmployeeDto> dtoList = new ArrayList<>();
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        while (resultSet.next()) {
+            String emp_id = resultSet.getString(1);
+            String name = resultSet.getString(2);
+            String address = resultSet.getString(3);
+            int tel = Integer.parseInt(resultSet.getString(4));
+            String status = resultSet.getString(5);
+            String job_role = resultSet.getString(6);
+
+            var dto = new EmployeeDto(emp_id, name, address, tel, status, job_role);
+            dtoList.add(dto);
+        }
+        return dtoList;
     }
 }

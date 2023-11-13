@@ -25,4 +25,13 @@ public class EmployeeDto {
         this.job_role = job_role;
 
     }
+
+    public EmployeeDto(String empId, String name, String address, int tel, String status, String jobRole) {
+        this.address = address;
+        this.emp_id = emp_id;
+        this.name = name;
+        this.tel = tel;
+        this.job_role = job_role;
+        this.status = status;
+    }
 }

@@ -131,7 +131,7 @@ public class OwnerCustomerController {
         var model = new OwnerCustomerModel();
         try {
             boolean isUpdated = model.updateCustomer(dto);
-            System.out.println(isUpdated);
+
             if(isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "customer updated!").show();
             }

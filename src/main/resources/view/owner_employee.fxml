@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="rootNode" prefHeight="710.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.FianlArtWood.controller.OwnerEmployeeController">
    <children>
       <Label layoutX="58.0" layoutY="80.0" text="Employee">
@@ -46,15 +45,19 @@
          </font>
       </Label>
       <TextField fx:id="txtJobRole" layoutX="156.0" layoutY="272.0" prefHeight="30.0" prefWidth="177.0" />
-      <TableView fx:id="tblEmployee" layoutX="58.0" layoutY="418.0" prefHeight="200.0" prefWidth="808.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
-      </TableView>
       <JFXButton layoutX="144.0" layoutY="355.0" onAction="#btnSaveOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Save" />
       <JFXButton layoutX="322.0" layoutY="355.0" onAction="#btnUpdateOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Update" />
       <JFXButton layoutX="500.0" layoutY="355.0" onAction="#btnDeleteOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Delete" />
       <JFXButton layoutX="678.0" layoutY="355.0" onAction="#btnClearOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Clear" />
+      <TableView fx:id="tblEmployee" layoutX="53.0" layoutY="443.0" prefHeight="200.0" prefWidth="784.0">
+         <columns>
+            <TableColumn fx:id="colEmpId" prefWidth="99.0" text="Emp ID" />
+            <TableColumn fx:id="colName" prefWidth="118.0" text="Name" />
+            <TableColumn fx:id="colJobRole" prefWidth="142.0" text="Jobe Role" />
+            <TableColumn fx:id="colAddress" prefWidth="142.0" text="Address" />
+            <TableColumn fx:id="colTelNo" prefWidth="125.0" text="Tel No" />
+            <TableColumn fx:id="colStatus" prefWidth="157.0" text="Status" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

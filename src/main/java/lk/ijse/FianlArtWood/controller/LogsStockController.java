@@ -14,12 +14,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.FianlArtWood.dto.CustomerDto;
 import lk.ijse.FianlArtWood.dto.LogsDto;
 import lk.ijse.FianlArtWood.dto.tm.LogsTm;
-import lk.ijse.FianlArtWood.model.LoginFormModel;
 import lk.ijse.FianlArtWood.model.LogsStockModel;
-import lk.ijse.FianlArtWood.model.OwnerCustomerModel;
 
 import java.io.IOException;
 import java.sql.SQLException;

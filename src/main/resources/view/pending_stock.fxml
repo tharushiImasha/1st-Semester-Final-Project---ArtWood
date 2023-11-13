@@ -1,8 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="710.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.FianlArtWood.controller.PendingStockController">
-
+<AnchorPane fx:id="rootNode" prefHeight="710.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.FianlArtWood.controller.PendingStockController">
+   <children>
+      <Label layoutX="58.0" layoutY="80.0" text="Pending Stock">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="68.0" layoutY="165.0" text="Pending Stock ID">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtPendingId" layoutX="224.0" layoutY="159.0" onAction="#txtPendingIdOnAction" prefHeight="30.0" prefWidth="177.0" />
+      <Label layoutX="68.0" layoutY="223.0" text="Finished Stock ID">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtFinishedId" layoutX="224.0" layoutY="217.0" prefHeight="30.0" prefWidth="177.0" />
+      <Label layoutX="68.0" layoutY="288.0" text="Wood Piece ID">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtWoodPieceId" layoutX="224.0" layoutY="282.0" prefHeight="30.0" prefWidth="177.0" />
+      <JFXButton layoutX="154.0" layoutY="365.0" onAction="#btnSaveOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Save" />
+      <JFXButton layoutX="332.0" layoutY="365.0" onAction="#btnUpdateOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Update" />
+      <JFXButton layoutX="510.0" layoutY="365.0" onAction="#btnDeleteOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Delete" />
+      <JFXButton layoutX="688.0" layoutY="365.0" onAction="#btnClearOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Clear" />
+      <TableView fx:id="tblPending" layoutX="156.0" layoutY="433.0" prefHeight="200.0" prefWidth="627.0">
+         <columns>
+            <TableColumn fx:id="colPendingId" prefWidth="99.0" text="Pending ID" />
+            <TableColumn fx:id="colFinishedId" prefWidth="118.0" text="Finished ID" />
+            <TableColumn fx:id="colWoodPieceId" prefWidth="142.0" text="Wood Piece ID" />
+            <TableColumn fx:id="colEmpId" prefWidth="142.0" text="Emp ID" />
+            <TableColumn fx:id="colProductId" prefWidth="125.0" text="Product ID" />
+         </columns>
+      </TableView>
+      <Label layoutX="470.0" layoutY="223.0" text="Product ID">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtProductId" layoutX="601.0" layoutY="217.0" prefHeight="30.0" prefWidth="177.0" />
+      <JFXButton layoutX="800.0" layoutY="661.0" onAction="#btnBackOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: black;" text="Back" textFill="WHITE" />
+      <Label layoutX="470.0" layoutY="165.0" text="Emp ID">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtEmpId" layoutX="601.0" layoutY="159.0" prefHeight="30.0" prefWidth="177.0" />
+   </children>
 </AnchorPane>
