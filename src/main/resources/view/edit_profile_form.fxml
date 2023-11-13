@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" prefHeight="710.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.FianlArtWood.controller.EditProfileFormController">
+   <children>
+      <Label layoutX="333.0" layoutY="53.0" text="Profile Settings">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtEmpId" layoutX="203.0" layoutY="137.0" onAction="#txtEmpIdOnAction" prefHeight="30.0" prefWidth="224.0" />
+      <Label layoutX="87.0" layoutY="141.0" text="Emp ID">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtUserName" layoutX="203.0" layoutY="212.0" prefHeight="30.0" prefWidth="224.0" />
+      <Label layoutX="87.0" layoutY="216.0" text="User Name">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtPassword" layoutX="203.0" layoutY="287.0" prefHeight="30.0" prefWidth="224.0" />
+      <Label layoutX="87.0" layoutY="291.0" text="Password">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="317.0" layoutY="365.0" onAction="#btnUpdateOnAction" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: FFA633;" text="Update" textFill="#f2eeee">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <JFXButton layoutX="507.0" layoutY="365.0" onAction="#btnDeleteOnAction" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: FFA633;" text="Delete" textFill="#f2eeee">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <JFXButton layoutX="132.0" layoutY="365.0" onAction="#btnSaveOnAction" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: FFA633;" text="Save" textFill="#f2eeee">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <JFXButton layoutX="699.0" layoutY="365.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: FFA633;" text="Clear" textFill="#f2eeee">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <JFXButton layoutX="763.0" layoutY="645.0" onAction="#btnBackOnAction" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: black;" text="Back" textFill="#f2eeee">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <TableView fx:id="tblUsers" layoutX="224.0" layoutY="436.0" prefHeight="200.0" prefWidth="407.0">
+         <columns>
+            <TableColumn fx:id="colEmpId" prefWidth="75.0" text="Emp Id" />
+            <TableColumn fx:id="colUserName" prefWidth="181.0" text="User Name" />
+            <TableColumn fx:id="colPw" prefWidth="151.0" text="Password" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

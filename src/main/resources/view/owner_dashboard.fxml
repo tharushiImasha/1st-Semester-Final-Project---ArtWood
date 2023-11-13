@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" prefHeight="710.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.FianlArtWood.controller.OwnerDashboardController">
+   <children>
+      <Label layoutX="56.0" layoutY="81.0" text="Dashboard">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="794.0" layoutY="106.0">
+         <image>
+            <Image url="@../icons/profile.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblUser" layoutX="759.0" layoutY="182.0" text="Tharushi  Imasha">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblJobRole" layoutX="783.0" layoutY="204.0" text="CEO/Owner" textFill="#ffa633">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="760.0" layoutY="252.0" onAction="#btnEditProfileOnAction" style="-fx-background-color: FFA633;" text="Edit Users Profiles" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Line endX="-100.0" endY="637.0" layoutX="838.0" layoutY="36.0" startX="-100.0" stroke="#0000004c" />
+   </children>
+</AnchorPane>

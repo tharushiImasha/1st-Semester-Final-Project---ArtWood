@@ -1,12 +1,16 @@
 package lk.ijse.FianlArtWood.model;
 
 import lk.ijse.FianlArtWood.db.DbConnection;
+import lk.ijse.FianlArtWood.dto.CustomerDto;
 import lk.ijse.FianlArtWood.dto.LoginDto;
+import lk.ijse.FianlArtWood.dto.LogsDto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginFormModel {
 

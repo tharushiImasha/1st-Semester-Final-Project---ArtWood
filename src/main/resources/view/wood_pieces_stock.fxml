@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="rootNode" prefHeight="710.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.FianlArtWood.controller.WoodPiecesStockController">
+   <children>
+      <Label layoutX="58.0" layoutY="80.0" text="Wood Pieces Stock">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="68.0" layoutY="165.0" text="Wood Piece ID">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtId" layoutX="197.0" layoutY="159.0" onAction="#txtIdOnAction" prefHeight="30.0" prefWidth="177.0" />
+      <Label layoutX="68.0" layoutY="223.0" text="Quality">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtQuality" layoutX="197.0" layoutY="217.0" prefHeight="30.0" prefWidth="177.0" />
+      <Label layoutX="68.0" layoutY="288.0" text="Wood Type">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtType" layoutX="197.0" layoutY="282.0" prefHeight="30.0" prefWidth="177.0" />
+      <JFXButton layoutX="154.0" layoutY="365.0" onAction="#btnSaveOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Save" />
+      <JFXButton layoutX="332.0" layoutY="365.0" onAction="#btnUpdateOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Update" />
+      <JFXButton layoutX="510.0" layoutY="365.0" onAction="#btnDeleteOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Delete" />
+      <JFXButton layoutX="688.0" layoutY="365.0" onAction="#btnClearOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Clear" />
+      <TableView fx:id="tblWood" layoutX="156.0" layoutY="433.0" prefHeight="200.0" prefWidth="627.0">
+         <columns>
+            <TableColumn fx:id="colId" prefWidth="75.0" text="Id" />
+            <TableColumn fx:id="colType" prefWidth="142.0" text="Type" />
+            <TableColumn fx:id="colQuality" prefWidth="142.0" text="Quality" />
+            <TableColumn fx:id="colAmount" prefWidth="142.0" text="Amount" />
+            <TableColumn fx:id="colLogId" prefWidth="125.0" text="Log ID" />
+         </columns>
+      </TableView>
+      <Label layoutX="469.0" layoutY="165.0" text="Log Id">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtLogId" layoutX="600.0" layoutY="159.0" prefHeight="30.0" prefWidth="177.0" />
+      <Label layoutX="469.0" layoutY="223.0" text="Amount">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtAmount" layoutX="600.0" layoutY="217.0" prefHeight="30.0" prefWidth="177.0" />
+      <JFXButton layoutX="800.0" layoutY="661.0" onAction="#btnBackOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: black;" text="Back" textFill="WHITE" />
+   </children>
+</AnchorPane>

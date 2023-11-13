@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="710.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.FianlArtWood.controller.OwnerSupplierController">
+   <children>
+      <Label layoutX="58.0" layoutY="80.0" text="Supplires">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="58.0" layoutY="155.0" text="Sup ID">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtId" layoutX="156.0" layoutY="149.0" onAction="#txtIdOnAction" prefHeight="30.0" prefWidth="177.0" />
+      <Label layoutX="58.0" layoutY="250.0" text="Name">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtName" layoutX="156.0" layoutY="244.0" prefHeight="30.0" prefWidth="177.0" />
+      <Label layoutX="522.0" layoutY="155.0" text="Address">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtAddress" layoutX="620.0" layoutY="149.0" prefHeight="30.0" prefWidth="177.0" />
+      <JFXButton layoutX="144.0" layoutY="356.0" onAction="#btnSaveOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Save">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton layoutX="322.0" layoutY="356.0" onAction="#btnUpdateOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Update">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton layoutX="500.0" layoutY="356.0" onAction="#btnDeleteOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Delete">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton layoutX="678.0" layoutY="356.0" onAction="#btnClearOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Clear">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <TableView fx:id="tblSupplier" layoutX="146.0" layoutY="449.0" prefHeight="200.0" prefWidth="626.0">
+         <columns>
+            <TableColumn fx:id="colId" prefWidth="75.0" text="Id" />
+            <TableColumn fx:id="colName" prefWidth="142.0" text="Name" />
+            <TableColumn fx:id="colAddress" prefWidth="190.0" text="Address" />
+            <TableColumn fx:id="colEmail" prefWidth="218.0" text="Email" />
+         </columns>
+      </TableView>
+      <Label layoutX="522.0" layoutY="250.0" text="Email">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtEmail" layoutX="620.0" layoutY="244.0" prefHeight="30.0" prefWidth="177.0" />
+   </children>
+</AnchorPane>
