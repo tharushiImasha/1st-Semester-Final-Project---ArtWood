@@ -46,7 +46,7 @@ public class LoginFormController {
                     stage.centerOnScreen();
 
                 }else if (dto.getJob_role().equals("stock_manager")){
-                    Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/stock_manager_dashboard.fxml"));
+                    Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/stock_manager_dashboard_pane.fxml"));
 
                     Scene scene = new Scene(rootNode);
                     Stage stage = (Stage) this.rootNode.getScene().getWindow();

@@ -87,8 +87,6 @@ public class DashboardPaneController {
         borderStocks.setVisible(false);
         borderUsers.setVisible(false);
 
-
-
     }
 
     @FXML
