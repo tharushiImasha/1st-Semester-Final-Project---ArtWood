@@ -5,18 +5,17 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import lk.ijse.FianlArtWood.dto.CustomerDto;
 import lk.ijse.FianlArtWood.dto.WoodPiecesDto;
+import lk.ijse.FianlArtWood.dto.tm.CustomerTm;
 import lk.ijse.FianlArtWood.dto.tm.WoodPiecesTm;
 import lk.ijse.FianlArtWood.model.OwnerCustomerModel;
 import lk.ijse.FianlArtWood.model.WoodPiecesStockModel;
@@ -24,8 +23,30 @@ import lk.ijse.FianlArtWood.model.WoodPiecesStockModel;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class WoodPiecesStockController {
+    @FXML
+    private Label lblAmount;
+
+    @FXML
+    private Label lblQuality;
+
+    @FXML
+    private Label lblWoodId;
+
+    @FXML
+    private TextField txtLength;
+
+    @FXML
+    private TextField txtRadius;
+
+    @FXML
+    private TextField txtWeight;
+
+    @FXML
+    private TableColumn<?, ?> colAction;
+
     @FXML
     private TableColumn<?, ?> colAmount;
 
@@ -48,23 +69,22 @@ public class WoodPiecesStockController {
     private TableView<WoodPiecesTm> tblWood;
 
     @FXML
-    private TextField txtAmount;
-
-    @FXML
-    private TextField txtId;
-
-    @FXML
     private TextField txtLogId;
 
-    @FXML
-    private TextField txtQuality;
-
-    @FXML
-    private TextField txtType;
 
     public void initialize() {
         setCellValueFactory();
         loadAllWood();
+        generateNextWoodId();
+    }
+
+    private void generateNextWoodId() {
+        try {
+            String orderId = WoodPiecesStockModel.generateNextWoodId();
+            lblWoodId.setText(orderId);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void setCellValueFactory() {
@@ -73,24 +93,60 @@ public class WoodPiecesStockController {
         colAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
         colQuality.setCellValueFactory(new PropertyValueFactory<>("quality"));
         colLogId.setCellValueFactory(new PropertyValueFactory<>("logs_id"));
+        colAction.setCellValueFactory(new PropertyValueFactory<>("btn"));
     }
 
     private void loadAllWood() {
-        var model = new WoodPiecesStockModel();
-
-        ObservableList<WoodPiecesTm> obList = FXCollections.observableArrayList();
-
         try {
-            List<WoodPiecesDto> dtoList;
-            dtoList = model.getAllWood();
+            List<WoodPiecesDto> dtoList = WoodPiecesStockModel.getAllWood();
 
-            for(WoodPiecesDto dto : dtoList) {
-                obList.add(new WoodPiecesTm(dto.getWood_piece_id(), dto.getQuality(), dto.getAmount(), dto.getWood_type(), dto.getLogs_id()));
+            ObservableList<WoodPiecesTm> obList = FXCollections.observableArrayList();
+
+            for(WoodPiecesDto dto : dtoList){
+                Button btn = new Button("Remove");
+                btn.setCursor(Cursor.HAND);
+
+                btn.setOnAction((e) -> {
+                    ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
+                    ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                    Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
+
+                    if (type.orElse(no) == yes){
+                        int index = tblWood.getSelectionModel().getFocusedIndex();
+                        String id = (String) colId.getCellData(index);
+
+                        deleteWood(id);
+
+                        obList.remove(index);
+                        tblWood.refresh();
+                    }
+
+                });
+
+                var tm = new WoodPiecesTm(dto.getWood_piece_id(), dto.getQuality(), dto.getAmount(), dto.getWood_type(), dto.getLogs_id(), btn);
+
+                obList.add(tm);
+
             }
 
             tblWood.setItems(obList);
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private void deleteWood(String id) {
+        try {
+            boolean isDeleted = WoodPiecesStockModel.deleteWood(id);
+
+            if(isDeleted) {
+                tblWood.refresh();
+                new Alert(Alert.AlertType.CONFIRMATION, "wood piece deleted!").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
 
@@ -112,36 +168,18 @@ public class WoodPiecesStockController {
     }
 
     void clearFields() {
-        txtId.setText("");
-        txtAmount.setText("");
-        txtType.setText("");
+        lblWoodId.setText("");
+        lblQuality.setText("");
         txtLogId.setText("");
-        txtQuality.setText("");
-    }
-
-    @FXML
-    void btnDeleteOnAction(ActionEvent event) {
-        String id = txtId.getText();
-
-        var model = new WoodPiecesStockModel();
-        try {
-            boolean isDeleted = model.deleteWood(id);
-
-            if(isDeleted) {
-                tblWood.refresh();
-                new Alert(Alert.AlertType.CONFIRMATION, "wood pieces deleted!").show();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }
+        lblAmount.setText("");
     }
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-        String id = txtId.getText();
-        String quality = txtQuality.getText();
-        int amount = Integer.parseInt(txtAmount.getText());
-        String type = txtType.getText();
+        String id = lblWoodId.getText();
+        String quality = lblQuality.getText();
+        int amount = Integer.parseInt(lblAmount.getText());
+        String type = "";
         String log_id = txtLogId.getText();
 
         var dto = new WoodPiecesDto(id, quality, amount, type, log_id);
@@ -161,10 +199,10 @@ public class WoodPiecesStockController {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-        String id = txtId.getText();
-        String quality = txtQuality.getText();
-        int amount = Integer.parseInt(txtAmount.getText());
-        String type = txtType.getText();
+        String id = lblWoodId.getText();
+        String quality = lblQuality.getText();
+        int amount = Integer.parseInt(lblAmount.getText());
+        String type = "";
         String log_id = txtLogId.getText();
 
         var dto = new WoodPiecesDto(id, quality, amount, type, log_id);
@@ -182,28 +220,29 @@ public class WoodPiecesStockController {
     }
 
     @FXML
-    void txtIdOnAction(ActionEvent event) {
-        String id = txtId.getText();
+    void btnEnterOnAction(ActionEvent event) {
+        double length = Double.parseDouble(txtLength.getText());
+        double radius = Double.parseDouble(txtRadius.getText());
+        double weight = Double.parseDouble(txtWeight.getText());
 
-        var model = new WoodPiecesStockModel();
+        int size = 1;
+
         try {
-            WoodPiecesDto dto = model.searchWood(id);
+            int amount = (int) ((2*3.14*radius*(length+radius))/size);
+            String quality = "";
 
-            if(dto != null) {
-                fillFields(dto);
-            } else {
-                new Alert(Alert.AlertType.INFORMATION, "wood piece not found!").show();
+            if (weight > 30){
+                quality = "High Quality";
+            } else{
+                quality = "Bad Quality";
             }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+
+            lblAmount.setText(String.valueOf(amount));
+            lblQuality.setText(quality);
+        } catch (Exception e) {
+            System.out.println(e);
         }
+
     }
 
-    private void fillFields(WoodPiecesDto dto) {
-        txtId.setText(dto.getWood_piece_id());
-        txtQuality.setText(dto.getQuality());
-        txtAmount.setText(dto.getQuality());
-        txtType.setText(dto.getWood_type());
-        txtLogId.setText(dto.getLogs_id());
-    }
 }

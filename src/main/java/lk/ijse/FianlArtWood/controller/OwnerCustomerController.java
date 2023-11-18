@@ -17,9 +17,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class OwnerCustomerController {
-
-    private final ObservableList<CustomerTm> obList = FXCollections.observableArrayList();
-
     @FXML
     private AnchorPane rootNode;
 

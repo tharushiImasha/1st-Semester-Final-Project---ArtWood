@@ -24,20 +24,12 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtId" layoutX="197.0" layoutY="159.0" onAction="#txtIdOnAction" prefHeight="30.0" prefWidth="218.0" style="-fx-background-radius: 5;">
-         <effect>
-            <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
-               <color>
-                  <Color opacity="0.24137930572032928" />
-               </color>
-            </DropShadow>
-         </effect></TextField>
-      <Label layoutX="68.0" layoutY="223.0" text="Quality">
+      <Label layoutX="66.0" layoutY="273.0" text="Length (m)">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtQuality" layoutX="197.0" layoutY="217.0" prefHeight="30.0" prefWidth="218.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="txtLength" layoutX="167.0" layoutY="267.0" prefHeight="30.0" prefWidth="79.0" style="-fx-background-radius: 5;">
          <effect>
             <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>
@@ -45,50 +37,34 @@
                </color>
             </DropShadow>
          </effect></TextField>
-      <Label layoutX="68.0" layoutY="288.0" text="Wood Type">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <TextField fx:id="txtType" layoutX="197.0" layoutY="282.0" prefHeight="30.0" prefWidth="218.0" style="-fx-background-radius: 5;">
-         <effect>
-            <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
-               <color>
-                  <Color opacity="0.24137930572032928" />
-               </color>
-            </DropShadow>
-         </effect></TextField>
-      <JFXButton layoutX="154.0" layoutY="365.0" onAction="#btnSaveOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633; -fx-background-radius: 5;" text="Save" textFill="WHITE">
+      <JFXButton layoutX="238.0" layoutY="385.0" onAction="#btnSaveOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633; -fx-background-radius: 5;" text="Save" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></JFXButton>
-      <JFXButton layoutX="332.0" layoutY="365.0" onAction="#btnUpdateOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633; -fx-background-radius: 5;" text="Update" textFill="WHITE">
+      <JFXButton layoutX="416.0" layoutY="385.0" onAction="#btnUpdateOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633; -fx-background-radius: 5;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></JFXButton>
-      <JFXButton layoutX="510.0" layoutY="365.0" onAction="#btnDeleteOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633; -fx-background-radius: 5;" text="Delete" textFill="WHITE">
+      <JFXButton layoutX="601.0" layoutY="385.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633; -fx-background-radius: 5;" text="Clear" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></JFXButton>
-      <JFXButton layoutX="688.0" layoutY="365.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633; -fx-background-radius: 5;" text="Clear" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font></JFXButton>
-      <TableView fx:id="tblWood" layoutX="65.0" layoutY="433.0" prefHeight="200.0" prefWidth="769.0" style="-fx-background-radius: 5;">
+      <TableView fx:id="tblWood" layoutX="81.0" layoutY="441.0" prefHeight="200.0" prefWidth="769.0" style="-fx-background-radius: 5;">
          <columns>
             <TableColumn fx:id="colId" prefWidth="75.0" text="Id" />
             <TableColumn fx:id="colType" prefWidth="142.0" text="Type" />
             <TableColumn fx:id="colQuality" prefWidth="163.0" text="Quality" />
-            <TableColumn fx:id="colAmount" prefWidth="169.0" text="Amount" />
-            <TableColumn fx:id="colLogId" prefWidth="219.0" text="Log ID" />
+            <TableColumn fx:id="colAmount" prefWidth="136.0" text="Amount" />
+            <TableColumn fx:id="colLogId" prefWidth="117.0" text="Log ID" />
+            <TableColumn fx:id="colAction" prefWidth="135.0" text="Action" />
          </columns>
       </TableView>
-      <Label layoutX="475.0" layoutY="223.0" text="Log Id">
+      <Label layoutX="68.0" layoutY="215.0" text="Log Id">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtLogId" layoutX="587.0" layoutY="217.0" prefHeight="30.0" prefWidth="218.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="txtLogId" layoutX="167.0" layoutY="209.0" prefHeight="30.0" prefWidth="218.0" style="-fx-background-radius: 5;">
          <effect>
             <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>
@@ -96,19 +72,11 @@
                </color>
             </DropShadow>
          </effect></TextField>
-      <Label layoutX="475.0" layoutY="281.0" text="Amount">
+      <Label layoutX="65.0" layoutY="331.0" text="Amount">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtAmount" layoutX="587.0" layoutY="275.0" prefHeight="30.0" prefWidth="218.0" style="-fx-background-radius: 5;">
-         <effect>
-            <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
-               <color>
-                  <Color opacity="0.24137930572032928" />
-               </color>
-            </DropShadow>
-         </effect></TextField>
       <JFXButton layoutX="805.0" layoutY="658.0" onAction="#btnBackOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: black; -fx-background-radius: 5;" text="Back" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -118,5 +86,50 @@
             <Image url="@../images/woodillustration.png" />
          </image>
       </ImageView>
+      <Label fx:id="lblWoodId" layoutX="201.0" layoutY="165.0" textFill="#ffa633">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="287.0" layoutY="273.0" text="Radius (m)">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtRadius" layoutX="388.0" layoutY="267.0" prefHeight="30.0" prefWidth="79.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
+               <color>
+                  <Color opacity="0.24137930572032928" />
+               </color>
+            </DropShadow>
+         </effect>
+      </TextField>
+      <Label layoutX="510.0" layoutY="273.0" text="Weight(Kg)">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtWeight" layoutX="611.0" layoutY="267.0" prefHeight="30.0" prefWidth="79.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
+               <color>
+                  <Color opacity="0.24137930572032928" />
+               </color>
+            </DropShadow>
+         </effect>
+      </TextField>
+      <Label layoutX="348.0" layoutY="331.0" text="Quality">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAmount" layoutX="168.0" layoutY="332.0" />
+      <Label fx:id="lblQuality" layoutX="438.0" layoutY="332.0" />
+      <JFXButton layoutX="729.0" layoutY="267.0" onAction="#btnEnterOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633; -fx-background-radius: 5;" text="Enter" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

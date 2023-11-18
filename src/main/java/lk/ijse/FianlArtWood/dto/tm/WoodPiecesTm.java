@@ -1,5 +1,6 @@
 package lk.ijse.FianlArtWood.dto.tm;
 
+import javafx.scene.control.Button;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,4 +15,5 @@ public class WoodPiecesTm {
     private int amount;
     private String wood_type;
     private String logs_id;
+    private Button btn;
 }
