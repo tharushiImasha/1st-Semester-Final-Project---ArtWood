@@ -5,7 +5,11 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="rootNode" prefHeight="710.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.FianlArtWood.controller.OwnerEmployeeController">
@@ -20,36 +24,83 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtId" layoutX="156.0" layoutY="149.0" onAction="#txtIdOnAction" prefHeight="30.0" prefWidth="177.0" />
+      <TextField fx:id="txtId" layoutX="156.0" layoutY="149.0" onAction="#txtIdOnAction" prefHeight="30.0" prefWidth="242.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow height="1.61" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
+               <color>
+                  <Color opacity="0.2183908075094223" />
+               </color>
+            </DropShadow>
+         </effect></TextField>
       <Label layoutX="58.0" layoutY="213.0" text="Name">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtName" layoutX="156.0" layoutY="207.0" prefHeight="30.0" prefWidth="177.0" />
-      <Label layoutX="518.0" layoutY="155.0" text="Address">
+      <TextField fx:id="txtName" layoutX="156.0" layoutY="207.0" prefHeight="30.0" prefWidth="242.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow height="1.61" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
+               <color>
+                  <Color opacity="0.2183908075094223" />
+               </color>
+            </DropShadow>
+         </effect></TextField>
+      <Label layoutX="485.0" layoutY="213.0" text="Address">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtAddress" layoutX="616.0" layoutY="149.0" prefHeight="30.0" prefWidth="177.0" />
-      <Label layoutX="518.0" layoutY="213.0" text="Tel No">
+      <TextField fx:id="txtAddress" layoutX="586.0" layoutY="207.0" prefHeight="30.0" prefWidth="242.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow height="1.61" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
+               <color>
+                  <Color opacity="0.2183908075094223" />
+               </color>
+            </DropShadow>
+         </effect></TextField>
+      <Label layoutX="485.0" layoutY="271.0" text="Tel No">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtTel" layoutX="616.0" layoutY="207.0" prefHeight="30.0" prefWidth="177.0" />
+      <TextField fx:id="txtTel" layoutX="586.0" layoutY="265.0" prefHeight="30.0" prefWidth="242.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow height="1.61" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
+               <color>
+                  <Color opacity="0.2183908075094223" />
+               </color>
+            </DropShadow>
+         </effect></TextField>
       <Label layoutX="58.0" layoutY="278.0" text="Job Role">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtJobRole" layoutX="156.0" layoutY="272.0" prefHeight="30.0" prefWidth="177.0" />
-      <JFXButton layoutX="144.0" layoutY="355.0" onAction="#btnSaveOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Save" />
-      <JFXButton layoutX="322.0" layoutY="355.0" onAction="#btnUpdateOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Update" />
-      <JFXButton layoutX="500.0" layoutY="355.0" onAction="#btnDeleteOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Delete" />
-      <JFXButton layoutX="678.0" layoutY="355.0" onAction="#btnClearOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Clear" />
-      <TableView fx:id="tblEmployee" layoutX="53.0" layoutY="443.0" prefHeight="200.0" prefWidth="784.0">
+      <TextField fx:id="txtJobRole" layoutX="156.0" layoutY="272.0" prefHeight="30.0" prefWidth="242.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow height="1.61" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
+               <color>
+                  <Color opacity="0.2183908075094223" />
+               </color>
+            </DropShadow>
+         </effect></TextField>
+      <JFXButton layoutX="144.0" layoutY="355.0" onAction="#btnSaveOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633; -fx-background-radius: 5;" text="Save" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></JFXButton>
+      <JFXButton layoutX="322.0" layoutY="355.0" onAction="#btnUpdateOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633; -fx-background-radius: 5;" text="Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></JFXButton>
+      <JFXButton layoutX="500.0" layoutY="355.0" onAction="#btnDeleteOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633; -fx-background-radius: 5;" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></JFXButton>
+      <JFXButton layoutX="678.0" layoutY="355.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633; -fx-background-radius: 5;" text="Clear" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></JFXButton>
+      <TableView fx:id="tblEmployee" layoutX="73.0" layoutY="426.0" prefHeight="236.0" prefWidth="784.0" style="-fx-background-radius: 5;">
          <columns>
             <TableColumn fx:id="colEmpId" prefWidth="99.0" text="Emp ID" />
             <TableColumn fx:id="colName" prefWidth="118.0" text="Name" />
@@ -59,5 +110,10 @@
             <TableColumn fx:id="colStatus" prefWidth="157.0" text="Status" />
          </columns>
       </TableView>
+      <ImageView fitHeight="178.0" fitWidth="319.0" layoutX="529.0" layoutY="39.0">
+         <image>
+            <Image url="@../images/employeeIllustration.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

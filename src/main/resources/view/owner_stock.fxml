@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="rootNode" prefHeight="710.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.FianlArtWood.controller.OwnerStockController">
    <children>
       <Label layoutX="58.0" layoutY="80.0" text="Stocks">
@@ -13,22 +12,22 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <JFXButton layoutX="148.0" layoutY="180.0" onAction="#btnLogsOnAction" prefHeight="147.0" prefWidth="251.0" style="-fx-background-color: ffa633;" text="Logs Stock">
+      <JFXButton layoutX="121.0" layoutY="180.0" onAction="#btnLogsOnAction" prefHeight="147.0" prefWidth="274.0" style="-fx-background-color: ffa633;" text="Logs Stock">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="528.0" layoutY="180.0" onAction="#btnWoodPiecesOnAction" prefHeight="147.0" prefWidth="251.0" style="-fx-background-color: ffa633;" text="Wood Pieces Stock">
+      <JFXButton layoutX="528.0" layoutY="180.0" onAction="#btnWoodPiecesOnAction" prefHeight="147.0" prefWidth="274.0" style="-fx-background-color: ffa633;" text="Wood Pieces Stock">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="148.0" layoutY="428.0" onAction="#btnPendingOnAction" prefHeight="147.0" prefWidth="251.0" style="-fx-background-color: ffa633;" text="Pending Stock">
+      <JFXButton layoutX="121.0" layoutY="428.0" onAction="#btnPendingOnAction" prefHeight="147.0" prefWidth="274.0" style="-fx-background-color: ffa633;" text="Pending Stock">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="528.0" layoutY="428.0" onAction="#btnFinishedOnAction" prefHeight="147.0" prefWidth="251.0" style="-fx-background-color: ffa633;" text="Finished Stock">
+      <JFXButton layoutX="528.0" layoutY="428.0" onAction="#btnFinishedOnAction" prefHeight="147.0" prefWidth="274.0" style="-fx-background-color: ffa633;" text="Finished Stock">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

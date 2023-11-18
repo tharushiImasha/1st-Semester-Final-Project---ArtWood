@@ -19,11 +19,12 @@ public class OwnerStockController {
         Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/finished_stock.fxml"));
 
         Scene scene = new Scene(rootNode);
-        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+        Stage stage = new Stage();
 
         stage.setTitle("Finished stock");
         stage.setScene(scene);
         stage.centerOnScreen();
+        stage.show();
     }
 
     @FXML
@@ -31,11 +32,12 @@ public class OwnerStockController {
         Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/logs_stock.fxml"));
 
         Scene scene = new Scene(rootNode);
-        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+        Stage stage = new Stage();
 
         stage.setTitle("Logs stock");
         stage.setScene(scene);
         stage.centerOnScreen();
+        stage.show();
     }
 
     @FXML
@@ -43,11 +45,12 @@ public class OwnerStockController {
         Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/pending_stock.fxml"));
 
         Scene scene = new Scene(rootNode);
-        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+        Stage stage = new Stage();
 
         stage.setTitle("Pending stock");
         stage.setScene(scene);
         stage.centerOnScreen();
+        stage.show();
     }
 
     @FXML
@@ -55,10 +58,11 @@ public class OwnerStockController {
         Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/wood_pieces_stock.fxml"));
 
         Scene scene = new Scene(rootNode);
-        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+        Stage stage = new Stage();
 
         stage.setTitle("Wood pieces stock");
         stage.setScene(scene);
         stage.centerOnScreen();
+        stage.show();
     }
 }

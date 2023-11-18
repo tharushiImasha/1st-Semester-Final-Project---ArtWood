@@ -5,9 +5,10 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="710.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.FianlArtWood.controller.OwnerProductTypeController">
    <children>
@@ -16,41 +17,58 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="58.0" layoutY="161.0" text="Product ID">
+      <Label layoutX="58.0" layoutY="215.0" text="Product ID">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtId" layoutX="189.0" layoutY="155.0" onAction="#txtIdOnAction" prefHeight="30.0" prefWidth="177.0" />
-      <Label layoutX="58.0" layoutY="240.0" text="Product Name">
+      <TextField fx:id="txtId" layoutX="189.0" layoutY="209.0" onAction="#txtIdOnAction" prefHeight="30.0" prefWidth="232.0" />
+      <Label layoutX="58.0" layoutY="294.0" text="Product Name">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtName" layoutX="189.0" layoutY="234.0" prefHeight="30.0" prefWidth="177.0" />
-      <Label layoutX="477.0" layoutY="161.0" text="Quality">
+      <TextField fx:id="txtName" layoutX="189.0" layoutY="288.0" prefHeight="30.0" prefWidth="232.0" />
+      <Label layoutX="477.0" layoutY="215.0" text="Quality">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <JFXButton layoutX="144.0" layoutY="355.0" onAction="#btnSaveOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Save" />
-      <JFXButton layoutX="322.0" layoutY="355.0" onAction="#btnUpdateOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Update" />
-      <JFXButton layoutX="500.0" layoutY="355.0" onAction="#btnDeleteOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Delete" />
-      <JFXButton layoutX="678.0" layoutY="355.0" onAction="#btnClearOnAction" prefHeight="24.0" prefWidth="89.0" style="-fx-background-color: ffa633;" text="Clear" />
-      <TableView fx:id="tblProduct" layoutX="186.0" layoutY="463.0" prefHeight="200.0" prefWidth="559.0">
+      <JFXButton layoutX="151.0" layoutY="370.0" onAction="#btnSaveOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633;" text="Save" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></JFXButton>
+      <JFXButton layoutX="329.0" layoutY="370.0" onAction="#btnUpdateOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633;" text="Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></JFXButton>
+      <JFXButton layoutX="507.0" layoutY="370.0" onAction="#btnDeleteOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633;" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></JFXButton>
+      <JFXButton layoutX="685.0" layoutY="370.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633;" text="Clear" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></JFXButton>
+      <TableView fx:id="tblProduct" layoutX="107.0" layoutY="456.0" prefHeight="200.0" prefWidth="741.0">
          <columns>
-            <TableColumn fx:id="colId" prefWidth="75.0" text="Id" />
-            <TableColumn fx:id="colName" prefWidth="142.0" text="Name" />
-            <TableColumn fx:id="colQuality" prefWidth="190.0" text="Quality" />
-            <TableColumn fx:id="colPrice" prefWidth="151.0" text="Price" />
+            <TableColumn fx:id="colId" prefWidth="92.0" text="Id" />
+            <TableColumn fx:id="colName" prefWidth="182.0" text="Name" />
+            <TableColumn fx:id="colQuality" prefWidth="242.0" text="Quality" />
+            <TableColumn fx:id="colPrice" prefWidth="224.0" text="Price" />
          </columns>
       </TableView>
-      <Label layoutX="477.0" layoutY="240.0" text="Price">
+      <Label layoutX="477.0" layoutY="294.0" text="Price">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtPrice" layoutX="608.0" layoutY="234.0" prefHeight="30.0" prefWidth="177.0" />
-      <TextField fx:id="txtQuality" layoutX="608.0" layoutY="155.0" prefHeight="30.0" prefWidth="177.0" />
+      <TextField fx:id="txtPrice" layoutX="581.0" layoutY="288.0" prefHeight="30.0" prefWidth="232.0" />
+      <TextField fx:id="txtQuality" layoutX="581.0" layoutY="209.0" prefHeight="30.0" prefWidth="232.0" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="648.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../29169159_7516663-removebg-preview.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

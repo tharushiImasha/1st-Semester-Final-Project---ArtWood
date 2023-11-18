@@ -67,7 +67,7 @@ public class DashboardPaneController {
     @FXML
     private ImageView borderUsers;
 
-    public void initialize(){
+    public void initialize() throws IOException {
 
         rectAccounts.setVisible(false);
         rectUsers.setVisible(false);
@@ -86,6 +86,9 @@ public class DashboardPaneController {
         borderProducts.setVisible(false);
         borderStocks.setVisible(false);
         borderUsers.setVisible(false);
+
+        secondaryNode.getChildren().clear();
+        secondaryNode.getChildren().add(FXMLLoader.load(secondaryNode.getClass().getResource("/view/owner_dashboard.fxml")));
 
     }
 

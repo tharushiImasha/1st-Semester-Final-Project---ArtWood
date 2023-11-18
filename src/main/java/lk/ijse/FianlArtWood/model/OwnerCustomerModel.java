@@ -11,6 +11,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OwnerCustomerModel {
+    public static String generateNextCustomerId() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT cus_id FROM customer ORDER BY cus_id DESC LIMIT 1";
+        ResultSet resultSet = connection.prepareStatement(sql).executeQuery();
+
+        String currentCustomerId = null;
+
+        if (resultSet.next()) {
+            currentCustomerId = resultSet.getString(1);
+            return splitCustomerId(currentCustomerId);
+        }
+        return splitCustomerId(null);
+    }
+
+    private static String splitCustomerId(String currentCustomerId) {    //O008
+        if (currentCustomerId != null) {
+            String[] split = currentCustomerId.split("C");
+            int id = Integer.parseInt(split[1]);    //008
+            id++;  //9
+            return "C" + id;
+        }
+        return "C1";
+    }
+
     public boolean deleteCustomer(String id) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -21,7 +46,7 @@ public class OwnerCustomerModel {
         return pstm.executeUpdate() > 0;
     }
 
-    public List<CustomerDto> getAllCustomers() throws SQLException {
+    public static List<CustomerDto> getAllCustomers() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT * FROM customer";

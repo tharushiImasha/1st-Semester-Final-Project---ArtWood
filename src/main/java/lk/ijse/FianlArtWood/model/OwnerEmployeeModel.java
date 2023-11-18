@@ -101,7 +101,7 @@ public class OwnerEmployeeModel {
             String status = resultSet.getString(5);
             String job_role = resultSet.getString(6);
 
-            var dto = new EmployeeDto(emp_id, name, address, tel, status, job_role);
+            var dto = new EmployeeDto(emp_id, name, address, tel, job_role);
             dtoList.add(dto);
         }
         return dtoList;

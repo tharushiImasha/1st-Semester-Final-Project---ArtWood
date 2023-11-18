@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 import java.awt.*;
@@ -26,11 +27,14 @@ public class OwnerDashboardController{
         Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/edit_profile_form.fxml"));
 
         Scene scene = new Scene(rootNode);
-        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+
+        Stage stage = new Stage();
 
         stage.setTitle("Edit Profiles");
         stage.setScene(scene);
         stage.centerOnScreen();
+        //stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
     }
 
     public void initialize(){

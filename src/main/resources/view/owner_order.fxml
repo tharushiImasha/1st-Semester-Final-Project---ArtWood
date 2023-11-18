@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="710.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.FianlArtWood.controller.OwnerOrderController">
+   <children>
+      <Label layoutX="58.0" layoutY="80.0" text="Customer">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="58.0" layoutY="158.0" text="Order ID">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtId" layoutX="142.0" layoutY="277.0" onAction="#txtIdOnAction" prefHeight="30.0" prefWidth="236.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" spread="0.02" width="0.0">
+               <color>
+                  <Color red="0.013000000268220901" blue="0.05999999865889549" opacity="0.2145593911409378" />
+               </color>
+            </DropShadow>
+         </effect>
+      </TextField>
+      <Label fx:id="lblOrderId" layoutX="165.0" layoutY="159.0" />
+      <Label layoutX="624.0" layoutY="158.0" text="Order Date">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblOrderDate" layoutX="731.0" layoutY="159.0" />
+      <Label layoutX="58.0" layoutY="206.0" text="Customer ID">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox editable="true" layoutX="189.0" layoutY="203.0" prefHeight="30.0" prefWidth="218.0">
+         <effect>
+            <DropShadow height="1.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
+               <color>
+                  <Color opacity="0.0" />
+               </color>
+            </DropShadow>
+         </effect>
+      </ComboBox>
+      <JFXButton layoutX="424.0" layoutY="206.0" style="-fx-background-color: orange;" text="New" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

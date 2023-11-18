@@ -80,8 +80,12 @@ public class OwnerEmployeeController {
             dtoList = model.getAllEmployees();
 
             for(EmployeeDto dto : dtoList) {
+
+                System.out.println(dto.getEmp_id());
                 obList.add(new EmployeeTm(dto.getEmp_id(), dto.getName(), dto.getAddress(), dto.getTel(), dto.getJob_role(), dto.getStatus()));
             }
+
+
 
             tblEmployee.setItems(obList);
         } catch (SQLException e) {

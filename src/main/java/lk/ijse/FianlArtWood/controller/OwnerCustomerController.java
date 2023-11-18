@@ -4,10 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.Cursor;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.FianlArtWood.dto.CustomerDto;
@@ -16,8 +14,12 @@ import lk.ijse.FianlArtWood.model.OwnerCustomerModel;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class OwnerCustomerController {
+
+    private final ObservableList<CustomerTm> obList = FXCollections.observableArrayList();
+
     @FXML
     private AnchorPane rootNode;
 
@@ -26,6 +28,9 @@ public class OwnerCustomerController {
 
     @FXML
     private TextField txtId;
+
+    @FXML
+    private Label lblCusId;
 
     @FXML
     private TextField txtName;
@@ -40,33 +45,72 @@ public class OwnerCustomerController {
     private TableColumn<?, ?> colName;
 
     @FXML
+    private TableColumn<?, ?> colAction;
+
+    @FXML
     private TableView<CustomerTm> tblCustomer;
+
+    private final OwnerCustomerModel customerModel = new OwnerCustomerModel();
 
     public void initialize() {
         setCellValueFactory();
         loadAllCustomers();
+        generateNextCustomerId();
+    }
+
+    private void generateNextCustomerId() {
+        try {
+            String orderId = OwnerCustomerModel.generateNextCustomerId();
+            lblCusId.setText(orderId);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void setCellValueFactory() {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colAction.setCellValueFactory(new PropertyValueFactory<>("btn"));
     }
 
     private void loadAllCustomers() {
-        var model = new OwnerCustomerModel();
-
-        ObservableList<CustomerTm> obList = FXCollections.observableArrayList();
 
         try {
-            List<CustomerDto> dtoList;
-            dtoList = model.getAllCustomers();
+           List<CustomerDto> dtoList = OwnerCustomerModel.getAllCustomers();
 
-            for(CustomerDto dto : dtoList) {
-                obList.add(new CustomerTm(dto.getId(), dto.getName(), dto.getAddress()));
-            }
+           ObservableList<CustomerTm> obList = FXCollections.observableArrayList();
+
+            for(CustomerDto dto : dtoList){
+               Button btn = new Button("Remove");
+               btn.setCursor(Cursor.HAND);
+
+                btn.setOnAction((e) -> {
+                    ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
+                    ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                    Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
+
+                    if (type.orElse(no) == yes){
+                        int index = tblCustomer.getSelectionModel().getFocusedIndex();
+                        String id = (String) colId.getCellData(index);
+
+                        deleteCustomer(id);
+
+                        obList.remove(index);
+                        tblCustomer.refresh();
+                    }
+
+                });
+
+                var tm = new CustomerTm(dto.getId(), dto.getName(), dto.getAddress(), btn);
+
+                obList.add(tm);
+
+           }
 
             tblCustomer.setItems(obList);
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -78,14 +122,27 @@ public class OwnerCustomerController {
     }
 
     void clearFields() {
-        txtId.setText("");
+        lblCusId.setText("");
         txtName.setText("");
         txtAddress.setText("");
     }
 
+    private void deleteCustomer(String id){
+        try {
+            boolean isDeleted = customerModel.deleteCustomer(id);
+
+            if(isDeleted) {
+                tblCustomer.refresh();
+                new Alert(Alert.AlertType.CONFIRMATION, "customer deleted!").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+    }
+
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-        String id = txtId.getText();
+        String id = lblCusId.getText();
 
         var customerModel = new OwnerCustomerModel();
         try {
@@ -102,7 +159,7 @@ public class OwnerCustomerController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-        String id = txtId.getText();
+        String id = lblCusId.getText();
         String name = txtName.getText();
         String address = txtAddress.getText();
 
@@ -113,6 +170,7 @@ public class OwnerCustomerController {
             boolean isSaved = model.saveCustomer(dto);
             if (isSaved) {
                 new Alert(Alert.AlertType.CONFIRMATION, "customer saved!").show();
+                tblCustomer.refresh();
                 clearFields();
             }
         } catch (SQLException e) {
@@ -122,7 +180,7 @@ public class OwnerCustomerController {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-        String id = txtId.getText();
+        String id = lblCusId.getText();
         String name = txtName.getText();
         String address = txtAddress.getText();
 
@@ -134,6 +192,7 @@ public class OwnerCustomerController {
 
             if(isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "customer updated!").show();
+                tblCustomer.refresh();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -142,7 +201,7 @@ public class OwnerCustomerController {
 
     @FXML
     void txtIdOnAction(ActionEvent event) {
-        String id = txtId.getText();
+        String id = lblCusId.getText();
 
         var model = new OwnerCustomerModel();
         try {
@@ -159,7 +218,7 @@ public class OwnerCustomerController {
     }
 
     private void fillFields(CustomerDto dto) {
-        txtId.setText(dto.getId());
+        lblCusId.setText(dto.getId());
         txtName.setText(dto.getName());
         txtAddress.setText(dto.getAddress());
     }

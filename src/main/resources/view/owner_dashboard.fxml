@@ -37,5 +37,25 @@
          </cursor>
       </JFXButton>
       <Line endX="-100.0" endY="637.0" layoutX="838.0" layoutY="36.0" startX="-100.0" stroke="#0000004c" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="56.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/productdash.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="278.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/dashpending.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="499.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/dashoreder.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="364.0" fitWidth="642.0" layoutX="57.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/graph.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
