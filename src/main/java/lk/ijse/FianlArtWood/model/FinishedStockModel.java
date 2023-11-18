@@ -13,7 +13,7 @@ import java.util.List;
 
 public class FinishedStockModel {
 
-    public List<FinishedStockDto> getAllFinishedStock() throws SQLException {
+    public static List<FinishedStockDto> getAllFinishedStock() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT * FROM finished_stock";
@@ -34,7 +34,7 @@ public class FinishedStockModel {
         return dtoList;
     }
 
-    public boolean deleteFinished(String id) throws SQLException {
+    public static boolean deleteFinished(String id) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "DELETE FROM finished_stock WHERE finished_stock_id = ?";
@@ -42,6 +42,31 @@ public class FinishedStockModel {
         pstm.setString(1, id);
 
         return pstm.executeUpdate() > 0;
+    }
+
+    public static String generateNextFinishedId() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT finished_stock_id FROM finished_stock ORDER BY finished_stock_id DESC LIMIT 1";
+        ResultSet resultSet = connection.prepareStatement(sql).executeQuery();
+
+        String currentFinishedId = null;
+
+        if (resultSet.next()) {
+            currentFinishedId = resultSet.getString(1);
+            return splitFinishedId(currentFinishedId);
+        }
+        return splitFinishedId(null);
+    }
+
+    private static String splitFinishedId(String currentFinishedId) {    //O008
+        if (currentFinishedId != null) {
+            String[] split = currentFinishedId.split("F");
+            int id = Integer.parseInt(split[1]);    //008
+            id++;  //9
+            return "F" + id;
+        }
+        return "F1";
     }
 
     public boolean saveFinished(FinishedStockDto dto) throws SQLException {

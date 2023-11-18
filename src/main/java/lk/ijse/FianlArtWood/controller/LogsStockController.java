@@ -5,24 +5,32 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.FianlArtWood.dto.CustomerDto;
 import lk.ijse.FianlArtWood.dto.LogsDto;
+import lk.ijse.FianlArtWood.dto.tm.CustomerTm;
 import lk.ijse.FianlArtWood.dto.tm.LogsTm;
 import lk.ijse.FianlArtWood.model.LogsStockModel;
+import lk.ijse.FianlArtWood.model.OwnerCustomerModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class LogsStockController {
+    @FXML
+    private Label lblId;
+
+    @FXML
+    private TableColumn<?, ?> colAction;
+
     @FXML
     private TableColumn<?, ?> colAmount;
 
@@ -42,38 +50,81 @@ public class LogsStockController {
     private TextField txtAmount;
 
     @FXML
-    private TextField txtId;
-
-    @FXML
     private TextField txtType;
 
     public void initialize() {
         setCellValueFactory();
         loadAllLogs();
+        generateNextCustomerId();
+    }
+
+    private void generateNextCustomerId() {
+        try {
+            String logId = LogsStockModel.generateNextLogId();
+            lblId.setText(logId);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void setCellValueFactory() {
         colId.setCellValueFactory(new PropertyValueFactory<>("logs_id"));
         colAmount.setCellValueFactory(new PropertyValueFactory<>("log_amount"));
         colType.setCellValueFactory(new PropertyValueFactory<>("wood_type"));
+        colAction.setCellValueFactory(new PropertyValueFactory<>("btn"));
     }
 
     private void loadAllLogs() {
-        var model = new LogsStockModel();
-
-        ObservableList<LogsTm> obList = FXCollections.observableArrayList();
-
         try {
-            List<LogsDto> dtoList;
-            dtoList = model.getAllLogs();
+            List<LogsDto> dtoList = LogsStockModel.getAllLogs();
 
-            for(LogsDto dto : dtoList) {
-                obList.add(new LogsTm(dto.getLogs_id(), dto.getWood_type(), dto.getLog_amount()));
+            ObservableList<LogsTm> obList = FXCollections.observableArrayList();
+
+            for(LogsDto dto : dtoList){
+                Button btn = new Button("Remove");
+                btn.setCursor(Cursor.HAND);
+
+                btn.setOnAction((e) -> {
+                    ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
+                    ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                    Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
+
+                    if (type.orElse(no) == yes){
+                        int index = tblLog.getSelectionModel().getFocusedIndex();
+                        String id = (String) colId.getCellData(index);
+
+                        deleteLog(id);
+
+                        obList.remove(index);
+                        tblLog.refresh();
+                    }
+
+                });
+
+                var tm = new LogsTm(dto.getLogs_id(), dto.getWood_type(), dto.getLog_amount(), btn);
+
+                obList.add(tm);
+
             }
 
             tblLog.setItems(obList);
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private void deleteLog(String id) {
+        try {
+            boolean isDeleted = LogsStockModel.deleteLogs(id);
+
+            if(isDeleted) {
+                tblLog.refresh();
+                new Alert(Alert.AlertType.CONFIRMATION, "Log deleted!").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
 
@@ -95,31 +146,13 @@ public class LogsStockController {
     }
 
     void clearFields() {
-        txtId.setText("");
         txtAmount.setText("");
         txtType.setText("");
     }
 
     @FXML
-    void btnDeleteOnAction(ActionEvent event) {
-        String id = txtId.getText();
-
-        var model = new LogsStockModel();
-        try {
-            boolean isDeleted = model.deleteLogs(id);
-
-            if(isDeleted) {
-                tblLog.refresh();
-                new Alert(Alert.AlertType.CONFIRMATION, "log deleted!").show();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }
-    }
-
-    @FXML
     void btnSaveOnAction(ActionEvent event) {
-        String id = txtId.getText();
+        String id = lblId.getText();
         String type = txtType.getText();
         int amount = Integer.parseInt(txtAmount.getText());
 
@@ -139,7 +172,7 @@ public class LogsStockController {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-        String id = txtId.getText();
+        String id = lblId.getText();
         String type = txtType.getText();
         int amount = Integer.parseInt(txtAmount.getText());
 
@@ -157,27 +190,4 @@ public class LogsStockController {
         }
     }
 
-    @FXML
-    void txtIdOnAction(ActionEvent event) {
-        String id = txtId.getText();
-
-        var model = new LogsStockModel();
-        try {
-            LogsDto dto = model.searchLogs(id);
-
-            if(dto != null) {
-                fillFields(dto);
-            } else {
-                new Alert(Alert.AlertType.INFORMATION, "customer not found!").show();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }
-    }
-
-    private void fillFields(LogsDto dto) {
-        txtId.setText(dto.getLogs_id());
-        txtAmount.setText(String.valueOf(dto.getLog_amount()));
-        txtType.setText(dto.getWood_type());
-    }
 }

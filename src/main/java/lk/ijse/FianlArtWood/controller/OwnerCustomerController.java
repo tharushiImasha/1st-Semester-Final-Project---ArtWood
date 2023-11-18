@@ -119,29 +119,11 @@ public class OwnerCustomerController {
     }
 
     void clearFields() {
-        lblCusId.setText("");
         txtName.setText("");
         txtAddress.setText("");
     }
 
     private void deleteCustomer(String id){
-        try {
-            boolean isDeleted = customerModel.deleteCustomer(id);
-
-            if(isDeleted) {
-                tblCustomer.refresh();
-                new Alert(Alert.AlertType.CONFIRMATION, "customer deleted!").show();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }
-    }
-
-    @FXML
-    void btnDeleteOnAction(ActionEvent event) {
-        String id = lblCusId.getText();
-
-        var customerModel = new OwnerCustomerModel();
         try {
             boolean isDeleted = customerModel.deleteCustomer(id);
 
@@ -196,27 +178,4 @@ public class OwnerCustomerController {
         }
     }
 
-    @FXML
-    void txtIdOnAction(ActionEvent event) {
-        String id = lblCusId.getText();
-
-        var model = new OwnerCustomerModel();
-        try {
-            CustomerDto dto = model.searchCustomer(id);
-
-            if(dto != null) {
-                fillFields(dto);
-            } else {
-                new Alert(Alert.AlertType.INFORMATION, "customer not found!").show();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }
-    }
-
-    private void fillFields(CustomerDto dto) {
-        lblCusId.setText(dto.getId());
-        txtName.setText(dto.getName());
-        txtAddress.setText(dto.getAddress());
-    }
 }

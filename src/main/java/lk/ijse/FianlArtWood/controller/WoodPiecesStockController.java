@@ -168,7 +168,6 @@ public class WoodPiecesStockController {
     }
 
     void clearFields() {
-        lblWoodId.setText("");
         lblQuality.setText("");
         txtLogId.setText("");
         lblAmount.setText("");

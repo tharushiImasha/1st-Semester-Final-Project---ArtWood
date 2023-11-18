@@ -1,5 +1,6 @@
 package lk.ijse.FianlArtWood.model;
 
+import javafx.scene.control.Alert;
 import lk.ijse.FianlArtWood.db.DbConnection;
 import lk.ijse.FianlArtWood.dto.CustomerDto;
 import lk.ijse.FianlArtWood.dto.WoodPiecesDto;
@@ -73,7 +74,7 @@ public class WoodPiecesStockModel {
     public boolean saveWood(WoodPiecesDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
-        String sql2 = "select wood_type from log_stock where logs_id = ?";
+        String sql2 = "select wood_type, logs_amount from log_stock where logs_id = ?";
         PreparedStatement pstm2 = connection.prepareStatement(sql2);
 
         pstm2.setString(1,dto.getLogs_id());
@@ -81,9 +82,11 @@ public class WoodPiecesStockModel {
         ResultSet resultSet = pstm2.executeQuery();
 
         String wood_type = "";
+        int amount = 0;
 
         if (resultSet.next()) {
             wood_type = resultSet.getString(1);
+            amount = resultSet.getInt(2);
         }
 
         connection.setAutoCommit(false);
@@ -97,24 +100,30 @@ public class WoodPiecesStockModel {
         pstm.setString(4, wood_type);
         pstm.setString(5, dto.getLogs_id());
 
-        boolean isSaved = pstm.executeUpdate() > 0;
         boolean isSaved1 = false;
 
-        if (isSaved){
-            String sql1 = "update log_stock set logs_amount = 0 where logs_id = ?";
-            PreparedStatement pstm1 = connection.prepareStatement(sql1);
+        if (amount != 0){
+            boolean isSaved = pstm.executeUpdate() > 0;
+            isSaved1 = false;
 
-            pstm1.setString(1, dto.getLogs_id());
+            if (isSaved){
+                String sql1 = "update log_stock set logs_amount = 0 where logs_id = ?";
+                PreparedStatement pstm1 = connection.prepareStatement(sql1);
 
-            isSaved1 = pstm1.executeUpdate() > 0;
+                pstm1.setString(1, dto.getLogs_id());
 
-            if (isSaved1){
-                connection.commit();
+                isSaved1 = pstm1.executeUpdate() > 0;
+
+                if (isSaved1){
+                    connection.commit();
+                }
+
             }
-
+            connection.rollback();
+            connection.setAutoCommit(true);
+        }else {
+            new Alert(Alert.AlertType.INFORMATION, "Not Enough Log").show();
         }
-        connection.rollback();
-        connection.setAutoCommit(true);
 
         return isSaved1;
     }

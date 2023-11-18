@@ -15,9 +15,4 @@ public class CustomerTm {
         private String address;
         private Button btn;
 
-        public CustomerTm(String id, String name, String address){
-                this.address = address;
-                this.id = id;
-                this.name = name;
-        }
 }
