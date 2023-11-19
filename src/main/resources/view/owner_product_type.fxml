@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -17,18 +18,18 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="58.0" layoutY="215.0" text="Product ID">
+      <Label layoutX="57.0" layoutY="149.0" text="Product ID">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtId" layoutX="189.0" layoutY="209.0" onAction="#txtIdOnAction" prefHeight="30.0" prefWidth="232.0" />
-      <Label layoutX="58.0" layoutY="294.0" text="Product Name">
+      <TextField fx:id="txtId" layoutX="188.0" layoutY="143.0" onAction="#txtIdOnAction" prefHeight="30.0" prefWidth="232.0" />
+      <Label layoutX="57.0" layoutY="220.0" text="Product Name">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtName" layoutX="189.0" layoutY="288.0" prefHeight="30.0" prefWidth="232.0" />
+      <TextField fx:id="txtName" layoutX="188.0" layoutY="214.0" prefHeight="30.0" prefWidth="232.0" />
       <Label layoutX="477.0" layoutY="215.0" text="Quality">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -50,25 +51,32 @@
          <font>
             <Font name="System Bold" size="13.0" />
          </font></JFXButton>
-      <TableView fx:id="tblProduct" layoutX="107.0" layoutY="456.0" prefHeight="200.0" prefWidth="741.0">
+      <TableView fx:id="tblProduct" layoutX="54.0" layoutY="443.0" prefHeight="229.0" prefWidth="823.0">
          <columns>
             <TableColumn fx:id="colId" prefWidth="92.0" text="Id" />
             <TableColumn fx:id="colName" prefWidth="182.0" text="Name" />
-            <TableColumn fx:id="colQuality" prefWidth="242.0" text="Quality" />
-            <TableColumn fx:id="colPrice" prefWidth="224.0" text="Price" />
+            <TableColumn fx:id="colQuality" prefWidth="183.0" text="Quality" />
+            <TableColumn fx:id="colType" prefWidth="188.0" text="Wood type" />
+            <TableColumn fx:id="colPrice" prefWidth="177.0" text="Price" />
          </columns>
       </TableView>
-      <Label layoutX="477.0" layoutY="294.0" text="Price">
+      <Label layoutX="58.0" layoutY="289.0" text="Price">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtPrice" layoutX="581.0" layoutY="288.0" prefHeight="30.0" prefWidth="232.0" />
-      <TextField fx:id="txtQuality" layoutX="581.0" layoutY="209.0" prefHeight="30.0" prefWidth="232.0" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="648.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="txtPrice" layoutX="188.0" layoutY="283.0" prefHeight="30.0" prefWidth="232.0" />
+      <ImageView fitHeight="169.0" fitWidth="168.0" layoutX="630.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../29169159_7516663-removebg-preview.png" />
          </image>
       </ImageView>
+      <ComboBox fx:id="cmbQuality" editable="true" layoutX="581.0" layoutY="212.0" prefHeight="30.0" prefWidth="232.0" />
+      <Label layoutX="477.0" layoutY="286.0" text="Wood Type">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbWoodType" editable="true" layoutX="581.0" layoutY="283.0" prefHeight="30.0" prefWidth="232.0" />
    </children>
 </AnchorPane>

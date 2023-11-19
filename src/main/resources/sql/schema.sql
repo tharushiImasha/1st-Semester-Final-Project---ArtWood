@@ -1,16 +1,19 @@
+create database artWood;
+
+use artWood;
+
 create table employee(
     emp_id varchar(50) primary key,
 	name varchar(100) not null,
 	address varchar(100) not null,
     tel int(10) not null,
     status varchar(20),
-    job_role varchar(100) not null,
-    attendence varchar(20)
+    job_role varchar(100) not null
 );
 
-////insert into employee values("E1","Kamal","Galle",0719568456,"no","stock_manager","yes");
-////insert into employee values("E0","Nimal","Galle",0775538451,"no","owner","yes");
-////insert into employee values("E2","Tharindu","Mathara",0772139752,"no","cashier","yes");
+insert into employee values("E1","Kamal","Galle",0719568456,"no","stock_manager","yes");
+insert into employee values("E0","Nimal","Galle",0775538451,"no","owner","yes");
+insert into employee values("E2","Tharindu","Mathara",0772139752,"no","cashier","yes");
 
 
 create table login(
@@ -20,11 +23,11 @@ create table login(
     foreign key (emp_id) references employee (emp_id) on update cascade on delete cascade
 );
 
-//insert into login values("cash","c@123","E2");
-//insert into login values("admin","o@123","E0");
+insert into login values("cash","c@123","E2");
+insert into login values("admin","o@123","E0");
 
 
-//select e.job_role, l.user_name, l.pw from employee e join login l on e.emp_id = l.emp_id where user_name = "cash";
+select e.job_role, l.user_name, l.pw from employee e join login l on e.emp_id = l.emp_id where user_name = "cash";
 
 
 create table pay_method(
@@ -95,7 +98,8 @@ create table product_type(
     product_id varchar(20) primary key,
 	product_name varchar(50) not null,
 	quality varchar (50) not null,
-    price double(5,2) not null
+	wood_type varchar(50) not null,
+    price double(7,2) not null
 );
 
 

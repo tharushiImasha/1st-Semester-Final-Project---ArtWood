@@ -4,10 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.FianlArtWood.dto.ProductTypeDto;
 import lk.ijse.FianlArtWood.dto.tm.ProductTypeTm;
@@ -15,8 +12,18 @@ import lk.ijse.FianlArtWood.model.OwnerProductTypeModel;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class OwnerProductTypeController {
+    @FXML
+    private ComboBox<String> cmbQuality;
+
+    @FXML
+    private ComboBox<String>  cmbWoodType;
+
+    @FXML
+    private TableColumn<?, ?> colType;
+
     @FXML
     private TableColumn<?, ?> colId;
 
@@ -41,19 +48,29 @@ public class OwnerProductTypeController {
     @FXML
     private TextField txtPrice;
 
-    @FXML
-    private TextField txtQuality;
-
     public void initialize() {
         setCellValueFactory();
         loadAllProducts();
         setListener();
+        loadType();
+        loadQuality();
+    }
+
+    private void loadType() {
+        cmbWoodType.getItems().add("Teak");
+        cmbWoodType.getItems().add("Rosewood");
+    }
+
+    private void loadQuality() {
+        cmbQuality.getItems().add("High Quality");
+        cmbQuality.getItems().add("Low Quality");
     }
 
     private void setCellValueFactory() {
         colId.setCellValueFactory(new PropertyValueFactory<>("product_id"));
         colName.setCellValueFactory(new PropertyValueFactory<>("product_name"));
         colQuality.setCellValueFactory(new PropertyValueFactory<>("quality"));
+        colType.setCellValueFactory(new PropertyValueFactory<>("wood_type"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 
@@ -67,7 +84,7 @@ public class OwnerProductTypeController {
             dtoList = model.getAllProduct();
 
             for(ProductTypeDto dto : dtoList) {
-                obList.add(new ProductTypeTm(dto.getProduct_id(), dto.getProduct_name(), dto.getQuality(), dto.getPrice()));
+                obList.add(new ProductTypeTm(dto.getProduct_id(), dto.getProduct_name(), dto.getQuality(), dto.getWood_type(), dto.getPrice()));
             }
 
             tblProduct.setItems(obList);
@@ -85,7 +102,8 @@ public class OwnerProductTypeController {
         txtId.setText("");
         txtName.setText("");
         txtPrice.setText("");
-        txtQuality.setText("");
+        cmbQuality.setValue("");
+        cmbWoodType.setValue("");
     }
 
     @FXML
@@ -109,31 +127,66 @@ public class OwnerProductTypeController {
     void btnSaveOnAction(ActionEvent event) {
         String id = txtId.getText();
         String name = txtName.getText();
-        String quality = txtQuality.getText();
+        String quality = cmbQuality.getValue();
+        String wood_type = cmbWoodType.getValue();
         double price = Double.parseDouble(txtPrice.getText());
 
-        var dto = new ProductTypeDto(id, name, quality, price);
+        var dto = new ProductTypeDto(id, name, quality, wood_type, price);
 
         var model = new OwnerProductTypeModel();
         try {
-            boolean isSaved = model.saveProduct(dto);
-            if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "product saved!").show();
-                clearFields();
+            if (validateProduct()) {
+
+                boolean isSaved = model.saveProduct(dto);
+                if (isSaved) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "product saved!").show();
+                    clearFields();
+                }else {
+                    new Alert(Alert.AlertType.CONFIRMATION, "product not saved!").show();
+                }
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
 
+    private boolean validateProduct() {
+        String id = txtId.getText();
+        boolean isValid = Pattern.matches("[P][0-9]{1,}", id);
+
+        if (!isValid){
+            new Alert(Alert.AlertType.ERROR, "Invalid ID").show();
+            return false;
+        }
+
+        String name = txtName.getText();
+        boolean isValidName = Pattern.matches("([a-zA-Z\\s]+)", name);
+
+        if (!isValidName){
+            new Alert(Alert.AlertType.ERROR, "Invalid Name").show();
+            return false;
+        }
+
+        String price = txtPrice.getText();
+        boolean isValidPrice = Pattern.matches("[0-9]{3,}", price);
+
+        if (!isValidPrice){
+            new Alert(Alert.AlertType.ERROR, "Invalid Price").show();
+            return false;
+        }
+
+        return true;
+    }
+
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
         String id = txtId.getText();
         String name = txtName.getText();
-        String quality = txtQuality.getText();
+        String quality = cmbQuality.getValue();
+        String wood_type = cmbWoodType.getValue();
         double price = Double.parseDouble(txtPrice.getText());
 
-        var dto = new ProductTypeDto(id, name, quality, price);
+        var dto = new ProductTypeDto(id, name, quality, wood_type, price);
 
         var model = new OwnerProductTypeModel();
         try {
@@ -168,7 +221,8 @@ public class OwnerProductTypeController {
     private void fillFields(ProductTypeDto dto) {
         txtId.setText(dto.getProduct_id());
         txtName.setText(dto.getProduct_name());
-        txtQuality.setText(dto.getQuality());
+        cmbQuality.setValue(dto.getQuality());
+        cmbWoodType.setValue(dto.getWood_type());
         txtPrice.setText(String.valueOf(dto.getPrice()));
     }
 
@@ -179,6 +233,7 @@ public class OwnerProductTypeController {
                             newValue.getProduct_id(),
                             newValue.getProduct_name(),
                             newValue.getQuality(),
+                            newValue.getWood_type(),
                             newValue.getPrice()
                     );
                     setFields(dto);
@@ -186,10 +241,12 @@ public class OwnerProductTypeController {
     }
 
     private void setFields(ProductTypeDto dto) {
+
         txtId.setText(dto.getProduct_id());
         txtName.setText(dto.getProduct_name());
-        txtQuality.setText(dto.getQuality());
+        cmbQuality.setValue(dto.getQuality());
         txtPrice.setText(String.valueOf(dto.getPrice()));
+        cmbWoodType.setValue(dto.getWood_type());
     }
 
 }

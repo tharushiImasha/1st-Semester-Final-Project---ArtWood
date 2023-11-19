@@ -113,4 +113,22 @@ public class EditProfileFormModel {
         return dtoList;
 
     }
+
+    public static String getJob(String emp_id) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql1 = "select job_role from employee where emp_id = ?";
+        PreparedStatement pstm1 = connection.prepareStatement(sql1);
+
+        pstm1.setString(1, emp_id);
+
+        ResultSet resultSet = pstm1.executeQuery();
+
+        String job_role = "Not Employee";
+
+        if (resultSet.next()) {
+            job_role = resultSet.getString(1);
+        }
+        return job_role;
+    }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -64,14 +65,6 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtLogId" layoutX="167.0" layoutY="209.0" prefHeight="30.0" prefWidth="218.0" style="-fx-background-radius: 5;">
-         <effect>
-            <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
-               <color>
-                  <Color opacity="0.24137930572032928" />
-               </color>
-            </DropShadow>
-         </effect></TextField>
       <Label layoutX="65.0" layoutY="331.0" text="Amount">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -131,5 +124,6 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
+      <ComboBox fx:id="cmbLogId" editable="true" layoutX="168.0" layoutY="209.0" prefHeight="30.0" prefWidth="205.0" />
    </children>
 </AnchorPane>

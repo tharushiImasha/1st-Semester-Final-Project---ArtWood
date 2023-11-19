@@ -9,10 +9,9 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="710.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.FianlArtWood.controller.OwnerOrderController">
    <children>
-      <Label layoutX="58.0" layoutY="80.0" text="Customer">
+      <Label layoutX="58.0" layoutY="80.0" text="Place Order">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -43,7 +42,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <ComboBox editable="true" layoutX="189.0" layoutY="203.0" prefHeight="30.0" prefWidth="218.0">
+      <ComboBox editable="true" layoutX="189.0" layoutY="203.0" prefHeight="30.0" prefWidth="154.0">
          <effect>
             <DropShadow height="1.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>
@@ -52,10 +51,24 @@
             </DropShadow>
          </effect>
       </ComboBox>
-      <JFXButton layoutX="424.0" layoutY="206.0" style="-fx-background-color: orange;" text="New" textFill="WHITE">
+      <JFXButton layoutX="367.0" layoutY="206.0" style="-fx-background-color: orange;" text="New" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
+      <Label layoutX="510.0" layoutY="206.0" text="Employee ID">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox editable="true" layoutX="641.0" layoutY="203.0" prefHeight="30.0" prefWidth="154.0">
+         <effect>
+            <DropShadow height="1.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
+               <color>
+                  <Color opacity="0.0" />
+               </color>
+            </DropShadow>
+         </effect>
+      </ComboBox>
    </children>
 </AnchorPane>

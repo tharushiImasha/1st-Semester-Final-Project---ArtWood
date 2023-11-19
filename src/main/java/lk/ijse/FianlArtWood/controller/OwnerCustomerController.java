@@ -15,6 +15,7 @@ import lk.ijse.FianlArtWood.model.OwnerCustomerModel;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 public class OwnerCustomerController {
     @FXML
@@ -147,15 +148,46 @@ public class OwnerCustomerController {
 
         var model = new OwnerCustomerModel();
         try {
-            boolean isSaved = model.saveCustomer(dto);
-            if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "customer saved!").show();
-                tblCustomer.refresh();
-                clearFields();
+            if (validateCustomer()) {
+
+                boolean isSaved = model.saveCustomer(dto);
+                if (isSaved) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "customer saved!").show();
+                    tblCustomer.refresh();
+                    clearFields();
+                }
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
+    }
+
+    private boolean validateCustomer() {
+        String id = lblCusId.getText();
+        boolean isValid = Pattern.matches("[C][0-9]{1,}", id);
+
+        if (!isValid){
+            new Alert(Alert.AlertType.ERROR, "Invalid ID").show();
+            return false;
+        }
+
+        String name = txtName.getText();
+        boolean isValidName = Pattern.matches("([a-zA-Z\\s]+)", name);
+
+        if (!isValidName){
+            new Alert(Alert.AlertType.ERROR, "Invalid Name").show();
+            return false;
+        }
+
+        String address = txtAddress.getText();
+        boolean isValidAddress = Pattern.matches("([a-zA-Z0-9\\s]+)", address);
+
+        if (!isValidAddress){
+            new Alert(Alert.AlertType.ERROR, "Invalid Address").show();
+            return false;
+        }
+
+        return true;
     }
 
     @FXML

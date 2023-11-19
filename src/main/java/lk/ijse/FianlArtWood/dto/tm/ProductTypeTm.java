@@ -12,5 +12,6 @@ public class ProductTypeTm {
     private String product_id;
     private String product_name;
     private  String quality;
+    private String wood_type;
     private double price;
 }

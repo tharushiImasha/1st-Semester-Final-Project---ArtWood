@@ -7,29 +7,35 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.FianlArtWood.dto.EmployeeDto;
 import lk.ijse.FianlArtWood.dto.LoginDto;
 import lk.ijse.FianlArtWood.dto.tm.UserTm;
 import lk.ijse.FianlArtWood.model.EditProfileFormModel;
+import lk.ijse.FianlArtWood.model.OwnerEmployeeModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class EditProfileFormController {
-
 
     public TableColumn colEmpId;
     public TableColumn colUserName;
     public TableColumn colPw;
+
     @FXML
     private TableView<UserTm> tblUsers;
+
+    @FXML
+    private Label lblJob;
+
+    @FXML
+    private ComboBox<String> cmbId;
 
     @FXML
     private AnchorPane rootNode;
@@ -47,6 +53,22 @@ public class EditProfileFormController {
         setCellValueFactory();
         loadAllUsers();
         setListener();
+        loadEmpId();
+    }
+
+    private void loadEmpId() {
+        ObservableList<String> obList = FXCollections.observableArrayList();
+        try {
+            List<EmployeeDto> list = OwnerEmployeeModel.getAllEmployees();
+
+            for (EmployeeDto dto : list) {
+                obList.add(dto.getEmp_id());
+            }
+
+            cmbId.setItems(obList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void setCellValueFactory() {
@@ -69,6 +91,7 @@ public class EditProfileFormController {
             }
 
             tblUsers.setItems(obList);
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -93,12 +116,13 @@ public class EditProfileFormController {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-        String emp_id = txtEmpId.getText();
+        String emp_id = (String) cmbId.getValue();
         var editModel = new EditProfileFormModel();
         try {
             boolean isDeleted = editModel.deleteUser(emp_id);
 
             if(isDeleted) {
+                tblUsers.refresh();
                 new Alert(Alert.AlertType.CONFIRMATION, "user deleted!").show();
             }else {
                 new Alert(Alert.AlertType.CONFIRMATION, "user not deleted!").show();
@@ -110,7 +134,7 @@ public class EditProfileFormController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-        String emp_id = txtEmpId.getText();
+        String emp_id = (String) cmbId.getValue();
         String user_name = txtUserName.getText();
         String pw = txtPassword.getText();
 
@@ -118,13 +142,17 @@ public class EditProfileFormController {
 
         var model = new EditProfileFormModel();
         try {
-            boolean isSaved = model.saveUser(dto);
-            if (isSaved){
-                new Alert(Alert.AlertType.CONFIRMATION, "User saved!").show();
-                clearFields();
-            }else {
-                new Alert(Alert.AlertType.CONFIRMATION, "User not saved!").show();
-                clearFields();
+            if (validateUser()) {
+
+                boolean isSaved = model.saveUser(dto);
+                if (isSaved) {
+                    tblUsers.refresh();
+                    new Alert(Alert.AlertType.CONFIRMATION, "User saved!").show();
+                    clearFields();
+                } else {
+                    new Alert(Alert.AlertType.CONFIRMATION, "User not saved!").show();
+                    clearFields();
+                }
             }
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -132,21 +160,35 @@ public class EditProfileFormController {
 
     }
 
+    private boolean validateUser() {
+        String userName = txtUserName.getText();
+        boolean isValid = Pattern.matches("[a-zA-Z]{3,}", userName);
+
+        if (!isValid){
+            new Alert(Alert.AlertType.ERROR, "Invalid UserName").show();
+            return false;
+        }
+
+        String pw = txtUserName.getText();
+        boolean isValidPw = Pattern.matches("(^[a-zA-Z]\\w{3,14}$)", pw);
+
+        if (!isValidPw){
+            new Alert(Alert.AlertType.ERROR, "Invalid Password").show();
+            return false;
+        }
+
+        return true;
+    }
+
     private void clearFields() {
-        txtEmpId.setText("");
+        cmbId.setValue("");
         txtPassword.setText("");
         txtUserName.setText("");
     }
 
-    private void fillFields(LoginDto dto) {
-        txtEmpId.setText(dto.getEmp_id());
-        txtUserName.setText(dto.getUserName());
-        txtPassword.setText(dto.getPw());
-    }
-
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-        String emp_id = txtEmpId.getText();
+        String emp_id = (String) cmbId.getValue();
         String user_name = txtUserName.getText();
         String pw = txtPassword.getText();
 
@@ -157,6 +199,7 @@ public class EditProfileFormController {
             boolean isUpdated = model.updateUser(dto);
 
             if(isUpdated) {
+                tblUsers.refresh();
                 new Alert(Alert.AlertType.CONFIRMATION, "user updated!").show();
             }else {
                 new Alert(Alert.AlertType.CONFIRMATION, "user not updated!").show();
@@ -167,40 +210,31 @@ public class EditProfileFormController {
 
     }
 
-    @FXML
-    void txtEmpIdOnAction(ActionEvent event) {
-        String emp_id = txtEmpId.getText();
-
-        var model = new EditProfileFormModel();
-        try {
-            LoginDto dto = model.searchCustomer(emp_id);
-
-            if(dto != null) {
-                fillFields(dto);
-            } else {
-                new Alert(Alert.AlertType.INFORMATION, "user not found!").show();
-            }
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }
-    }
-
     private void setListener() {
         tblUsers.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
                     var dto = new LoginDto(
-                            newValue.getEmp_id(),
                             newValue.getUser_name(),
-                            newValue.getPw()
+                            newValue.getPw(),
+                            newValue.getEmp_id()
                     );
                     setFields(dto);
                 });
     }
 
     private void setFields(LoginDto dto) {
-        txtEmpId.setText(dto.getEmp_id());
+        cmbId.setValue(dto.getEmp_id());
         txtUserName.setText(dto.getUserName());
         txtPassword.setText(dto.getPw());
+    }
+
+    @FXML
+    void cmbIdOnAction(ActionEvent event) throws SQLException {
+        String emp_id = cmbId.getValue();
+
+       String job_role = EditProfileFormModel.getJob(emp_id);
+
+       lblJob.setText(job_role);
     }
 
 }

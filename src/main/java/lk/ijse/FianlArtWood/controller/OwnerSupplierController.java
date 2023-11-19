@@ -15,6 +15,7 @@ import lk.ijse.FianlArtWood.model.OwnerSupplierModel;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class OwnerSupplierController {
     @FXML
@@ -116,14 +117,53 @@ public class OwnerSupplierController {
 
         var model = new OwnerSupplierModel();
         try {
-            boolean isSaved = model.saveSupplier(dto);
-            if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Supplier saved!").show();
-                clearFields();
+            if(validateSupplier()) {
+
+                boolean isSaved = model.saveSupplier(dto);
+                if (isSaved) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Supplier saved!").show();
+                    clearFields();
+                }
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
+    }
+
+    private boolean validateSupplier() {
+        String id = txtId.getText();
+        boolean isValid = Pattern.matches("[S][0-9]{1,}", id);
+
+        if (!isValid){
+            new Alert(Alert.AlertType.ERROR, "Invalid ID").show();
+            return false;
+        }
+
+        String name = txtName.getText();
+        boolean isValidName = Pattern.matches("([a-zA-Z\\s]+)", name);
+
+        if (!isValidName){
+            new Alert(Alert.AlertType.ERROR, "Invalid Name").show();
+            return false;
+        }
+
+        String address = txtAddress.getText();
+        boolean isValidAddress = Pattern.matches("([a-zA-Z0-9\\s]+)", address);
+
+        if (!isValidAddress){
+            new Alert(Alert.AlertType.ERROR, "Invalid Address").show();
+            return false;
+        }
+
+        String email = txtEmail.getText();
+        boolean isValidJob = Pattern.matches("(^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$)", email);
+
+        if (!isValidJob){
+            new Alert(Alert.AlertType.ERROR, "Invalid Email").show();
+            return false;
+        }
+
+        return true;
     }
 
     @FXML

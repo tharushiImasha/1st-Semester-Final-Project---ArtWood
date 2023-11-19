@@ -12,16 +12,24 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.FianlArtWood.dto.EmployeeDto;
 import lk.ijse.FianlArtWood.dto.FinishedStockDto;
+import lk.ijse.FianlArtWood.dto.ProductTypeDto;
 import lk.ijse.FianlArtWood.dto.tm.FinishedStockTm;
 import lk.ijse.FianlArtWood.model.FinishedStockModel;
+import lk.ijse.FianlArtWood.model.OwnerEmployeeModel;
+import lk.ijse.FianlArtWood.model.OwnerProductTypeModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 public class FinishedStockController {
+    @FXML
+    private ComboBox<String> cmbProductId;
+
     @FXML
     private TableColumn<?, ?> colAction;
 
@@ -46,14 +54,27 @@ public class FinishedStockController {
     @FXML
     private TextField txtAmountId;
 
-    @FXML
-    private TextField txtProductId;
-
     public void initialize() {
         setCellValueFactory();
         loadAllFinishedStock();
         generateNextFinishedId();
         setListener();
+        loadProductId();
+    }
+
+    private void loadProductId() {
+        ObservableList<String> obList = FXCollections.observableArrayList();
+        try {
+            List<ProductTypeDto> list = OwnerProductTypeModel.getAllProduct();
+
+            for (ProductTypeDto dto : list) {
+                obList.add(dto.getProduct_id());
+            }
+
+            cmbProductId.setItems(obList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void generateNextFinishedId() {
@@ -145,34 +166,54 @@ public class FinishedStockController {
 
     void clearFields() {
         txtAmountId.setText("");
-        txtProductId.setText("");
+        cmbProductId.setValue("");
     }
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-        String finished_id = lblId.getText();
-        int amount = Integer.parseInt(txtAmountId.getText());
-        String product_type = txtProductId.getText();
+        if (validateFinished()) {
 
-        var dto = new FinishedStockDto(finished_id, amount, product_type);
+            String finished_id = lblId.getText();
+            int amount = Integer.parseInt(txtAmountId.getText());
+            String product_type = cmbProductId.getValue();
 
-        var model = new FinishedStockModel();
-        try {
-            boolean isSaved = model.saveFinished(dto);
-            if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "finished stock saved!").show();
-                clearFields();
+            var dto = new FinishedStockDto(finished_id, amount, product_type);
+
+            var model = new FinishedStockModel();
+            try {
+
+                boolean isSaved = model.saveFinished(dto);
+                if (isSaved) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "finished stock saved!").show();
+                    clearFields();
+
+                    tblFinished.refresh();
+                }
+
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
+    }
+
+    private boolean validateFinished() {
+
+        String amount = txtAmountId.getText();
+        boolean isValidAmount = Pattern.matches("([0-9]{1,})", amount);
+
+        if (!isValidAmount){
+            new Alert(Alert.AlertType.ERROR, "Invalid amount").show();
+            return false;
+        }
+
+        return true;
     }
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
         String finished_id = lblId.getText();
         int amount = Integer.parseInt(txtAmountId.getText());
-        String product_id = txtProductId.getText();
+        String product_id = cmbProductId.getValue();
 
         var dto = new FinishedStockDto(finished_id, amount, product_id);
 
@@ -204,7 +245,7 @@ public class FinishedStockController {
     private void setFields(FinishedStockDto dto) {
         lblId.setText(dto.getFinished_id());
         txtAmountId.setText(String.valueOf(dto.getAmount()));
-        txtProductId.setText(dto.getProduct_id());
+        cmbProductId.setValue(dto.getProduct_id());
     }
 
 }

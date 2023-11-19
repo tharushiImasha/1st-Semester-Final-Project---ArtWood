@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OwnerProductTypeModel {
-    public List<ProductTypeDto> getAllProduct() throws SQLException {
+    public static List<ProductTypeDto> getAllProduct() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT * FROM product_type";
@@ -26,9 +26,10 @@ public class OwnerProductTypeModel {
             String product_id = resultSet.getString(1);
             String product_name = resultSet.getString(2);
             String quality = resultSet.getString(3);
-            double price = Double.parseDouble(resultSet.getString(4));
+            String wood_type = resultSet.getString(4);
+            double price = Double.parseDouble(resultSet.getString(5));
 
-            var dto = new ProductTypeDto(product_id, product_name, quality, price);
+            var dto = new ProductTypeDto(product_id, product_name, quality, wood_type, price);
             dtoList.add(dto);
         }
         return dtoList;
@@ -47,13 +48,14 @@ public class OwnerProductTypeModel {
     public boolean saveProduct(ProductTypeDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
-        String sql = "INSERT INTO product_type VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO product_type VALUES(?, ?, ?, ?, ?)";
         PreparedStatement pstm = connection.prepareStatement(sql);
 
         pstm.setString(1, dto.getProduct_id());
         pstm.setString(2, dto.getProduct_name());
         pstm.setString(3, dto.getQuality());
-        pstm.setString(4, String.valueOf(dto.getPrice()));
+        pstm.setString(4, dto.getWood_type());
+        pstm.setString(5, String.valueOf(dto.getPrice()));
 
         boolean isSaved = pstm.executeUpdate() > 0;
 
@@ -63,7 +65,7 @@ public class OwnerProductTypeModel {
     public boolean updateProduct(ProductTypeDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
-        String sql = "UPDATE product_type SET product_name = ?, quality = ?, price = ? WHERE product_id = ?";
+        String sql = "UPDATE product_type SET product_name = ?, quality = ?, wood_type = ?, price = ? WHERE product_id = ?";
         PreparedStatement pstm = connection.prepareStatement(sql);
 
         pstm.setString(1, dto.getProduct_name());
@@ -89,9 +91,10 @@ public class OwnerProductTypeModel {
             String cus_id = resultSet.getString(1);
             String cus_name = resultSet.getString(2);
             String quality = resultSet.getString(3);
-            double price = resultSet.getDouble(4);
+            String wood_type = resultSet.getString(4);
+            double price = resultSet.getDouble(5);
 
-            dto = new ProductTypeDto(cus_id, cus_name, quality, price);
+            dto = new ProductTypeDto(cus_id, cus_name, quality, wood_type, price);
         }
 
         return dto;

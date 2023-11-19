@@ -26,6 +26,9 @@ public class LogsStockController {
     private Label lblId;
 
     @FXML
+    private ComboBox<String> cmbType;
+
+    @FXML
     private TableColumn<?, ?> colAction;
 
     @FXML
@@ -43,17 +46,18 @@ public class LogsStockController {
     @FXML
     private TableView<LogsTm> tblLog;
 
-    @FXML
-    private TextField txtAmount;
-
-    @FXML
-    private TextField txtType;
+    private int amount = 1;
 
     public void initialize() {
         setCellValueFactory();
         loadAllLogs();
         generateNextCustomerId();
         setListener();
+        loadType();
+    }
+    private void loadType() {
+       cmbType.getItems().add("Teak");
+       cmbType.getItems().add("Rosewood");
     }
 
     private void generateNextCustomerId() {
@@ -144,15 +148,13 @@ public class LogsStockController {
     }
 
     void clearFields() {
-        txtAmount.setText("");
-        txtType.setText("");
+        cmbType.setValue("");
     }
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
         String id = lblId.getText();
-        String type = txtType.getText();
-        int amount = Integer.parseInt(txtAmount.getText());
+        String type = cmbType.getValue();
 
         var dto = new LogsDto(id, type, amount);
 
@@ -171,8 +173,7 @@ public class LogsStockController {
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
         String id = lblId.getText();
-        String type = txtType.getText();
-        int amount = Integer.parseInt(txtAmount.getText());
+        String type = cmbType.getValue();
 
         var dto = new LogsDto(id, type, amount);
 
@@ -202,8 +203,7 @@ public class LogsStockController {
 
     private void setFields(LogsDto dto) {
         lblId.setText(dto.getLogs_id());
-        txtType.setText(dto.getWood_type());
-        txtAmount.setText(String.valueOf(dto.getLog_amount()));
+        cmbType.setValue(dto.getWood_type());
     }
 
 }

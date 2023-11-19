@@ -16,6 +16,7 @@ import lk.ijse.FianlArtWood.model.OwnerEmployeeModel;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class OwnerEmployeeController {
     @FXML
@@ -81,12 +82,8 @@ public class OwnerEmployeeController {
             dtoList = model.getAllEmployees();
 
             for(EmployeeDto dto : dtoList) {
-
-                System.out.println(dto.getEmp_id());
                 obList.add(new EmployeeTm(dto.getEmp_id(), dto.getName(), dto.getAddress(), dto.getTel(), dto.getJob_role(), dto.getStatus()));
             }
-
-
 
             tblEmployee.setItems(obList);
         } catch (SQLException e) {
@@ -138,17 +135,64 @@ public class OwnerEmployeeController {
 
         var model = new OwnerEmployeeModel();
         try {
-            boolean isSaved = model.saveUser(dto);
-            if (isSaved){
-                new Alert(Alert.AlertType.CONFIRMATION, "Employee saved!").show();
-                clearFields();
-            }else {
-                new Alert(Alert.AlertType.CONFIRMATION, "Employee not saved!").show();
-                clearFields();
+            if (validateEmployee()) {
+
+                boolean isSaved = model.saveUser(dto);
+                if (isSaved) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Employee saved!").show();
+                    clearFields();
+                } else {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Employee not saved!").show();
+                    clearFields();
+                }
             }
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
+    }
+
+    private boolean validateEmployee() {
+        String id = txtId.getText();
+        boolean isValid = Pattern.matches("[E][0-9]{1,}", id);
+
+        if (!isValid){
+            new Alert(Alert.AlertType.ERROR, "Invalid ID").show();
+            return false;
+        }
+
+        String name = txtName.getText();
+        boolean isValidName = Pattern.matches("([a-zA-Z\\s]+)", name);
+
+        if (!isValidName){
+            new Alert(Alert.AlertType.ERROR, "Invalid Name").show();
+            return false;
+        }
+
+        String address = txtAddress.getText();
+        boolean isValidAddress = Pattern.matches("([a-zA-Z0-9\\s]+)", address);
+
+        if (!isValidAddress){
+            new Alert(Alert.AlertType.ERROR, "Invalid Address").show();
+            return false;
+        }
+
+        String tel = txtTel.getText();
+        boolean isValidTel = Pattern.matches("[0-9]{10}", tel);
+
+        if (!isValidTel){
+            new Alert(Alert.AlertType.ERROR, "Invalid Tel").show();
+            return false;
+        }
+
+        String job_role = txtJobRole.getText();
+        boolean isValidJob = Pattern.matches("([a-zA-Z\\s]+)", job_role);
+
+        if (!isValidJob){
+            new Alert(Alert.AlertType.ERROR, "Invalid").show();
+            return false;
+        }
+
+        return true;
     }
 
     @FXML

@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -20,14 +21,6 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <TextField fx:id="txtEmpId" layoutX="187.0" layoutY="138.0" onAction="#txtEmpIdOnAction" prefHeight="30.0" prefWidth="255.0" style="-fx-background-radius: 5;">
-         <effect>
-            <DropShadow height="0.0" offsetX="2.0" offsetY="2.0" radius="0.0" spread="0.26" width="0.0">
-               <color>
-                  <Color opacity="0.16475096344947815" />
-               </color>
-            </DropShadow>
-         </effect></TextField>
       <Label layoutX="71.0" layoutY="143.0" text="Emp ID">
          <font>
             <Font size="15.0" />
@@ -35,7 +28,7 @@
       </Label>
       <TextField fx:id="txtUserName" layoutX="187.0" layoutY="213.0" prefHeight="30.0" prefWidth="255.0" style="-fx-background-radius: 5;">
          <effect>
-            <DropShadow height="0.0" offsetX="2.0" offsetY="2.0" radius="0.0" spread="0.51" width="0.0">
+            <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" spread="0.51" width="0.0">
                <color>
                   <Color opacity="0.15708811581134796" />
                </color>
@@ -48,7 +41,7 @@
       </Label>
       <TextField fx:id="txtPassword" layoutX="187.0" layoutY="288.0" prefHeight="30.0" prefWidth="255.0" style="-fx-background-radius: 5;">
          <effect>
-            <DropShadow height="0.0" offsetX="2.0" offsetY="2.0" radius="0.0" spread="0.3" width="0.0">
+            <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" spread="0.21" width="0.0">
                <color>
                   <Color opacity="0.14176245033740997" />
                </color>
@@ -101,10 +94,29 @@
             <TableColumn fx:id="colPw" prefWidth="265.0" text="Password" />
          </columns>
       </TableView>
-      <ImageView fitHeight="283.0" fitWidth="427.0" layoutX="482.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="280.0" fitWidth="314.0" layoutX="500.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/userIllustration.png" />
          </image>
       </ImageView>
+      <ComboBox fx:id="cmbId" editable="true" layoutX="190.0" layoutY="138.0" onAction="#cmbIdOnAction" prefHeight="30.0" prefWidth="255.0">
+         <effect>
+            <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
+               <color>
+                  <Color opacity="0.30911877751350403" />
+               </color>
+            </DropShadow>
+         </effect>
+      </ComboBox>
+      <Label layoutX="473.0" layoutY="293.0" text="Jobe Role : ">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblJob" layoutX="579.0" layoutY="295.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

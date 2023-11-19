@@ -36,7 +36,6 @@ public class OwnerEmployeeModel {
         pstm.setString(4, String.valueOf(dto.getTel()));
         pstm.setString(5, dto.getStatus());
         pstm.setString(6, dto.getJob_role());
-        pstm.setString(7, dto.getAttendance());
 
         boolean isSaved = pstm.executeUpdate() > 0;
 
@@ -83,7 +82,7 @@ public class OwnerEmployeeModel {
         return dto;
     }
 
-    public List<EmployeeDto> getAllEmployees() throws SQLException {
+    public static List<EmployeeDto> getAllEmployees() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT * FROM employee";
