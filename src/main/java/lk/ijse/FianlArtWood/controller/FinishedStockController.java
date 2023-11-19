@@ -12,12 +12,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.FianlArtWood.dto.CustomerDto;
 import lk.ijse.FianlArtWood.dto.FinishedStockDto;
-import lk.ijse.FianlArtWood.dto.tm.CustomerTm;
 import lk.ijse.FianlArtWood.dto.tm.FinishedStockTm;
 import lk.ijse.FianlArtWood.model.FinishedStockModel;
-import lk.ijse.FianlArtWood.model.OwnerCustomerModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -56,6 +53,7 @@ public class FinishedStockController {
         setCellValueFactory();
         loadAllFinishedStock();
         generateNextFinishedId();
+        setListener();
     }
 
     private void generateNextFinishedId() {
@@ -188,6 +186,25 @@ public class FinishedStockController {
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
+    }
+
+    private void setListener() {
+        tblFinished.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    var dto = new FinishedStockDto(
+                            newValue.getFinished_id(),
+                            newValue.getAmount(),
+                            newValue.getProduct_id()
+
+                    );
+                    setFields(dto);
+                });
+    }
+
+    private void setFields(FinishedStockDto dto) {
+        lblId.setText(dto.getFinished_id());
+        txtAmountId.setText(String.valueOf(dto.getAmount()));
+        txtProductId.setText(dto.getProduct_id());
     }
 
 }

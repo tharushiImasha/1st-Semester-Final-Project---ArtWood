@@ -59,6 +59,7 @@ public class OwnerEmployeeController {
     public void initialize() {
         setCellValueFactory();
         loadAllEmployees();
+        setListener();
     }
 
     private void setCellValueFactory() {
@@ -166,9 +167,9 @@ public class OwnerEmployeeController {
 
             if(isUpdated) {
                 tblEmployee.refresh();
-                new Alert(Alert.AlertType.CONFIRMATION, "user updated!").show();
+                new Alert(Alert.AlertType.CONFIRMATION, "Employee updated!").show();
             }else {
-                new Alert(Alert.AlertType.CONFIRMATION, "user not updated!").show();
+                new Alert(Alert.AlertType.CONFIRMATION, "Employee not updated!").show();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -201,4 +202,28 @@ public class OwnerEmployeeController {
         txtTel.setText(String.valueOf(dto.getTel()));
         txtJobRole.setText(dto.getJob_role());
     }
+
+    private void setListener() {
+        tblEmployee.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    var dto = new EmployeeDto(
+                            newValue.getEmp_id(),
+                            newValue.getName(),
+                            newValue.getAddress(),
+                            newValue.getTel(),
+                            newValue.getJob_role()
+
+                    );
+                    setFields(dto);
+                });
+    }
+
+    private void setFields(EmployeeDto dto) {
+        txtId.setText(dto.getEmp_id());
+        txtName.setText(dto.getName());
+        txtAddress.setText(dto.getAddress());
+        txtJobRole.setText(dto.getJob_role());
+        txtTel.setText(String.valueOf(dto.getTel()));
+    }
+
 }

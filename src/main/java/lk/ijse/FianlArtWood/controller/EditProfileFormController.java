@@ -46,6 +46,7 @@ public class EditProfileFormController {
     public void initialize() {
         setCellValueFactory();
         loadAllUsers();
+        setListener();
     }
 
     private void setCellValueFactory() {
@@ -183,4 +184,23 @@ public class EditProfileFormController {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
+
+    private void setListener() {
+        tblUsers.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    var dto = new LoginDto(
+                            newValue.getEmp_id(),
+                            newValue.getUser_name(),
+                            newValue.getPw()
+                    );
+                    setFields(dto);
+                });
+    }
+
+    private void setFields(LoginDto dto) {
+        txtEmpId.setText(dto.getEmp_id());
+        txtUserName.setText(dto.getUserName());
+        txtPassword.setText(dto.getPw());
+    }
+
 }

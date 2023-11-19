@@ -12,12 +12,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-import lk.ijse.FianlArtWood.dto.CustomerDto;
 import lk.ijse.FianlArtWood.dto.WoodPiecesDto;
-import lk.ijse.FianlArtWood.dto.tm.CustomerTm;
 import lk.ijse.FianlArtWood.dto.tm.WoodPiecesTm;
-import lk.ijse.FianlArtWood.model.OwnerCustomerModel;
 import lk.ijse.FianlArtWood.model.WoodPiecesStockModel;
 
 import java.io.IOException;
@@ -76,6 +72,7 @@ public class WoodPiecesStockController {
         setCellValueFactory();
         loadAllWood();
         generateNextWoodId();
+        setListener();
     }
 
     private void generateNextWoodId() {
@@ -242,6 +239,27 @@ public class WoodPiecesStockController {
             System.out.println(e);
         }
 
+    }
+
+    private void setListener() {
+        tblWood.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    var dto = new WoodPiecesDto(
+                            newValue.getWood_piece_id(),
+                            newValue.getQuality(),
+                            newValue.getAmount(),
+                            newValue.getWood_type(),
+                            newValue.getLogs_id()
+                    );
+                    setFields(dto);
+                });
+    }
+
+    private void setFields(WoodPiecesDto dto) {
+        lblWoodId.setText(dto.getWood_piece_id());
+        lblAmount.setText(String.valueOf(dto.getAmount()));
+        lblQuality.setText(dto.getQuality());
+        txtLogId.setText(dto.getLogs_id());
     }
 
 }

@@ -47,6 +47,7 @@ public class OwnerSupplierController {
     public void initialize() {
         setCellValueFactory();
         loadAllSuppliers();
+        setListener();
     }
 
     private void setCellValueFactory() {
@@ -166,6 +167,26 @@ public class OwnerSupplierController {
     }
 
     private void fillFields(SupplierDto dto) {
+        txtId.setText(dto.getId());
+        txtName.setText(dto.getName());
+        txtAddress.setText(dto.getAddress());
+        txtEmail.setText(dto.getEmail());
+    }
+
+    private void setListener() {
+        tblSupplier.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    var dto = new SupplierDto(
+                            newValue.getSup_id(),
+                            newValue.getSup_name(),
+                            newValue.getAddress(),
+                            newValue.getEmail()
+                    );
+                    setFields(dto);
+                });
+    }
+
+    private void setFields(SupplierDto dto) {
         txtId.setText(dto.getId());
         txtName.setText(dto.getName());
         txtAddress.setText(dto.getAddress());

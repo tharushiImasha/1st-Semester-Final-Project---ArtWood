@@ -47,6 +47,7 @@ public class OwnerProductTypeController {
     public void initialize() {
         setCellValueFactory();
         loadAllProducts();
+        setListener();
     }
 
     private void setCellValueFactory() {
@@ -139,7 +140,7 @@ public class OwnerProductTypeController {
             boolean isUpdated = model.updateProduct(dto);
             System.out.println(isUpdated);
             if(isUpdated) {
-                new Alert(Alert.AlertType.CONFIRMATION, "customer updated!").show();
+                new Alert(Alert.AlertType.CONFIRMATION, "Product updated!").show();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -157,7 +158,7 @@ public class OwnerProductTypeController {
             if(dto != null) {
                 fillFields(dto);
             } else {
-                new Alert(Alert.AlertType.INFORMATION, "customer not found!").show();
+                new Alert(Alert.AlertType.INFORMATION, "Product not found!").show();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -165,6 +166,26 @@ public class OwnerProductTypeController {
     }
 
     private void fillFields(ProductTypeDto dto) {
+        txtId.setText(dto.getProduct_id());
+        txtName.setText(dto.getProduct_name());
+        txtQuality.setText(dto.getQuality());
+        txtPrice.setText(String.valueOf(dto.getPrice()));
+    }
+
+    private void setListener() {
+        tblProduct.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    var dto = new ProductTypeDto(
+                            newValue.getProduct_id(),
+                            newValue.getProduct_name(),
+                            newValue.getQuality(),
+                            newValue.getPrice()
+                    );
+                    setFields(dto);
+                });
+    }
+
+    private void setFields(ProductTypeDto dto) {
         txtId.setText(dto.getProduct_id());
         txtName.setText(dto.getProduct_name());
         txtQuality.setText(dto.getQuality());

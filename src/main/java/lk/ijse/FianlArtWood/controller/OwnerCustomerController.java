@@ -53,6 +53,7 @@ public class OwnerCustomerController {
         setCellValueFactory();
         loadAllCustomers();
         generateNextCustomerId();
+        setListener();
     }
 
     private void generateNextCustomerId() {
@@ -176,6 +177,24 @@ public class OwnerCustomerController {
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
+    }
+
+    private void setListener() {
+        tblCustomer.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    var dto = new CustomerDto(
+                            newValue.getId(),
+                            newValue.getName(),
+                            newValue.getAddress()
+                    );
+                    setFields(dto);
+                });
+    }
+
+    private void setFields(CustomerDto dto) {
+        lblCusId.setText(dto.getId());
+        txtName.setText(dto.getName());
+        txtAddress.setText(dto.getAddress());
     }
 
 }

@@ -12,12 +12,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.FianlArtWood.dto.CustomerDto;
 import lk.ijse.FianlArtWood.dto.LogsDto;
-import lk.ijse.FianlArtWood.dto.tm.CustomerTm;
 import lk.ijse.FianlArtWood.dto.tm.LogsTm;
 import lk.ijse.FianlArtWood.model.LogsStockModel;
-import lk.ijse.FianlArtWood.model.OwnerCustomerModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -56,6 +53,7 @@ public class LogsStockController {
         setCellValueFactory();
         loadAllLogs();
         generateNextCustomerId();
+        setListener();
     }
 
     private void generateNextCustomerId() {
@@ -183,11 +181,29 @@ public class LogsStockController {
             boolean isUpdated = model.updateLogs(dto);
             System.out.println(isUpdated);
             if(isUpdated) {
-                new Alert(Alert.AlertType.CONFIRMATION, "customer updated!").show();
+                new Alert(Alert.AlertType.CONFIRMATION, "Log updated!").show();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
+    }
+
+    private void setListener() {
+        tblLog.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    var dto = new LogsDto(
+                            newValue.getLogs_id(),
+                            newValue.getWood_type(),
+                            newValue.getLog_amount()
+                    );
+                    setFields(dto);
+                });
+    }
+
+    private void setFields(LogsDto dto) {
+        lblId.setText(dto.getLogs_id());
+        txtType.setText(dto.getWood_type());
+        txtAmount.setText(String.valueOf(dto.getLog_amount()));
     }
 
 }
