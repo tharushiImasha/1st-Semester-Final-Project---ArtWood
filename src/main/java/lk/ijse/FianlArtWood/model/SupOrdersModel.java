@@ -9,13 +9,12 @@ public class SupOrdersModel {
     public static boolean saveOrder(String supOrderId, double price, String type, String supId, String payMeth) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
-        String sql = "INSERT INTO sup_orders VALUES(?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO sup_orders VALUES(?, ?, ?, ?)";
         PreparedStatement pstm = connection.prepareStatement(sql);
         pstm.setString(1, supOrderId);
         pstm.setDouble(2, price);
         pstm.setString(3, type);
         pstm.setString(4, supId);
-        pstm.setString(4, payMeth);
 
         return pstm.executeUpdate() > 0;
     }

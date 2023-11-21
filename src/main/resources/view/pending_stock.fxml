@@ -44,31 +44,26 @@
          <font>
             <Font name="System Bold" size="13.0" />
          </font></JFXButton>
-      <TableView fx:id="tblPending" layoutX="70.0" layoutY="426.0" prefHeight="200.0" prefWidth="796.0">
+      <TableView fx:id="tblPending" layoutX="64.0" layoutY="423.0" prefHeight="200.0" prefWidth="815.0">
          <columns>
-            <TableColumn fx:id="colPendingId" prefWidth="99.0" text="Pending ID" />
-            <TableColumn fx:id="colFinishedId" prefWidth="142.0" text="Finished ID" />
+            <TableColumn fx:id="colPendingId" prefWidth="112.0" text="Pending ID" />
+            <TableColumn fx:id="colFinishedId" prefWidth="119.0" text="Finished ID" />
             <TableColumn fx:id="colWoodPieceId" prefWidth="149.0" text="Wood Piece ID" />
-            <TableColumn fx:id="colEmpId" prefWidth="132.0" text="Emp ID" />
-            <TableColumn fx:id="colProductId" prefWidth="136.0" text="Product ID" />
-            <TableColumn fx:id="colAction" prefWidth="137.0" text="Action" />
+            <TableColumn fx:id="colEmpId" prefWidth="115.0" text="Emp ID" />
+            <TableColumn fx:id="colAction" prefWidth="161.0" text="Action" />
+            <TableColumn fx:id="colIsFinished" prefWidth="158.0" text="Is Finished ? " />
          </columns>
       </TableView>
-      <Label layoutX="468.0" layoutY="288.0" text="Product ID">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
       <JFXButton layoutX="792.0" layoutY="660.0" onAction="#btnBackOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: black;" text="Back" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font></JFXButton>
-      <Label layoutX="471.0" layoutY="223.0" text="Emp ID">
+      <Label layoutX="496.0" layoutY="288.0" text="Emp ID">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <ImageView fitHeight="176.0" fitWidth="270.0" layoutX="567.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="217.0" fitWidth="301.0" layoutX="530.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/pendingIlllustration.png" />
          </image>
@@ -80,7 +75,6 @@
       </Label>
       <ComboBox fx:id="cmbFinshedId" editable="true" layoutX="224.0" layoutY="217.0" prefHeight="30.0" prefWidth="213.0" />
       <ComboBox fx:id="cmbWoodId" editable="true" layoutX="224.0" layoutY="282.0" prefHeight="30.0" prefWidth="213.0" />
-      <ComboBox fx:id="cmbEmpId" editable="true" layoutX="593.0" layoutY="217.0" prefHeight="30.0" prefWidth="213.0" />
-      <ComboBox fx:id="cmbProductId" editable="true" layoutX="593.0" layoutY="282.0" prefHeight="30.0" prefWidth="213.0" />
+      <ComboBox fx:id="cmbEmpId" editable="true" layoutX="618.0" layoutY="282.0" prefHeight="30.0" prefWidth="213.0" />
    </children>
 </AnchorPane>

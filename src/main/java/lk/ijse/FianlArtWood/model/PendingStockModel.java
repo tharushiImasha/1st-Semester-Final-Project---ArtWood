@@ -53,9 +53,8 @@ public class PendingStockModel {
             String emp_id = resultSet.getString(3);
             String wood_piece_id = resultSet.getString(4);
             String finished_id = resultSet.getString(5);
-            String product_id = resultSet.getString(6);
 
-            var dto = new PendingStockDto(pending_id, emp_id, wood_piece_id, finished_id, product_id);
+            var dto = new PendingStockDto(pending_id, emp_id, wood_piece_id, finished_id);
             dtoList.add(dto);
         }
         return dtoList;
@@ -74,7 +73,7 @@ public class PendingStockModel {
     public boolean savePending(PendingStockDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
-        String sql = "INSERT INTO pending_stock VALUES(?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO pending_stock VALUES(?, ?, ?, ?, ?)";
         PreparedStatement pstm = connection.prepareStatement(sql);
 
         pstm.setString(1, dto.getPending_id());
@@ -82,7 +81,6 @@ public class PendingStockModel {
         pstm.setString(3, String.valueOf(dto.getEmp_id()));
         pstm.setString(4, String.valueOf(dto.getWood_piece_id()));
         pstm.setString(5, String.valueOf(dto.getFinished_id()));
-        pstm.setString(6, String.valueOf(dto.getProduct_id()));
 
         boolean isSaved = pstm.executeUpdate() > 0;
 
@@ -92,13 +90,12 @@ public class PendingStockModel {
     public boolean updatePending(PendingStockDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
-        String sql = "UPDATE pending_stock SET emp_id = ?, wood_piece_id = ?, finished_stock_id = ?, product_id = ? WHERE pending_stock_id = ?";
+        String sql = "UPDATE pending_stock SET emp_id = ?, wood_piece_id = ?, finished_stock_id = ? WHERE pending_stock_id = ?";
         PreparedStatement pstm = connection.prepareStatement(sql);
 
         pstm.setString(1, dto.getEmp_id());
         pstm.setString(2, dto.getWood_piece_id());
         pstm.setString(3, dto.getFinished_id());
-        pstm.setString(4, dto.getProduct_id());
         pstm.setString(5, dto.getPending_id());
 
         return pstm.executeUpdate() > 0;
@@ -120,9 +117,8 @@ public class PendingStockModel {
             String emp_id = resultSet.getString(3);
             String wood_piece_id = resultSet.getString(4);
             String finished_id = resultSet.getString(5);
-            String product_id = resultSet.getString(5);
 
-            dto = new PendingStockDto(pending_id, emp_id, wood_piece_id, finished_id, product_id);
+            dto = new PendingStockDto(pending_id, emp_id, wood_piece_id, finished_id);
         }
 
         return dto;

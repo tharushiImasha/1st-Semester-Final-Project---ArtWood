@@ -10,12 +10,11 @@ public class OwnerOrderModel {
     public static boolean saveOrder(String orderId, LocalDate date, String pay_meth, String cusId) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
-        String sql = "INSERT INTO orders VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO orders VALUES(?, ?, ?)";
         PreparedStatement pstm = connection.prepareStatement(sql);
         pstm.setString(1, orderId);
         pstm.setDate(2, Date.valueOf(date));
-        pstm.setString(3, pay_meth);
-        pstm.setString(4, cusId);
+        pstm.setString(3, cusId);
 
         return pstm.executeUpdate() > 0;
     }

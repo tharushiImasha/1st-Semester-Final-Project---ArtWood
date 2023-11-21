@@ -69,6 +69,17 @@ public class FinishedStockModel {
         return "F1";
     }
 
+    public static boolean updateFinishedFromP(String finished_id) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "UPDATE finished_stock SET finished_amount = finished_amount + 1 WHERE finished_stock_id = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        pstm.setString(1, finished_id);
+
+        return pstm.executeUpdate() > 0;
+    }
+
     public boolean saveFinished(FinishedStockDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -84,7 +95,7 @@ public class FinishedStockModel {
         return isSaved;
     }
 
-    public boolean updateFinished(FinishedStockDto dto) throws SQLException {
+    public static boolean updateFinished(FinishedStockDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "UPDATE finished_stock SET finished_amount = ? WHERE finished_stock_id = ?";
@@ -130,7 +141,7 @@ public class FinishedStockModel {
     private boolean updateQty(OrderTm cartTm) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
-        String sql = "UPDATE finished_stock SET amount = amount - ? WHERE finished_stock_id = ?";
+        String sql = "UPDATE finished_stock SET finished_amount = finished_amount - ? WHERE finished_stock_id = ?";
         PreparedStatement pstm = connection.prepareStatement(sql);
         pstm.setInt(1, cartTm.getQty());
         pstm.setString(2, cartTm.getCode());

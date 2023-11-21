@@ -41,9 +41,7 @@ create table salary(
     salary_id varchar(20) primary key,
 	amount double(7,2) not null,
     emp_id varchar(50) not null,
-	foreign key (emp_id) references employee(emp_id) on update cascade on delete cascade,
-    pay_method varchar(20) not null,
-    foreign key (pay_method) references finance (pay_method) on update cascade on delete cascade
+	foreign key (emp_id) references employee(emp_id) on update cascade on delete cascade
 );
 
 
@@ -57,8 +55,6 @@ create table customer(
 create table orders(
     order_id varchar(20) primary key,
 	date date not null,
-    pay_method varchar(20) not null,
-    foreign key (pay_method) references finance (pay_method) on update cascade on delete cascade,
     cus_id varchar(20) not null,
     foreign key (cus_id) references customer (cus_id) on update cascade on delete cascade
 );
@@ -77,9 +73,7 @@ create table sup_orders(
 	price double(10,2) not null,
     wood_type varchar(50) not null,
     sup_id varchar(20) not null,
-    foreign key (sup_id) references supplier (sup_id) on update cascade on delete cascade,
-    pay_method varchar(20) not null,
-    foreign key (pay_method) references finance (pay_method) on update cascade on delete cascade
+    foreign key (sup_id) references supplier (sup_id) on update cascade on delete cascade
 );
 
 
@@ -134,9 +128,7 @@ create table pending_stock(
     wood_piece_id varchar(20) not null,
     foreign key (wood_piece_id) references wood_pieces_stock (wood_piece_id) on update cascade on delete cascade,
     finished_stock_id varchar(20) not null,
-    foreign key (finished_stock_id) references finished_stock (finished_stock_id) on update cascade on delete cascade,
-    product_id varchar(20) not null,
-    foreign key (product_id) references product_type (product_id) on update cascade on delete cascade
+    foreign key (finished_stock_id) references finished_stock (finished_stock_id) on update cascade on delete cascade
 );
 
 

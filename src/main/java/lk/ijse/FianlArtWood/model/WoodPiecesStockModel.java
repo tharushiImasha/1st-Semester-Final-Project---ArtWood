@@ -72,6 +72,17 @@ public class WoodPiecesStockModel {
         return pstm.executeUpdate() > 0;
     }
 
+    public static boolean reduceWood(String woodId) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "UPDATE wood_pieces_stock SET wood_amount = wood_amount - 1 WHERE wood_piece_id = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        pstm.setString(1, woodId);
+
+        return pstm.executeUpdate() > 0;
+    }
+
     public boolean saveWood(WoodPiecesDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 

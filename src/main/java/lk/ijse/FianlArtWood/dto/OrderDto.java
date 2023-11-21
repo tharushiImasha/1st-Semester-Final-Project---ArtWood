@@ -18,5 +18,14 @@ public class OrderDto {
     private LocalDate date;
     private String pay_meth;
     private String cusId;
+    private double total;
     private List<OrderTm> tmList = new ArrayList<>();
+
+    public OrderDto(String orderId, LocalDate date, String pay_meth, String cusId){
+        this.orderId = orderId;
+        this.date = date;
+        this.pay_meth = pay_meth;
+        this.cusId = cusId;
+    }
+
 }

@@ -14,6 +14,6 @@ public class PendingStockTm {
     private String emp_id;
     private String wood_piece_id;
     private String finished_id;
-    private String product_id;
     private Button btn;
+    private Button btn1;
 }

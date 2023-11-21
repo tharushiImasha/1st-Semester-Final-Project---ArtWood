@@ -247,6 +247,7 @@ public class OwnerOrderController {
         String orderId = lblOrderId.getText();
         String cusId = cmbCusId.getValue();
         String pay_meth = cmbPayMethod.getValue();
+        double total = Double.parseDouble(lblTotal.getText());
         LocalDate date = LocalDate.parse(lblOrderDate.getText());
 
         List<OrderTm> tmList = new ArrayList<>();
@@ -255,12 +256,13 @@ public class OwnerOrderController {
             tmList.add(cartTm);
         }
 
-        var placeOrderDto = new OrderDto(orderId, date, pay_meth, cusId, tmList);
+        var placeOrderDto = new OrderDto(orderId, date, pay_meth, cusId, total, tmList);
 
         try {
             boolean isSuccess = placeOrderModel.placeOrder(placeOrderDto);
             if(isSuccess) {
                 new Alert(Alert.AlertType.CONFIRMATION, "order completed!").show();
+
             } else {
                 new Alert(Alert.AlertType.CONFIRMATION, "order not completed!").show();
             }

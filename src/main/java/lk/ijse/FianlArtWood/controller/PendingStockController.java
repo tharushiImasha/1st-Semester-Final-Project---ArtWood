@@ -35,6 +35,9 @@ public class PendingStockController {
     private TableColumn<?, ?> colAction;
 
     @FXML
+    private TableColumn<?, ?> colIsFinished;
+
+    @FXML
     private TableColumn<?, ?> colEmpId;
 
     @FXML
@@ -62,26 +65,10 @@ public class PendingStockController {
         setCellValueFactory();
         loadAllLogs();
         generateNextPendingId();
-        loadProductId();
         loadEmpId();
         loadFinishedId();
         loadWoodId();
         setListener();
-    }
-
-    private void loadProductId() {
-        ObservableList<String> obList = FXCollections.observableArrayList();
-        try {
-            List<ProductTypeDto> list = OwnerProductTypeModel.getAllProduct();
-
-            for (ProductTypeDto dto : list) {
-                obList.add(dto.getProduct_id());
-            }
-
-            cmbProductId.setItems(obList);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     private void loadEmpId() {
@@ -142,9 +129,9 @@ public class PendingStockController {
         colEmpId.setCellValueFactory(new PropertyValueFactory<>("emp_id"));
         colPendingId.setCellValueFactory(new PropertyValueFactory<>("pending_id"));
         colFinishedId.setCellValueFactory(new PropertyValueFactory<>("finished_id"));
-        colProductId.setCellValueFactory(new PropertyValueFactory<>("product_id"));
         colWoodPieceId.setCellValueFactory(new PropertyValueFactory<>("wood_piece_id"));
         colAction.setCellValueFactory(new PropertyValueFactory<>("btn"));
+        colIsFinished.setCellValueFactory(new PropertyValueFactory<>("btn1"));
     }
 
     private void loadAllLogs() {
@@ -156,6 +143,9 @@ public class PendingStockController {
             for(PendingStockDto dto : dtoList){
                 Button btn = new Button("Remove");
                 btn.setCursor(Cursor.HAND);
+
+                Button btn1 = new Button("Finished");
+                btn1.setCursor(Cursor.HAND);
 
                 btn.setOnAction((e) -> {
                     ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
@@ -175,7 +165,31 @@ public class PendingStockController {
 
                 });
 
-                var tm = new PendingStockTm(dto.getPending_id(), dto.getEmp_id(), dto.getWood_piece_id(), dto.getFinished_id(), dto.getProduct_id(), btn);
+                btn1.setOnAction((e) -> {
+                    ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
+                    ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                    Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to finished?", yes, no).showAndWait();
+
+                    if (type.orElse(no) == yes){
+                        int index = tblPending.getSelectionModel().getFocusedIndex();
+                        String id = (String) colPendingId.getCellData(index);
+
+                        deletePending(id);
+                        try {
+                            finishedPending(id);
+                        } catch (SQLException ex) {
+                            System.out.println(ex.getMessage());
+                            throw new RuntimeException(ex);
+                        }
+
+                        obList.remove(index);
+                        tblPending.refresh();
+                    }
+
+                });
+
+                var tm = new PendingStockTm(dto.getPending_id(), dto.getEmp_id(), dto.getWood_piece_id(), dto.getFinished_id(), btn, btn1);
 
                 obList.add(tm);
 
@@ -185,6 +199,28 @@ public class PendingStockController {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private void finishedPending(String id) throws SQLException {
+        String finished_id = cmbFinshedId.getValue();
+        String emp_id = cmbEmpId.getValue();
+        String wood_id = cmbWoodId.getValue();
+
+        boolean isUpdateFinished = FinishedStockModel.updateFinishedFromP(finished_id);
+
+        if (isUpdateFinished){
+            boolean isSalarySaved = SalaryModel.saveSalary(emp_id);
+
+            if (isSalarySaved) {
+                FinanceModel.reduceFinance("cash", 2000);
+
+                boolean isWoodUpdated = WoodPiecesStockModel.reduceWood(wood_id);
+
+                if (isWoodUpdated) {
+                    deletePending(id);
+                }
+            }
         }
     }
 
@@ -217,7 +253,6 @@ public class PendingStockController {
         cmbWoodId.setValue("");
         cmbFinshedId.setValue("");
         cmbEmpId.setValue("");
-        cmbProductId.setValue("");
     }
 
     @FXML
@@ -226,9 +261,8 @@ public class PendingStockController {
         String emp_id = cmbEmpId.getValue();
         String wood_piece_id = cmbWoodId.getValue();
         String finished_id = cmbFinshedId.getValue();
-        String product_id = cmbProductId.getValue();
 
-        var dto = new PendingStockDto(pending_id, emp_id, wood_piece_id, finished_id, product_id);
+        var dto = new PendingStockDto(pending_id, emp_id, wood_piece_id, finished_id);
 
         var model = new PendingStockModel();
         try {
@@ -248,15 +282,14 @@ public class PendingStockController {
         String emp_id = cmbEmpId.getValue();
         String wood_piece_id = cmbWoodId.getValue();
         String finished_id = cmbFinshedId.getValue();
-        String product_id = cmbProductId.getValue();
         int amount = 1;
 
-        var dto = new PendingStockDto(pending_id, amount, emp_id, wood_piece_id, finished_id, product_id);
+        var dto = new PendingStockDto(pending_id, amount, emp_id, wood_piece_id, finished_id);
 
         var model = new PendingStockModel();
         try {
             boolean isUpdated = model.updatePending(dto);
-            System.out.println(isUpdated);
+
             if(isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "pending updated!").show();
             }
@@ -272,8 +305,7 @@ public class PendingStockController {
                             newValue.getPending_id(),
                             newValue.getEmp_id(),
                             newValue.getWood_piece_id(),
-                            newValue.getFinished_id(),
-                            newValue.getProduct_id()
+                            newValue.getFinished_id()
                     );
                     setFields(dto);
                 });
@@ -281,7 +313,6 @@ public class PendingStockController {
 
     private void setFields(PendingStockDto dto) {
         lblId.setText(dto.getPending_id());
-        cmbProductId.setValue(dto.getProduct_id());
         cmbFinshedId.setValue(dto.getFinished_id());
         cmbWoodId.setValue(dto.getWood_piece_id());
         cmbEmpId.setValue(dto.getEmp_id());
