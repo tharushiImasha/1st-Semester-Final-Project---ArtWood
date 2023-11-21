@@ -11,9 +11,9 @@ create table employee(
     job_role varchar(100) not null
 );
 
-insert into employee values("E1","Kamal","Galle",0719568456,"no","stock_manager","yes");
-insert into employee values("E0","Nimal","Galle",0775538451,"no","owner","yes");
-insert into employee values("E2","Tharindu","Mathara",0772139752,"no","cashier","yes");
+insert into employee values("E1","Kamal","Galle",0719568456,"no","stock_manager");
+insert into employee values("E0","Nimal","Galle",0775538451,"no","owner");
+insert into employee values("E2","Tharindu","Mathara",0772139752,"no","cashier");
 
 
 create table login(
@@ -23,35 +23,27 @@ create table login(
     foreign key (emp_id) references employee (emp_id) on update cascade on delete cascade
 );
 
-insert into login values("cash","c@123","E2");
-insert into login values("admin","o@123","E0");
+insert into login values("cash","c_123","E2");
+insert into login values("admin","o_123","E0");
 
 
 select e.job_role, l.user_name, l.pw from employee e join login l on e.emp_id = l.emp_id where user_name = "cash";
 
 
-create table pay_method(
-    pay_method_id varchar(20) primary key,
-	method varchar(20)
-);
-
 
 create table finance(
-    finance_id varchar(20) primary key,
-	amount double(7,2) not null,
-	type varchar (50) not null,
-    pay_method_id varchar(20) not null,
-    foreign key (pay_method_id) references pay_method (pay_method_id) on update cascade on delete cascade
+    pay_method varchar(20) primary key,
+	amount double(10,2) not null
 );
 
 
 create table salary(
     salary_id varchar(20) primary key,
-	amount double(5,2) not null,
+	amount double(7,2) not null,
     emp_id varchar(50) not null,
 	foreign key (emp_id) references employee(emp_id) on update cascade on delete cascade,
-    finance_id varchar(20) not null,
-    foreign key (finance_id) references finance (finance_id) on update cascade on delete cascade
+    pay_method varchar(20) not null,
+    foreign key (pay_method) references finance (pay_method) on update cascade on delete cascade
 );
 
 
@@ -64,11 +56,9 @@ create table customer(
 
 create table orders(
     order_id varchar(20) primary key,
-	amount double(5,2) not null,
-    user_name varchar(100) not null,
-	foreign key (user_name) references login(user_name) on update cascade on delete cascade,
-    finance_id varchar(20) not null,
-    foreign key (finance_id) references finance (finance_id) on update cascade on delete cascade,
+	date date not null,
+    pay_method varchar(20) not null,
+    foreign key (pay_method) references finance (pay_method) on update cascade on delete cascade,
     cus_id varchar(20) not null,
     foreign key (cus_id) references customer (cus_id) on update cascade on delete cascade
 );
@@ -84,13 +74,12 @@ create table supplier(
 
 create table sup_orders(
     sup_order_id varchar(20) primary key,
-	price double(5,2) not null,
-    logs_amount int(5) not null,
+	price double(10,2) not null,
     wood_type varchar(50) not null,
     sup_id varchar(20) not null,
     foreign key (sup_id) references supplier (sup_id) on update cascade on delete cascade,
-    finance_id varchar(20) not null,
-    foreign key (finance_id) references finance (finance_id) on update cascade on delete cascade
+    pay_method varchar(20) not null,
+    foreign key (pay_method) references finance (pay_method) on update cascade on delete cascade
 );
 
 
@@ -152,9 +141,10 @@ create table pending_stock(
 
 
 create table order_details(
-    date date,
+    order_id varchar(20) not null,
     finished_stock_id varchar(20),
+    qty int not null,
+    unit_price double not null,
     foreign key (finished_stock_id) references finished_stock (finished_stock_id) on update cascade on delete cascade,
-	sup_order_id varchar(20),
-    foreign key (sup_order_id) references sup_orders (sup_order_id) on update cascade on delete cascade
+    foreign key (order_id) references orders (order_id) on update cascade on delete cascade
 );

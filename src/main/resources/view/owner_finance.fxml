@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="710.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.FianlArtWood.controller.OwnerFinanceController">
+   <children>
+      <Label layoutX="57.0" layoutY="80.0" text="Account">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblFinance" layoutX="86.0" layoutY="426.0" prefHeight="231.0" prefWidth="759.0" style="-fx-background-radius: 5;">
+         <columns>
+            <TableColumn fx:id="colSalaryId" prefWidth="133.0" text="Salary ID" />
+            <TableColumn fx:id="colAmount" prefWidth="181.0" text="Amount" />
+            <TableColumn fx:id="colEmpId" prefWidth="142.0" text="Emp ID" />
+            <TableColumn fx:id="colFinanceId" prefWidth="152.0" text="Finance ID" />
+            <TableColumn fx:id="colPendingId" prefWidth="150.0" text="Pending ID" />
+         </columns>
+      </TableView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fff1e0" height="200.0" layoutX="103.0" layoutY="147.0" stroke="#ffa633" strokeType="INSIDE" width="334.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fff1e0" height="200.0" layoutX="490.0" layoutY="147.0" stroke="#ffa633" strokeType="INSIDE" width="334.0" />
+      <Label layoutX="135.0" layoutY="186.0" text="Cash On Hand">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="539.0" layoutY="186.0" text="On Card">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="86.0" layoutY="382.0" text="Salary" textFill="#ffa633">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCash" layoutX="295.0" layoutY="263.0" textFill="#ffa633">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCard" layoutX="749.0" layoutY="276.0" textFill="#ffa633">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

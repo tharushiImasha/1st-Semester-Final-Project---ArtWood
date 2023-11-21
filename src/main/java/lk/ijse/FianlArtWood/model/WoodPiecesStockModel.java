@@ -36,7 +36,8 @@ public class WoodPiecesStockModel {
             id++;  //9
             return "W" + id;
         }
-        return "W1";    }
+        return "W1";
+    }
 
     public static List<WoodPiecesDto> getAllWood() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();

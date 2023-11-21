@@ -213,7 +213,7 @@ public class DashboardPaneController {
     }
 
     @FXML
-    void lblOrdersOnAction(MouseEvent event) {
+    void lblOrdersOnAction(MouseEvent event) throws IOException {
         rectUsers.setVisible(false);
         rectOrders.setVisible(true);
         rectCustomers.setVisible(false);
@@ -222,6 +222,9 @@ public class DashboardPaneController {
         rectEmployees.setVisible(false);
         rectDashboard.setVisible(false);
         rectAccounts.setVisible(false);
+
+        secondaryNode.getChildren().clear();
+        secondaryNode.getChildren().add(FXMLLoader.load(secondaryNode.getClass().getResource("/view/owner_order.fxml")));
     }
 
     @FXML

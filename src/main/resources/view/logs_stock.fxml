@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -24,7 +25,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="68.0" layoutY="252.0" text="Wood Type">
+      <Label layoutX="645.0" layoutY="280.0" text="Wood Type">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -41,19 +42,19 @@
          <font>
             <Font name="System Bold" size="13.0" />
          </font></JFXButton>
-      <TableView fx:id="tblLog" layoutX="77.0" layoutY="407.0" prefHeight="231.0" prefWidth="776.0" style="-fx-background-radius: 5;">
+      <TableView fx:id="tblLog" layoutX="57.0" layoutY="407.0" prefHeight="231.0" prefWidth="811.0" style="-fx-background-radius: 5;">
          <columns>
-            <TableColumn fx:id="colId" prefWidth="179.0" text="Id" />
-            <TableColumn fx:id="colType" prefWidth="214.0" text="Type" />
-            <TableColumn fx:id="colAmount" prefWidth="204.0" text="Amount" />
-            <TableColumn fx:id="colAction" prefWidth="178.0" text="Action" />
+            <TableColumn fx:id="colId" prefWidth="163.0" text="Log Id" />
+            <TableColumn fx:id="colType" prefWidth="225.0" text="Type" />
+            <TableColumn fx:id="colAmount" prefWidth="199.0" text="Amount" />
+            <TableColumn fx:id="colAction" prefWidth="223.0" text="Action" />
          </columns>
       </TableView>
       <JFXButton layoutX="800.0" layoutY="661.0" onAction="#btnBackOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: black; -fx-background-radius: 5;" text="Back" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font></JFXButton>
-      <ImageView fitHeight="231.0" fitWidth="305.0" layoutX="518.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="172.0" fitWidth="244.0" layoutX="580.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/logsIllustration.png" />
          </image>
@@ -63,7 +64,7 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cmbType" editable="true" layoutX="200.0" layoutY="246.0" prefHeight="30.0" prefWidth="234.0" style="-fx-background-radius: 5;">
+      <ComboBox fx:id="cmbType" editable="true" layoutX="758.0" layoutY="274.0" prefHeight="30.0" prefWidth="125.0" style="-fx-background-radius: 5;">
          <effect>
             <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>
@@ -72,5 +73,39 @@
             </DropShadow>
          </effect>
       </ComboBox>
+      <Label layoutX="68.0" layoutY="280.0" text="Sup ID">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbSupId" editable="true" layoutX="162.0" layoutY="274.0" prefHeight="30.0" prefWidth="125.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
+               <color>
+                  <Color opacity="0.2068965584039688" />
+               </color>
+            </DropShadow>
+         </effect>
+      </ComboBox>
+      <Label layoutX="327.0" layoutY="280.0" text="Payment Method">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbPatMethod" editable="true" layoutX="478.0" layoutY="274.0" prefHeight="30.0" prefWidth="125.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
+               <color>
+                  <Color opacity="0.2068965584039688" />
+               </color>
+            </DropShadow>
+         </effect>
+      </ComboBox>
+      <Label layoutX="68.0" layoutY="226.0" text="Price">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtPrice" layoutX="162.0" layoutY="220.0" prefHeight="30.0" prefWidth="172.0" />
    </children>
 </AnchorPane>

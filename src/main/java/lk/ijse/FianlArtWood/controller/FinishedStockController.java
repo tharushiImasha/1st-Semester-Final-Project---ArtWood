@@ -149,14 +149,9 @@ public class FinishedStockController {
 
     @FXML
     void btnBackOnAction(ActionEvent event) throws IOException {
-        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/dashboard_pane.fxml"));
-
-        Scene scene = new Scene(rootNode);
         Stage stage = (Stage) this.rootNode.getScene().getWindow();
 
-        stage.setTitle("Owner Dashboard");
-        stage.setScene(scene);
-        stage.centerOnScreen();
+        stage.close();
     }
 
     @FXML

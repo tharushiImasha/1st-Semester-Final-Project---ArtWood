@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -24,6 +25,7 @@ public class OwnerStockController {
         stage.setTitle("Finished stock");
         stage.setScene(scene);
         stage.centerOnScreen();
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
     }
 
@@ -36,6 +38,7 @@ public class OwnerStockController {
 
         stage.setTitle("Logs stock");
         stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.centerOnScreen();
         stage.show();
     }
@@ -49,6 +52,7 @@ public class OwnerStockController {
 
         stage.setTitle("Pending stock");
         stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.centerOnScreen();
         stage.show();
     }
@@ -63,6 +67,7 @@ public class OwnerStockController {
         stage.setTitle("Wood pieces stock");
         stage.setScene(scene);
         stage.centerOnScreen();
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
     }
 }

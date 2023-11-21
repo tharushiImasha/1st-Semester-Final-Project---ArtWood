@@ -1,8 +1,8 @@
 package lk.ijse.FianlArtWood.model;
 
 import lk.ijse.FianlArtWood.db.DbConnection;
-import lk.ijse.FianlArtWood.dto.CustomerDto;
 import lk.ijse.FianlArtWood.dto.FinishedStockDto;
+import lk.ijse.FianlArtWood.dto.tm.OrderTm;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -116,5 +116,25 @@ public class FinishedStockModel {
         }
 
         return dto;
+    }
+
+    public boolean updateItem(List<OrderTm> tmList) throws SQLException {
+        for (OrderTm cartTm : tmList) {
+            if(!updateQty(cartTm)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean updateQty(OrderTm cartTm) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "UPDATE finished_stock SET amount = amount - ? WHERE finished_stock_id = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setInt(1, cartTm.getQty());
+        pstm.setString(2, cartTm.getCode());
+
+        return pstm.executeUpdate() > 0;
     }
 }

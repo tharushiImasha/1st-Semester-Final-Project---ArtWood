@@ -13,7 +13,32 @@ import java.util.List;
 
 public class PendingStockModel {
 
-    public List<PendingStockDto> getAllPendings() throws SQLException {
+    public static String generateNextPendingId() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT pending_stock_id FROM pending_stock ORDER BY pending_stock_id DESC LIMIT 1";
+        ResultSet resultSet = connection.prepareStatement(sql).executeQuery();
+
+        String currentPendingId = null;
+
+        if (resultSet.next()) {
+            currentPendingId = resultSet.getString(1);
+            return splitPendingId(currentPendingId);
+        }
+        return splitPendingId(null);
+    }
+
+    private static String splitPendingId(String currentPendingId) {
+        if (currentPendingId != null) {
+            String[] split = currentPendingId.split("N");
+            int id = Integer.parseInt(split[1]);    //008
+            id++;  //9
+            return "N" + id;
+        }
+        return "N1";
+    }
+
+    public static List<PendingStockDto> getAllPendings() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT * FROM pending_stock";
@@ -25,10 +50,10 @@ public class PendingStockModel {
 
         while (resultSet.next()) {
             String pending_id = resultSet.getString(1);
-            String emp_id = resultSet.getString(2);
-            String wood_piece_id = resultSet.getString(3);
-            String finished_id = resultSet.getString(4);
-            String product_id = resultSet.getString(5);
+            String emp_id = resultSet.getString(3);
+            String wood_piece_id = resultSet.getString(4);
+            String finished_id = resultSet.getString(5);
+            String product_id = resultSet.getString(6);
 
             var dto = new PendingStockDto(pending_id, emp_id, wood_piece_id, finished_id, product_id);
             dtoList.add(dto);
@@ -36,7 +61,7 @@ public class PendingStockModel {
         return dtoList;
     }
 
-    public boolean deletePending(String id) throws SQLException {
+    public static boolean deletePending(String id) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "DELETE FROM pending_stock WHERE pending_stock_id = ?";

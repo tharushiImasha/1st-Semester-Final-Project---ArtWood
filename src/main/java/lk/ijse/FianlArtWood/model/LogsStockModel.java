@@ -3,6 +3,7 @@ package lk.ijse.FianlArtWood.model;
 import lk.ijse.FianlArtWood.db.DbConnection;
 import lk.ijse.FianlArtWood.dto.CustomerDto;
 import lk.ijse.FianlArtWood.dto.LogsDto;
+import lk.ijse.FianlArtWood.dto.tm.OrderTm;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -118,4 +119,5 @@ public class LogsStockModel {
 
         return dto;
     }
+
 }

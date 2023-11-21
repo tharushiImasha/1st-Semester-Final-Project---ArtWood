@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -22,42 +22,36 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtPendingId" layoutX="224.0" layoutY="159.0" onAction="#txtPendingIdOnAction" prefHeight="30.0" prefWidth="213.0" />
       <Label layoutX="68.0" layoutY="223.0" text="Finished Stock ID">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtFinishedId" layoutX="224.0" layoutY="217.0" prefHeight="30.0" prefWidth="213.0" />
       <Label layoutX="68.0" layoutY="288.0" text="Wood Piece ID">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtWoodPieceId" layoutX="224.0" layoutY="282.0" prefHeight="30.0" prefWidth="213.0" />
-      <JFXButton layoutX="154.0" layoutY="365.0" onAction="#btnSaveOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633;" text="Save" textFill="WHITE">
+      <JFXButton layoutX="246.0" layoutY="365.0" onAction="#btnSaveOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633;" text="Save" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></JFXButton>
-      <JFXButton layoutX="332.0" layoutY="365.0" onAction="#btnUpdateOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633;" text="Update" textFill="WHITE">
+      <JFXButton layoutX="424.0" layoutY="365.0" onAction="#btnUpdateOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></JFXButton>
-      <JFXButton layoutX="510.0" layoutY="365.0" onAction="#btnDeleteOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633;" text="Delete" textFill="WHITE">
+      <JFXButton layoutX="602.0" layoutY="365.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633;" text="Clear" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></JFXButton>
-      <JFXButton layoutX="688.0" layoutY="365.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633;" text="Clear" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font></JFXButton>
-      <TableView fx:id="tblPending" layoutX="82.0" layoutY="426.0" prefHeight="200.0" prefWidth="735.0">
+      <TableView fx:id="tblPending" layoutX="70.0" layoutY="426.0" prefHeight="200.0" prefWidth="796.0">
          <columns>
             <TableColumn fx:id="colPendingId" prefWidth="99.0" text="Pending ID" />
-            <TableColumn fx:id="colFinishedId" prefWidth="152.0" text="Finished ID" />
-            <TableColumn fx:id="colWoodPieceId" prefWidth="143.0" text="Wood Piece ID" />
-            <TableColumn fx:id="colEmpId" prefWidth="152.0" text="Emp ID" />
-            <TableColumn fx:id="colProductId" prefWidth="188.0" text="Product ID" />
+            <TableColumn fx:id="colFinishedId" prefWidth="142.0" text="Finished ID" />
+            <TableColumn fx:id="colWoodPieceId" prefWidth="149.0" text="Wood Piece ID" />
+            <TableColumn fx:id="colEmpId" prefWidth="132.0" text="Emp ID" />
+            <TableColumn fx:id="colProductId" prefWidth="136.0" text="Product ID" />
+            <TableColumn fx:id="colAction" prefWidth="137.0" text="Action" />
          </columns>
       </TableView>
       <Label layoutX="468.0" layoutY="288.0" text="Product ID">
@@ -65,7 +59,6 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtProductId" layoutX="592.0" layoutY="282.0" prefHeight="30.0" prefWidth="213.0" />
       <JFXButton layoutX="792.0" layoutY="660.0" onAction="#btnBackOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: black;" text="Back" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="13.0" />
@@ -75,11 +68,19 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtEmpId" layoutX="592.0" layoutY="217.0" prefHeight="30.0" prefWidth="213.0" />
       <ImageView fitHeight="176.0" fitWidth="270.0" layoutX="567.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/pendingIlllustration.png" />
          </image>
       </ImageView>
+      <Label fx:id="lblId" layoutX="224.0" layoutY="166.0" textFill="#ffa633">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbFinshedId" editable="true" layoutX="224.0" layoutY="217.0" prefHeight="30.0" prefWidth="213.0" />
+      <ComboBox fx:id="cmbWoodId" editable="true" layoutX="224.0" layoutY="282.0" prefHeight="30.0" prefWidth="213.0" />
+      <ComboBox fx:id="cmbEmpId" editable="true" layoutX="593.0" layoutY="217.0" prefHeight="30.0" prefWidth="213.0" />
+      <ComboBox fx:id="cmbProductId" editable="true" layoutX="593.0" layoutY="282.0" prefHeight="30.0" prefWidth="213.0" />
    </children>
 </AnchorPane>

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OwnerSupplierModel {
-    public List<SupplierDto> getAllSuppliers() throws SQLException {
+    public static List<SupplierDto> getAllSuppliers() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT * FROM supplier";

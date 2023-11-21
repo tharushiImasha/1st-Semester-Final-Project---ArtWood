@@ -66,9 +66,9 @@
          </font>
       </Label>
       <TextField fx:id="txtPrice" layoutX="188.0" layoutY="283.0" prefHeight="30.0" prefWidth="232.0" />
-      <ImageView fitHeight="169.0" fitWidth="168.0" layoutX="630.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="187.0" fitWidth="286.0" layoutX="554.0" layoutY="20.0" pickOnBounds="true">
          <image>
-            <Image url="@../../../../../29169159_7516663-removebg-preview.png" />
+            <Image url="@../images/productIllustration.png" />
          </image>
       </ImageView>
       <ComboBox fx:id="cmbQuality" editable="true" layoutX="581.0" layoutY="212.0" prefHeight="30.0" prefWidth="232.0" />

@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
@@ -21,7 +26,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtId" layoutX="142.0" layoutY="277.0" onAction="#txtIdOnAction" prefHeight="30.0" prefWidth="236.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="txtId" layoutX="249.0" layoutY="470.0" onAction="#txtIdOnAction" prefHeight="30.0" prefWidth="236.0" style="-fx-background-radius: 5;">
          <effect>
             <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" spread="0.02" width="0.0">
                <color>
@@ -42,7 +47,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <ComboBox editable="true" layoutX="189.0" layoutY="203.0" prefHeight="30.0" prefWidth="154.0">
+      <ComboBox fx:id="cmbCusId" editable="true" layoutX="189.0" layoutY="203.0" onAction="#cmbCustomerOnAction" prefHeight="30.0" prefWidth="154.0">
          <effect>
             <DropShadow height="1.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>
@@ -51,17 +56,121 @@
             </DropShadow>
          </effect>
       </ComboBox>
-      <JFXButton layoutX="367.0" layoutY="206.0" style="-fx-background-color: orange;" text="New" textFill="WHITE">
+      <JFXButton fx:id="btnNew" layoutX="367.0" layoutY="206.0" onAction="#btnNewOnAction" style="-fx-background-color: orange;" text="New" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <Label layoutX="510.0" layoutY="206.0" text="Employee ID">
+      <Label layoutX="542.0" layoutY="206.0" text="Customer Name :">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <ComboBox editable="true" layoutX="641.0" layoutY="203.0" prefHeight="30.0" prefWidth="154.0">
+      <Label fx:id="lblCusName" layoutX="704.0" layoutY="207.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="58.0" layoutY="265.0" text="Product ID">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbProductId" editable="true" layoutX="189.0" layoutY="262.0" onAction="#cmbItemOnAction" prefHeight="30.0" prefWidth="154.0">
+         <effect>
+            <DropShadow height="1.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
+               <color>
+                  <Color opacity="0.0" />
+               </color>
+            </DropShadow>
+         </effect>
+      </ComboBox>
+      <Label layoutX="392.0" layoutY="268.0" text="Description : ">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDesc" layoutX="411.0" layoutY="292.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="534.0" layoutY="269.0" text="Unit Price:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="656.0" layoutY="268.0" text="Qty. On Hand:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="826.0" layoutY="269.0" text="Qty:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtQty" layoutX="810.0" layoutY="298.0" onAction="#txtQtyOnAction" prefHeight="33.0" prefWidth="66.0" />
+      <TableView fx:id="tblOrderCart" layoutX="44.0" layoutY="400.0" prefHeight="200.0" prefWidth="858.0">
+         <columns>
+            <TableColumn fx:id="colItemCode" prefWidth="75.0" text="Code" />
+            <TableColumn fx:id="colDescription" prefWidth="191.0" text="Description" />
+            <TableColumn fx:id="colQty" prefWidth="81.0" text="Qty" />
+            <TableColumn fx:id="colUnitPrice" prefWidth="172.0" text="Unit Price" />
+            <TableColumn fx:id="colTotal" prefWidth="193.0" text="Total" />
+            <TableColumn fx:id="colAction" prefWidth="145.0" text="Action" />
+         </columns>
+      </TableView>
+      <JFXButton fx:id="btnAddToCart" buttonType="RAISED" layoutX="775.0" layoutY="347.0" onAction="#btnAddToCartOnAction" prefHeight="33.0" prefWidth="120.0" style="-fx-background-color: #3498db;" text="Add to cart" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Desktop/Project/thogakade-mvc/src/main/resources/icon/cart.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="783.0" layoutY="631.0" onAction="#btnPlaceOrderOnAction" prefHeight="34.0" prefWidth="120.0" style="-fx-background-color: #34495e;" text="Place Order" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Desktop/Project/thogakade-mvc/src/main/resources/icon/make_order.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label layoutX="49.0" layoutY="638.0" text="Net Total:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPrice" layoutX="568.0" layoutY="290.0">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblQtyOn" layoutX="686.0" layoutY="291.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTotal" layoutX="147.0" layoutY="640.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="58.0" layoutY="328.0" text="Payment Method">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbPayMethod" editable="true" layoutX="204.0" layoutY="322.0" prefHeight="30.0" prefWidth="154.0">
          <effect>
             <DropShadow height="1.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>

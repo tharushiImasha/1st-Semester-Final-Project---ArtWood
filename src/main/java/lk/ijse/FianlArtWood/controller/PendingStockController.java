@@ -4,27 +4,36 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.Cursor;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.FianlArtWood.dto.LogsDto;
-import lk.ijse.FianlArtWood.dto.PendingStockDto;
+import lk.ijse.FianlArtWood.dto.*;
 import lk.ijse.FianlArtWood.dto.tm.PendingStockTm;
-import lk.ijse.FianlArtWood.model.LogsStockModel;
-import lk.ijse.FianlArtWood.model.PendingStockModel;
+import lk.ijse.FianlArtWood.model.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class PendingStockController {
+    @FXML
+    private ComboBox<String> cmbEmpId;
+
+    @FXML
+    private ComboBox<String> cmbFinshedId;
+
+    @FXML
+    private ComboBox<String> cmbProductId;
+
+    @FXML
+    private ComboBox<String> cmbWoodId;
+
+    @FXML
+    private TableColumn<?, ?> colAction;
+
     @FXML
     private TableColumn<?, ?> colEmpId;
 
@@ -41,29 +50,92 @@ public class PendingStockController {
     private TableColumn<?, ?> colWoodPieceId;
 
     @FXML
+    private Label lblId;
+
+    @FXML
     private AnchorPane rootNode;
 
     @FXML
     private TableView<PendingStockTm> tblPending;
 
-    @FXML
-    private TextField txtEmpId;
-
-    @FXML
-    private TextField txtFinishedId;
-
-    @FXML
-    private TextField txtPendingId;
-
-    @FXML
-    private TextField txtProductId;
-
-    @FXML
-    private TextField txtWoodPieceId;
-
     public void initialize() {
         setCellValueFactory();
         loadAllLogs();
+        generateNextPendingId();
+        loadProductId();
+        loadEmpId();
+        loadFinishedId();
+        loadWoodId();
+        setListener();
+    }
+
+    private void loadProductId() {
+        ObservableList<String> obList = FXCollections.observableArrayList();
+        try {
+            List<ProductTypeDto> list = OwnerProductTypeModel.getAllProduct();
+
+            for (ProductTypeDto dto : list) {
+                obList.add(dto.getProduct_id());
+            }
+
+            cmbProductId.setItems(obList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void loadEmpId() {
+        ObservableList<String> obList = FXCollections.observableArrayList();
+        try {
+            List<EmployeeDto> list = OwnerEmployeeModel.getAllEmployees();
+
+            for (EmployeeDto dto : list) {
+                obList.add(dto.getEmp_id());
+            }
+
+            cmbEmpId.setItems(obList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void loadFinishedId() {
+        ObservableList<String> obList = FXCollections.observableArrayList();
+        try {
+            List<FinishedStockDto> list = FinishedStockModel.getAllFinishedStock();
+
+            for (FinishedStockDto dto : list) {
+                obList.add(dto.getFinished_id());
+            }
+
+            cmbFinshedId.setItems(obList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void loadWoodId() {
+        ObservableList<String> obList = FXCollections.observableArrayList();
+        try {
+            List<WoodPiecesDto> list = WoodPiecesStockModel.getAllWood();
+
+            for (WoodPiecesDto dto : list) {
+                obList.add(dto.getWood_piece_id());
+            }
+
+            cmbWoodId.setItems(obList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void generateNextPendingId() {
+        try {
+            String pendingId = PendingStockModel.generateNextPendingId();
+            lblId.setText(pendingId);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void setCellValueFactory() {
@@ -72,62 +144,57 @@ public class PendingStockController {
         colFinishedId.setCellValueFactory(new PropertyValueFactory<>("finished_id"));
         colProductId.setCellValueFactory(new PropertyValueFactory<>("product_id"));
         colWoodPieceId.setCellValueFactory(new PropertyValueFactory<>("wood_piece_id"));
+        colAction.setCellValueFactory(new PropertyValueFactory<>("btn"));
     }
 
     private void loadAllLogs() {
-        var model = new PendingStockModel();
-
-        ObservableList<PendingStockTm> obList = FXCollections.observableArrayList();
-
         try {
-            List<PendingStockDto> dtoList;
-            dtoList = model.getAllPendings();
+            List<PendingStockDto> dtoList = PendingStockModel.getAllPendings();
 
-            for(PendingStockDto dto : dtoList) {
-                obList.add(new PendingStockTm(dto.getPending_id(), dto.getEmp_id(), dto.getWood_piece_id(), dto.getFinished_id(), dto.getProduct_id()));
+            ObservableList<PendingStockTm> obList = FXCollections.observableArrayList();
+
+            for(PendingStockDto dto : dtoList){
+                Button btn = new Button("Remove");
+                btn.setCursor(Cursor.HAND);
+
+                btn.setOnAction((e) -> {
+                    ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
+                    ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                    Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
+
+                    if (type.orElse(no) == yes){
+                        int index = tblPending.getSelectionModel().getFocusedIndex();
+                        String id = (String) colPendingId.getCellData(index);
+
+                        deletePending(id);
+
+                        obList.remove(index);
+                        tblPending.refresh();
+                    }
+
+                });
+
+                var tm = new PendingStockTm(dto.getPending_id(), dto.getEmp_id(), dto.getWood_piece_id(), dto.getFinished_id(), dto.getProduct_id(), btn);
+
+                obList.add(tm);
+
             }
 
             tblPending.setItems(obList);
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    @FXML
-    void btnBackOnAction(ActionEvent event) throws IOException {
-        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/dashboard_pane.fxml"));
-
-        Scene scene = new Scene(rootNode);
-        Stage stage = (Stage) this.rootNode.getScene().getWindow();
-
-        stage.setTitle("Owner Dashboard");
-        stage.setScene(scene);
-        stage.centerOnScreen();
-    }
-
-    @FXML
-    void btnClearOnAction(ActionEvent event) {
-        clearFields();
-    }
-    void clearFields() {
-        txtEmpId.setText("");
-        txtPendingId.setText("");
-        txtFinishedId.setText("");
-        txtWoodPieceId.setText("");
-        txtProductId.setText("");
-    }
-
-    @FXML
-    void btnDeleteOnAction(ActionEvent event) {
-        String id = txtPendingId.getText();
-
-        var model = new PendingStockModel();
+    private void deletePending(String id) {
         try {
-            boolean isDeleted = model.deletePending(id);
+            boolean isDeleted = PendingStockModel.deletePending(id);
 
             if(isDeleted) {
                 tblPending.refresh();
-                new Alert(Alert.AlertType.CONFIRMATION, "pending item deleted!").show();
+                new Alert(Alert.AlertType.CONFIRMATION, "Pending item deleted!").show();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -135,14 +202,33 @@ public class PendingStockController {
     }
 
     @FXML
-    void btnSaveOnAction(ActionEvent event) {
-        String pending_id = txtPendingId.getText();
-        String emp_id = txtEmpId.getText();
-        String wood_piece_id = txtWoodPieceId.getText();
-        String finished_id = txtFinishedId.getText();
-        String product_id = txtProductId.getText();
+    void btnBackOnAction(ActionEvent event) throws IOException {
+        Stage stage = (Stage) this.rootNode.getScene().getWindow();
 
-        var dto = new PendingStockDto(pending_id, emp_id, wood_piece_id, finished_id, pending_id);
+        stage.close();
+    }
+
+    @FXML
+    void btnClearOnAction(ActionEvent event) {
+        clearFields();
+    }
+    void clearFields() {
+        lblId.setText("");
+        cmbWoodId.setValue("");
+        cmbFinshedId.setValue("");
+        cmbEmpId.setValue("");
+        cmbProductId.setValue("");
+    }
+
+    @FXML
+    void btnSaveOnAction(ActionEvent event) {
+        String pending_id = lblId.getText();
+        String emp_id = cmbEmpId.getValue();
+        String wood_piece_id = cmbWoodId.getValue();
+        String finished_id = cmbFinshedId.getValue();
+        String product_id = cmbProductId.getValue();
+
+        var dto = new PendingStockDto(pending_id, emp_id, wood_piece_id, finished_id, product_id);
 
         var model = new PendingStockModel();
         try {
@@ -158,11 +244,11 @@ public class PendingStockController {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-        String pending_id = txtPendingId.getText();
-        String emp_id = txtEmpId.getText();
-        String wood_piece_id = txtWoodPieceId.getText();
-        String finished_id = txtFinishedId.getText();
-        String product_id = txtProductId.getText();
+        String pending_id = lblId.getText();
+        String emp_id = cmbEmpId.getValue();
+        String wood_piece_id = cmbWoodId.getValue();
+        String finished_id = cmbFinshedId.getValue();
+        String product_id = cmbProductId.getValue();
         int amount = 1;
 
         var dto = new PendingStockDto(pending_id, amount, emp_id, wood_piece_id, finished_id, product_id);
@@ -179,31 +265,26 @@ public class PendingStockController {
         }
     }
 
-    @FXML
-    void txtPendingIdOnAction(ActionEvent event) {
-        String id = txtPendingId.getText();
-
-        var model = new PendingStockModel();
-        try {
-            PendingStockDto dto = model.searchPending(id);
-
-            if(dto != null) {
-                fillFields(dto);
-            } else {
-                new Alert(Alert.AlertType.INFORMATION, "pending id not found!").show();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }
+    private void setListener() {
+        tblPending.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    var dto = new PendingStockDto(
+                            newValue.getPending_id(),
+                            newValue.getEmp_id(),
+                            newValue.getWood_piece_id(),
+                            newValue.getFinished_id(),
+                            newValue.getProduct_id()
+                    );
+                    setFields(dto);
+                });
     }
 
-    private void fillFields(PendingStockDto dto) {
-        txtPendingId.setText(dto.getPending_id());
-        txtProductId.setText(String.valueOf(dto.getProduct_id()));
-        txtEmpId.setText(dto.getEmp_id());
-        txtFinishedId.setText(dto.getFinished_id());
-        txtWoodPieceId.setText(dto.getWood_piece_id());
-
+    private void setFields(PendingStockDto dto) {
+        lblId.setText(dto.getPending_id());
+        cmbProductId.setValue(dto.getProduct_id());
+        cmbFinshedId.setValue(dto.getFinished_id());
+        cmbWoodId.setValue(dto.getWood_piece_id());
+        cmbEmpId.setValue(dto.getEmp_id());
     }
 
 }

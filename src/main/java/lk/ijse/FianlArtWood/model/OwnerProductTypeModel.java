@@ -1,7 +1,6 @@
 package lk.ijse.FianlArtWood.model;
 
 import lk.ijse.FianlArtWood.db.DbConnection;
-import lk.ijse.FianlArtWood.dto.CustomerDto;
 import lk.ijse.FianlArtWood.dto.ProductTypeDto;
 
 import java.sql.Connection;
@@ -33,6 +32,38 @@ public class OwnerProductTypeModel {
             dtoList.add(dto);
         }
         return dtoList;
+    }
+
+    public static String getName(String productId) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "select product_name FROM product_type WHERE product_id = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setString(1, productId);
+
+        String product_name = "";
+
+        ResultSet resultSet = pstm.executeQuery();
+        while (resultSet.next()){
+            product_name = resultSet.getString(1);
+        }
+        return product_name;
+    }
+
+    public static double getPrice(String productId) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "select price FROM product_type WHERE product_id = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setString(1, productId);
+
+        double price = 0;
+
+        ResultSet resultSet = pstm.executeQuery();
+        while (resultSet.next()){
+            price = Double.parseDouble(resultSet.getString(1));
+        }
+        return price;
     }
 
     public boolean deleteProduct(String id) throws SQLException {

@@ -74,7 +74,7 @@
          <font>
             <Font name="System Bold" size="13.0" />
          </font></JFXButton>
-      <ImageView fitHeight="266.0" fitWidth="317.0" layoutX="545.0" layoutY="-38.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="266.0" fitWidth="317.0" layoutX="545.0" layoutY="-17.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/woodillustration.png" />
          </image>

@@ -4,26 +4,31 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.FianlArtWood.dto.LogsDto;
+import lk.ijse.FianlArtWood.dto.OrderDto;
+import lk.ijse.FianlArtWood.dto.SupOrderDto;
+import lk.ijse.FianlArtWood.dto.SupplierDto;
 import lk.ijse.FianlArtWood.dto.tm.LogsTm;
-import lk.ijse.FianlArtWood.model.LogsStockModel;
+import lk.ijse.FianlArtWood.dto.tm.OrderTm;
+import lk.ijse.FianlArtWood.model.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class LogsStockController {
     @FXML
-    private Label lblId;
+    private ComboBox<String> cmbPatMethod;
+
+    @FXML
+    private ComboBox<String> cmbSupId;
 
     @FXML
     private ComboBox<String> cmbType;
@@ -41,10 +46,18 @@ public class LogsStockController {
     private TableColumn<?, ?> colType;
 
     @FXML
+    private Label lblId;
+
+    @FXML
     private AnchorPane rootNode;
 
     @FXML
     private TableView<LogsTm> tblLog;
+
+    @FXML
+    private TextField txtPrice;
+
+    private final ObservableList<LogsTm> obList = FXCollections.observableArrayList();
 
     private int amount = 1;
 
@@ -54,10 +67,32 @@ public class LogsStockController {
         generateNextCustomerId();
         setListener();
         loadType();
+        loadPayMethod();
+        loadSupId();
     }
     private void loadType() {
        cmbType.getItems().add("Teak");
        cmbType.getItems().add("Rosewood");
+    }
+
+    private void loadPayMethod() {
+        cmbPatMethod.getItems().add("card");
+        cmbPatMethod.getItems().add("cash");
+    }
+
+    private void loadSupId() {
+        ObservableList<String> obList = FXCollections.observableArrayList();
+        try {
+            List<SupplierDto> list = OwnerSupplierModel.getAllSuppliers();
+
+            for (SupplierDto dto : list) {
+                obList.add(dto.getId());
+            }
+
+            cmbSupId.setItems(obList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void generateNextCustomerId() {
@@ -132,14 +167,11 @@ public class LogsStockController {
 
     @FXML
     void btnBackOnAction(ActionEvent event) throws IOException {
-        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/dashboard_pane.fxml"));
 
-        Scene scene = new Scene(rootNode);
         Stage stage = (Stage) this.rootNode.getScene().getWindow();
 
-        stage.setTitle("Owner Dashboard");
-        stage.setScene(scene);
-        stage.centerOnScreen();
+        stage.close();
+
     }
 
     @FXML
@@ -153,20 +185,57 @@ public class LogsStockController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
+        generateNextSupOrderId();
+
         String id = lblId.getText();
         String type = cmbType.getValue();
 
-        var dto = new LogsDto(id, type, amount);
+        String sup_id = cmbSupId.getValue();
+        String pay_meth = cmbPatMethod.getValue();
+        double price = Double.parseDouble(txtPrice.getText());
 
-        var model = new LogsStockModel();
+        List<LogsTm> tmList = new ArrayList<>();
+
+        for (LogsTm logsTm : obList) {
+            tmList.add(logsTm);
+        }
+
+        var placeOrderDto = new SupOrderDto(supOrderId, price, type, sup_id, pay_meth, tmList);
+
         try {
-            boolean isSaved = model.saveLogs(dto);
-            if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "logs saved!").show();
-                clearFields();
+            boolean isSuccess = PlaceSupOrderModel.placeSupOrder(placeOrderDto);
+            if(isSuccess) {
+                new Alert(Alert.AlertType.CONFIRMATION, "order completed!").show();
+
+                var dto = new LogsDto(id, type, amount);
+
+                var model = new LogsStockModel();
+                try {
+                    boolean isSaved = model.saveLogs(dto);
+                    if (isSaved) {
+                        new Alert(Alert.AlertType.CONFIRMATION, "logs saved!").show();
+                        clearFields();
+                    }
+                } catch (SQLException e) {
+                    new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+                }
+
+            } else {
+                new Alert(Alert.AlertType.CONFIRMATION, "order not completed!").show();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+
+    }
+
+    String supOrderId = "";
+
+    private void generateNextSupOrderId() {
+        try {
+             supOrderId = SupOrdersModel.generateNextOrderId();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
