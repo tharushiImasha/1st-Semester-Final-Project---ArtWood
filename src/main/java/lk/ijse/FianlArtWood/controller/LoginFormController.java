@@ -7,10 +7,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import lk.ijse.FianlArtWood.dto.LoginDto;
 import lk.ijse.FianlArtWood.model.LoginFormModel;
+
+import java.io.IOException;
 
 public class LoginFormController {
     @FXML
@@ -56,7 +60,7 @@ public class LoginFormController {
                     stage.centerOnScreen();
 
                 }else if (dto.getJob_role().equals("cashier")){
-                    Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/cashier_dashboard.fxml"));
+                    Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/cashier_dashboard_pane.fxml"));
 
                     Scene scene = new Scene(rootNode);
                     Stage stage = (Stage) this.rootNode.getScene().getWindow();
@@ -73,5 +77,18 @@ public class LoginFormController {
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
+    }
+
+    @FXML
+    void lblForgotPwOnAction(MouseEvent event) throws IOException {
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/forgot_pw.fxml"));
+
+        Scene scene = new Scene(rootNode);
+        Stage stage = new Stage();
+
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.centerOnScreen();
+        stage.show();
     }
 }

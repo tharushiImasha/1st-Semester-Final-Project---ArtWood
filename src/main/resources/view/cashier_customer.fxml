@@ -1,14 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="lk.ijse.FianlArtWood.controller.CashierCustomerController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane fx:id="rootNode" prefHeight="710.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.FianlArtWood.controller.CashierCustomerController">
+   <children>
+      <Label layoutX="58.0" layoutY="80.0" text="Customer">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="58.0" layoutY="194.0" text="Cus ID">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="58.0" layoutY="280.0" text="Name">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtName" layoutX="146.0" layoutY="274.0" prefHeight="30.0" prefWidth="236.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" spread="0.02" width="0.0">
+               <color>
+                  <Color red="0.013000000268220901" blue="0.05999999865889549" opacity="0.2145593911409378" />
+               </color>
+            </DropShadow>
+         </effect></TextField>
+      <Label layoutX="489.0" layoutY="280.0" text="Address">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtAddress" layoutX="591.0" layoutY="274.0" prefHeight="30.0" prefWidth="236.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" spread="0.02" width="0.0">
+               <color>
+                  <Color red="0.013000000268220901" blue="0.05999999865889549" opacity="0.2145593911409378" />
+               </color>
+            </DropShadow>
+         </effect></TextField>
+      <JFXButton layoutX="237.0" layoutY="355.0" onAction="#btnSaveOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633; -fx-background-radius: 5;" text="Save" textFill="#f8f3f3">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></JFXButton>
+      <JFXButton layoutX="415.0" layoutY="355.0" onAction="#btnUpdateOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633; -fx-background-radius: 5;" text="Update" textFill="#f8f3f3">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></JFXButton>
+      <JFXButton layoutX="605.0" layoutY="355.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: ffa633; -fx-background-radius: 5;" text="Clear" textFill="#f8f3f3">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></JFXButton>
+      <TableView fx:id="tblCustomer" layoutX="86.0" layoutY="424.0" prefHeight="232.0" prefWidth="759.0" style="-fx-background-radius: 5;">
+         <columns>
+            <TableColumn fx:id="colId" prefWidth="162.0" text="Id" />
+            <TableColumn fx:id="colName" prefWidth="191.0" text="Name" />
+            <TableColumn fx:id="colAddress" prefWidth="252.0" text="Address" />
+            <TableColumn fx:id="colAction" prefWidth="153.0" text="Action" />
+         </columns>
+      </TableView>
+      <ImageView fitHeight="232.0" fitWidth="343.0" layoutX="535.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/customerIllustration.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblCusId" layoutX="146.0" layoutY="195.0" textFill="#ffa633">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font></Label>
+   </children>
 </AnchorPane>

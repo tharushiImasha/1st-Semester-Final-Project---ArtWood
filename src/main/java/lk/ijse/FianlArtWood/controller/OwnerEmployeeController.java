@@ -10,10 +10,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TableColumn;
+import lk.ijse.FianlArtWood.db.DbConnection;
 import lk.ijse.FianlArtWood.dto.EmployeeDto;
 import lk.ijse.FianlArtWood.dto.tm.EmployeeTm;
 import lk.ijse.FianlArtWood.model.OwnerEmployeeModel;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.swing.JRViewer;
 
+import javax.swing.*;
+import java.awt.*;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -268,6 +276,31 @@ public class OwnerEmployeeController {
         txtAddress.setText(dto.getAddress());
         txtJobRole.setText(dto.getJob_role());
         txtTel.setText(String.valueOf(dto.getTel()));
+    }
+
+    @FXML
+    void btnReportOnAction(ActionEvent event) {
+        try {
+            JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/reports/EmployeeArtWood.jrxml");
+            JRDesignQuery query = new JRDesignQuery();
+            query.setText("SELECT*FROM employee");
+            jasperDesign.setQuery(query);
+
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DbConnection.getInstance().getConnection());
+
+            JFrame frame = new JFrame("Jasper Report Viewer");
+            JRViewer viewer = new JRViewer(jasperPrint);
+
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.getContentPane().add(viewer);
+            frame.setSize(new Dimension(1200, 800));
+            frame.setVisible(true);
+        } catch (JRException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

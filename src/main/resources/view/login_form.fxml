@@ -60,10 +60,13 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <Label layoutX="185.0" layoutY="486.0" text="Forgot Password?" textFill="#ffa633" underline="true">
+      <Label layoutX="185.0" layoutY="486.0" onMouseClicked="#lblForgotPwOnAction" text="Forgot Password?" textFill="#ffa633" underline="true">
          <font>
             <Font size="10.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
       <JFXButton layoutX="181.0" layoutY="557.0" onAction="#btnLoginOnAction" prefHeight="33.0" prefWidth="133.0" style="-fx-background-color: black;" text="LOG IN" textFill="WHITE">
          <cursor>

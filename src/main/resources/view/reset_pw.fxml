@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="rootNode" prefHeight="557.0" prefWidth="543.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.FianlArtWood.controller.ResetPwController">
+   <children>
+      <Label layoutX="182.0" layoutY="56.0" text="Reset Password">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="36.0" layoutY="185.0" text="New Password">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="36.0" layoutY="288.0" text="Verify Password">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtNewPw" layoutX="189.0" layoutY="180.0" prefHeight="30.0" prefWidth="290.0" />
+      <TextField fx:id="txtVerifyPw" layoutX="189.0" layoutY="283.0" prefHeight="30.0" prefWidth="290.0" />
+      <JFXButton layoutX="368.0" layoutY="397.0" onAction="#btnResetOnAction" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: black;" text="Reset" textFill="WHITE" />
+   </children>
+</AnchorPane>
