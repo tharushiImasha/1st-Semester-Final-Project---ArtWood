@@ -1,14 +1,15 @@
-package lk.ijse.FianlArtWood.dto;
+package lk.ijse.FianlArtWood.dto.tm;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @AllArgsConstructor
+@Data
 @NoArgsConstructor
 
-public class FinanceDto {
-    private String pay_method;
+public class SalaryTm {
+    private String salary_id;
     private double amount;
+    private String emp_id;
 }

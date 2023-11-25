@@ -12,22 +12,22 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <JFXButton layoutX="121.0" layoutY="180.0" onAction="#btnLogsOnAction" prefHeight="147.0" prefWidth="274.0" style="-fx-background-color: ffa633;" text="Logs Stock">
+      <JFXButton layoutX="121.0" layoutY="167.0" onAction="#btnLogsOnAction" prefHeight="170.0" prefWidth="305.0" style="-fx-background-color: ffa633;" text="Logs Stock">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="528.0" layoutY="180.0" onAction="#btnWoodPiecesOnAction" prefHeight="147.0" prefWidth="274.0" style="-fx-background-color: ffa633;" text="Wood Pieces Stock">
+      <JFXButton layoutX="509.0" layoutY="167.0" onAction="#btnWoodPiecesOnAction" prefHeight="170.0" prefWidth="305.0" style="-fx-background-color: ffa633;" text="Wood Pieces Stock">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="121.0" layoutY="428.0" onAction="#btnPendingOnAction" prefHeight="147.0" prefWidth="274.0" style="-fx-background-color: ffa633;" text="Pending Stock">
+      <JFXButton layoutX="121.0" layoutY="419.0" onAction="#btnPendingOnAction" prefHeight="170.0" prefWidth="305.0" style="-fx-background-color: ffa633;" text="Pending Stock">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="528.0" layoutY="428.0" onAction="#btnFinishedOnAction" prefHeight="147.0" prefWidth="274.0" style="-fx-background-color: ffa633;" text="Finished Stock">
+      <JFXButton layoutX="509.0" layoutY="419.0" onAction="#btnFinishedOnAction" prefHeight="170.0" prefWidth="305.0" style="-fx-background-color: ffa633;" text="Finished Stock">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

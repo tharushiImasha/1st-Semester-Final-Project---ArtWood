@@ -56,12 +56,6 @@ public class ForgotPwController {
             pros.put("mail.smtp.port", "587");
             pros.put("mail.smtp.auth", "true");
             pros.put("mail.smtp.ssl.protocols", "TLSv1.2");
-            //pros.put("mail.smtp.starttls.required", "true");
-
-//            System.setProperty("https.protocols", "TLSv1.2");
-//            System.setProperty("https.cipherSuites", "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256");
-//            System.setProperty("javax.net.debug", "all");
-
 
             java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
             Session mailSession = Session.getDefaultInstance(pros, null);
@@ -78,7 +72,7 @@ public class ForgotPwController {
             transport.connect(host, user, pass);
             transport.sendMessage(msg, msg.getAllRecipients());
             transport.close();
-            JOptionPane.showMessageDialog(null, "code has been send to the email");
+            new Alert(Alert.AlertType.INFORMATION, "Code has been send to the email").show();
 
         } catch (MessagingException | HeadlessException e) {
             System.out.println(e.getMessage());
@@ -99,7 +93,8 @@ public class ForgotPwController {
             stage.setScene(scene);
             stage.centerOnScreen();
         } else {
-            new Alert(Alert.AlertType.INFORMATION, "Wrong Code");
+            new Alert(Alert.AlertType.INFORMATION, "Wrong Code").show();
+            txtCode.setText("");
         }
     }
 }

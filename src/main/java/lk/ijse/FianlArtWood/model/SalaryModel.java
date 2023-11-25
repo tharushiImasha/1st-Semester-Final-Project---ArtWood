@@ -1,11 +1,15 @@
 package lk.ijse.FianlArtWood.model;
 
 import lk.ijse.FianlArtWood.db.DbConnection;
+import lk.ijse.FianlArtWood.dto.LoginDto;
+import lk.ijse.FianlArtWood.dto.SalaryDto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SalaryModel {
 
@@ -48,5 +52,26 @@ public class SalaryModel {
         pstm.setString(3, empId);
 
         return pstm.executeUpdate() > 0;
+    }
+
+    public List<SalaryDto> getAllSalary() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT * FROM salary";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        List<SalaryDto> dtoList = new ArrayList<>();
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        while (resultSet.next()) {
+            String id = resultSet.getString(1);
+            double amount = Double.parseDouble(resultSet.getString(2));
+            String emp_id = resultSet.getString(3);
+
+            var dto = new SalaryDto(id, amount, emp_id);
+            dtoList.add(dto);
+        }
+        return dtoList;
     }
 }

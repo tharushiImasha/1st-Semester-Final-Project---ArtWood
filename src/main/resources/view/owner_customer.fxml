@@ -19,17 +19,17 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="58.0" layoutY="194.0" text="Cus ID">
+      <Label layoutX="58.0" layoutY="172.0" text="Cus ID">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="58.0" layoutY="280.0" text="Name">
+      <Label layoutX="58.0" layoutY="223.0" text="Name">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtName" layoutX="146.0" layoutY="274.0" prefHeight="30.0" prefWidth="236.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="txtName" layoutX="146.0" layoutY="217.0" prefHeight="30.0" prefWidth="236.0" style="-fx-background-radius: 5;">
          <effect>
             <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" spread="0.02" width="0.0">
                <color>
@@ -62,12 +62,13 @@
          <font>
             <Font name="System Bold" size="13.0" />
          </font></JFXButton>
-      <TableView fx:id="tblCustomer" layoutX="83.0" layoutY="407.0" prefHeight="232.0" prefWidth="759.0" style="-fx-background-radius: 5;">
+      <TableView fx:id="tblCustomer" layoutX="73.0" layoutY="407.0" prefHeight="232.0" prefWidth="779.0" style="-fx-background-radius: 5;">
          <columns>
-            <TableColumn fx:id="colId" prefWidth="162.0" text="Id" />
-            <TableColumn fx:id="colName" prefWidth="191.0" text="Name" />
-            <TableColumn fx:id="colAddress" prefWidth="252.0" text="Address" />
-            <TableColumn fx:id="colAction" prefWidth="153.0" text="Action" />
+            <TableColumn fx:id="colId" prefWidth="95.0" text="Id" />
+            <TableColumn fx:id="colName" prefWidth="213.0" text="Name" />
+            <TableColumn fx:id="colAddress" prefWidth="135.0" text="Address" />
+            <TableColumn fx:id="colTel" prefWidth="185.0" text="Tel" />
+            <TableColumn fx:id="colAction" prefWidth="150.0" text="Action" />
          </columns>
       </TableView>
       <ImageView fitHeight="232.0" fitWidth="343.0" layoutX="535.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
@@ -75,7 +76,7 @@
             <Image url="@../images/customerIllustration.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblCusId" layoutX="146.0" layoutY="195.0" textFill="#ffa633">
+      <Label fx:id="lblCusId" layoutX="146.0" layoutY="173.0" textFill="#ffa633">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font></Label>
@@ -84,5 +85,19 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
+      <Label layoutX="58.0" layoutY="280.0" text="Tel">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtTel" layoutX="146.0" layoutY="274.0" prefHeight="30.0" prefWidth="236.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" spread="0.02" width="0.0">
+               <color>
+                  <Color red="0.013000000268220901" blue="0.05999999865889549" opacity="0.2145593911409378" />
+               </color>
+            </DropShadow>
+         </effect>
+      </TextField>
    </children>
 </AnchorPane>

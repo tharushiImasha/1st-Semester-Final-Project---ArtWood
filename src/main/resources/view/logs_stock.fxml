@@ -42,7 +42,7 @@
          <font>
             <Font name="System Bold" size="13.0" />
          </font></JFXButton>
-      <TableView fx:id="tblLog" layoutX="57.0" layoutY="407.0" prefHeight="231.0" prefWidth="811.0" style="-fx-background-radius: 5;">
+      <TableView fx:id="tblLog" layoutX="57.0" layoutY="407.0" prefHeight="231.0" prefWidth="811.0" style="-fx-background-radius: 5;" styleClass="table-tr" stylesheets="@../table.css">
          <columns>
             <TableColumn fx:id="colId" prefWidth="163.0" text="Log Id" />
             <TableColumn fx:id="colType" prefWidth="225.0" text="Type" />

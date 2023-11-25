@@ -1,6 +1,7 @@
 package lk.ijse.FianlArtWood.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXRadioButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,17 +32,12 @@ public class CashierOrderController {
     private final OwnerOrderModel orderModel = new OwnerOrderModel();
     private final ObservableList<OrderTm> obList = FXCollections.observableArrayList();
 
+
     @FXML
     private JFXButton btnAddToCart;
 
     @FXML
     private JFXButton btnNew;
-
-    @FXML
-    private ComboBox<String> cmbCusId;
-
-    @FXML
-    private ComboBox<String> cmbPayMethod;
 
     @FXML
     private ComboBox<String> cmbProductId;
@@ -65,7 +61,13 @@ public class CashierOrderController {
     private TableColumn<?, ?> colUnitPrice;
 
     @FXML
-    private Label lblDesc;
+    private ToggleGroup payMethod;
+
+    @FXML
+    private Label lblCusId;
+
+    @FXML
+    private Label lblCusName;
 
     @FXML
     private Label lblOrderDate;
@@ -77,13 +79,25 @@ public class CashierOrderController {
     private Label lblPrice;
 
     @FXML
+    private Label lblProductName;
+
+    @FXML
     private Label lblQtyOn;
+
+    @FXML
+    private Label lblQuality;
 
     @FXML
     private Label lblTotal;
 
     @FXML
-    private Label lblCusName;
+    private Label lblWoodType;
+
+    @FXML
+    private JFXRadioButton radioCard;
+
+    @FXML
+    private JFXRadioButton radioCash;
 
     @FXML
     private TableView<OrderTm> tblOrderCart;
@@ -94,20 +108,27 @@ public class CashierOrderController {
     @FXML
     private TextField txtQty;
 
+    @FXML
+    private TextField txtTel;
+
+    String payMeth;
+
+    @FXML
+    void payMethodOnAction(ActionEvent event) {
+        if (radioCash.isSelected()){
+            payMeth = radioCash.getText();
+        }else if (radioCard.isSelected()){
+            payMeth = radioCard.getText();
+        }
+    }
+
     private final PlaceOrderModel placeOrderModel = new PlaceOrderModel();
 
     public void initialize() {
         setCellValueFactory();
         generateNextOrderId();
         setDate();
-        loadCustomerIds();
         loadItemCodes();
-        loadPayMethod();
-    }
-
-    private void loadPayMethod() {
-        cmbPayMethod.getItems().add("card");
-        cmbPayMethod.getItems().add("cash");
     }
 
     private void setCellValueFactory() {
@@ -143,20 +164,6 @@ public class CashierOrderController {
         }
     }
 
-    private void loadCustomerIds() {
-        ObservableList<String> obList = FXCollections.observableArrayList();
-        try {
-            List<CustomerDto> cusList = OwnerCustomerModel.getAllCustomers();
-
-            for (CustomerDto dto : cusList) {
-                obList.add(dto.getId());
-            }
-            cmbCusId.setItems(obList);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     private void setDate() {
         String date = String.valueOf(LocalDate.now());
         lblOrderDate.setText(date);
@@ -165,7 +172,7 @@ public class CashierOrderController {
     @FXML
     void btnAddToCartOnAction(ActionEvent event) {
         String code = cmbProductId.getValue();
-        String description = lblDesc.getText();
+        String pName = lblProductName.getText();
         int qty = Integer.parseInt(txtQty.getText());
         double unitPrice = Double.parseDouble(lblPrice.getText());
         double total = qty * unitPrice;
@@ -203,7 +210,7 @@ public class CashierOrderController {
 
         obList.add(new OrderTm(
                 code,
-                description,
+                pName,
                 qty,
                 unitPrice,
                 total,
@@ -239,8 +246,7 @@ public class CashierOrderController {
     @FXML
     void btnPlaceOrderOnAction(ActionEvent event) {
         String orderId = lblOrderId.getText();
-        String cusId = cmbCusId.getValue();
-        String pay_meth = cmbPayMethod.getValue();
+        int tel = Integer.parseInt(lblCusId.getText());
         double total = Double.parseDouble(lblTotal.getText());
         LocalDate date = LocalDate.parse(lblOrderDate.getText());
 
@@ -250,7 +256,7 @@ public class CashierOrderController {
             tmList.add(cartTm);
         }
 
-        var placeOrderDto = new OrderDto(orderId, date, pay_meth, cusId, total, tmList);
+        var placeOrderDto = new OrderDto(orderId, date, payMeth, tel, total, tmList);
 
         try {
             boolean isSuccess = placeOrderModel.placeOrder(placeOrderDto);
@@ -274,10 +280,14 @@ public class CashierOrderController {
         try {
             FinishedStockDto dto = itemModel.searchFinished(code);
 
-            String desc = OwnerProductTypeModel.getName(dto.getProduct_id());
+            String name = OwnerProductTypeModel.getName(dto.getProduct_id());
             double price = OwnerProductTypeModel.getPrice(dto.getProduct_id());
+            String type = OwnerProductTypeModel.getType(dto.getProduct_id());
+            String quality = OwnerProductTypeModel.getQuality(dto.getProduct_id());
 
-            lblDesc.setText(desc);
+            lblProductName.setText(name);
+            lblQuality.setText(quality);
+            lblWoodType.setText(type);
             lblPrice.setText(String.valueOf(price));
             lblQtyOn.setText(String.valueOf(dto.getAmount()));
 
@@ -287,11 +297,12 @@ public class CashierOrderController {
     }
 
     @FXML
-    void cmbCustomerOnAction(ActionEvent event) throws SQLException {
-        String id = cmbCusId.getValue();
-        CustomerDto dto = customerModel.searchCustomer(id);
+    void txtTelOnAction(ActionEvent event) throws SQLException {
+        int tel = Integer.parseInt(txtTel.getText());
+        CustomerDto dto = customerModel.searchCustomer(String.valueOf(tel));
 
         lblCusName.setText(dto.getName());
+        lblCusId.setText(dto.getId());
     }
 
     @FXML

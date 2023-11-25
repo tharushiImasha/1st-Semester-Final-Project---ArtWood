@@ -1,31 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane fx:id="rootNode" prefHeight="557.0" prefWidth="543.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.FianlArtWood.controller.ResetPwController">
    <children>
-      <Label layoutX="182.0" layoutY="56.0" text="Reset Password">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="36.0" layoutY="185.0" text="New Password">
+      <Label layoutX="36.0" layoutY="264.0" text="New Password">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="36.0" layoutY="288.0" text="Verify Password">
+      <Label layoutX="36.0" layoutY="367.0" text="Verify Password">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNewPw" layoutX="189.0" layoutY="180.0" prefHeight="30.0" prefWidth="290.0" />
-      <TextField fx:id="txtVerifyPw" layoutX="189.0" layoutY="283.0" prefHeight="30.0" prefWidth="290.0" />
-      <JFXButton layoutX="368.0" layoutY="397.0" onAction="#btnResetOnAction" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: black;" text="Reset" textFill="WHITE" />
+      <TextField fx:id="txtNewPw" accessibleRole="PASSWORD_FIELD" layoutX="189.0" layoutY="259.0" prefHeight="30.0" prefWidth="290.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
+               <color>
+                  <Color opacity="0.29118773341178894" />
+               </color>
+            </DropShadow>
+         </effect></TextField>
+      <TextField fx:id="txtVerifyPw" layoutX="189.0" layoutY="362.0" prefHeight="30.0" prefWidth="290.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
+               <color>
+                  <Color opacity="0.29118773341178894" />
+               </color>
+            </DropShadow>
+         </effect></TextField>
+      <JFXButton layoutX="355.0" layoutY="468.0" onAction="#btnResetOnAction" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: orange; -fx-background-radius: 5;" text="Reset" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font></JFXButton>
+      <Label layoutX="62.0" layoutY="70.0" text="Reset Password">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="58.0" fitWidth="157.0" layoutX="62.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/reset.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="178.0" fitWidth="171.0" layoutX="334.0" layoutY="45.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/resetPwIllustration.png" />
+         </image>
+      </ImageView>
+      <JFXCheckBox fx:id="chkNew" checkedColor="#ffa100f0" layoutX="424.0" layoutY="297.0" onAction="#chkShowNew" prefHeight="18.0" prefWidth="49.0" text="Show" textFill="#000000a1" unCheckedColor="ORANGE">
+         <font>
+            <Font size="11.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXCheckBox>
+      <JFXCheckBox fx:id="chkVer" checkedColor="#ffa100f0" layoutX="424.0" layoutY="402.0" onAction="#chkShowVer" prefHeight="18.0" prefWidth="49.0" text="Show" textFill="#000000a1" unCheckedColor="ORANGE">
+         <font>
+            <Font size="11.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXCheckBox>
+      <PasswordField fx:id="passNewPw" layoutX="189.0" layoutY="259.0" prefHeight="30.0" prefWidth="290.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
+               <color>
+                  <Color opacity="0.29118773341178894" />
+               </color>
+            </DropShadow>
+         </effect>
+      </PasswordField>
+      <PasswordField fx:id="passVerPw" layoutX="189.0" layoutY="362.0" prefHeight="30.0" prefWidth="290.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
+               <color>
+                  <Color opacity="0.29118773341178894" />
+               </color>
+            </DropShadow>
+         </effect>
+      </PasswordField>
    </children>
 </AnchorPane>

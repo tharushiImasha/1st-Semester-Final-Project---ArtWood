@@ -36,13 +36,16 @@ public class OwnerCustomerController {
     private TextField txtAddress;
 
     @FXML
-    private TextField txtId;
+    private TableColumn<?, ?> colTel;
 
     @FXML
     private Label lblCusId;
 
     @FXML
     private TextField txtName;
+
+    @FXML
+    private TextField txtTel;
 
     @FXML
     private TableColumn<?, ?> colAddress;
@@ -81,6 +84,7 @@ public class OwnerCustomerController {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colTel.setCellValueFactory(new PropertyValueFactory<>("tel"));
         colAction.setCellValueFactory(new PropertyValueFactory<>("btn"));
     }
 
@@ -113,7 +117,7 @@ public class OwnerCustomerController {
 
                 });
 
-                var tm = new CustomerTm(dto.getId(), dto.getName(), dto.getAddress(), btn);
+                var tm = new CustomerTm(dto.getId(), dto.getName(), dto.getAddress(), dto.getTel(), btn);
 
                 obList.add(tm);
 
@@ -134,6 +138,7 @@ public class OwnerCustomerController {
     void clearFields() {
         txtName.setText("");
         txtAddress.setText("");
+        txtTel.setText("");
     }
 
     private void deleteCustomer(String id){
@@ -154,8 +159,9 @@ public class OwnerCustomerController {
         String id = lblCusId.getText();
         String name = txtName.getText();
         String address = txtAddress.getText();
+        int tel = Integer.parseInt(txtTel.getText());
 
-        var dto = new CustomerDto(id, name, address);
+        var dto = new CustomerDto(id, name, address, tel);
 
         var model = new OwnerCustomerModel();
         try {
@@ -198,6 +204,14 @@ public class OwnerCustomerController {
             return false;
         }
 
+        String tel = txtTel.getText();
+        boolean isValidTel = Pattern.matches("[0-9]{10}", tel);
+
+        if (!isValidTel){
+            new Alert(Alert.AlertType.ERROR, "Invalid Tel").show();
+            return false;
+        }
+
         return true;
     }
 
@@ -206,8 +220,9 @@ public class OwnerCustomerController {
         String id = lblCusId.getText();
         String name = txtName.getText();
         String address = txtAddress.getText();
+        int tel = Integer.parseInt(txtTel.getText());
 
-        var dto = new CustomerDto(id, name, address);
+        var dto = new CustomerDto(id, name, address, tel);
 
         var model = new OwnerCustomerModel();
         try {
@@ -228,7 +243,8 @@ public class OwnerCustomerController {
                     var dto = new CustomerDto(
                             newValue.getId(),
                             newValue.getName(),
-                            newValue.getAddress()
+                            newValue.getAddress(),
+                            newValue.getTel()
                     );
                     setFields(dto);
                 });
@@ -238,6 +254,7 @@ public class OwnerCustomerController {
         lblCusId.setText(dto.getId());
         txtName.setText(dto.getName());
         txtAddress.setText(dto.getAddress());
+        txtTel.setText(String.valueOf(dto.getTel()));
     }
 
     @FXML

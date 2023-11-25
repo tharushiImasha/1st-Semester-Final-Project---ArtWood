@@ -72,8 +72,7 @@ public class EditProfileFormModel {
             String log_emp_id = resultSet.getString(3);
 
             dto = new LoginDto(user_name, pw, log_emp_id);
-            System.out.println(user_name);
-            System.out.println(emp_id);
+
         }
 
         return dto;

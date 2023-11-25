@@ -20,7 +20,7 @@ public class PlaceOrderModel {
             connection = DbConnection.getInstance().getConnection();
             connection.setAutoCommit(false);
 
-            boolean isOrderSaved = OwnerOrderModel.saveOrder(pDto.getOrderId(), pDto.getDate(), pDto.getPay_meth(), pDto.getCusId());
+            boolean isOrderSaved = OwnerOrderModel.saveOrder(pDto.getOrderId(), pDto.getDate(), pDto.getPay_meth(), String.valueOf(pDto.getTel()));
 
             if (isOrderSaved) {
                 boolean isUpdated = finishedStockModel.updateItem(pDto.getTmList());

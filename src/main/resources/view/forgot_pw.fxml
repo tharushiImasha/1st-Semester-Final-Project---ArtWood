@@ -3,30 +3,63 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane fx:id="rootNode" prefHeight="557.0" prefWidth="543.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.FianlArtWood.controller.ForgotPwController">
    <children>
-      <Label layoutX="224.0" layoutY="52.0" text="Verification">
+      <Label layoutX="62.0" layoutY="70.0" text="Verification">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <Label layoutX="62.0" layoutY="180.0" text="Email : ">
-         <font>
-            <Font name="System Bold Italic" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="62.0" layoutY="343.0" text="Code : ">
+      <Label layoutX="62.0" layoutY="250.0" text="Email : ">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtEmail" layoutX="161.0" layoutY="178.0" prefHeight="30.0" prefWidth="290.0" />
-      <TextField fx:id="txtCode" layoutX="159.0" layoutY="338.0" prefHeight="30.0" prefWidth="290.0" />
-      <JFXButton layoutX="369.0" layoutY="396.0" onAction="#btnVerifyOnAction" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: black;" text="Verify" textFill="WHITE" />
-      <JFXButton layoutX="369.0" layoutY="236.0" onAction="#btnSendOnAction" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: black;" text="Send" textFill="WHITE" />
+      <Label layoutX="62.0" layoutY="400.0" text="Code : ">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtEmail" layoutX="161.0" layoutY="248.0" prefHeight="30.0" prefWidth="290.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
+               <color>
+                  <Color opacity="0.26053640246391296" />
+               </color>
+            </DropShadow>
+         </effect></TextField>
+      <TextField fx:id="txtCode" layoutX="159.0" layoutY="395.0" prefHeight="30.0" prefWidth="290.0" style="-fx-background-radius: 5;">
+         <effect>
+            <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
+               <color>
+                  <Color opacity="0.26053640246391296" />
+               </color>
+            </DropShadow>
+         </effect></TextField>
+      <JFXButton layoutX="369.0" layoutY="458.0" onAction="#btnVerifyOnAction" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: FFA633; -fx-background-radius: 5;" text="Verify" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></JFXButton>
+      <JFXButton layoutX="369.0" layoutY="312.0" onAction="#btnSendOnAction" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: FFA633; -fx-background-radius: 5;" text="Send" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></JFXButton>
+      <ImageView fitHeight="58.0" fitWidth="157.0" layoutX="62.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/forgotPw.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="189.0" fitWidth="171.0" layoutX="348.0" layoutY="29.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/forgotPwIllustration.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

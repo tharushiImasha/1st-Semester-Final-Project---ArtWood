@@ -3,6 +3,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -16,23 +18,21 @@
       </Label>
       <TableView fx:id="tblFinance" layoutX="86.0" layoutY="426.0" prefHeight="231.0" prefWidth="759.0" style="-fx-background-radius: 5;">
          <columns>
-            <TableColumn fx:id="colSalaryId" prefWidth="133.0" text="Salary ID" />
-            <TableColumn fx:id="colAmount" prefWidth="181.0" text="Amount" />
-            <TableColumn fx:id="colEmpId" prefWidth="142.0" text="Emp ID" />
-            <TableColumn fx:id="colFinanceId" prefWidth="152.0" text="Finance ID" />
-            <TableColumn fx:id="colPendingId" prefWidth="150.0" text="Pending ID" />
+            <TableColumn fx:id="colSalaryId" prefWidth="230.0" text="Salary ID" />
+            <TableColumn fx:id="colAmount" prefWidth="289.0" text="Amount" />
+            <TableColumn fx:id="colEmpId" prefWidth="239.0" text="Emp ID" />
          </columns>
       </TableView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fff1e0" height="200.0" layoutX="103.0" layoutY="147.0" stroke="#ffa633" strokeType="INSIDE" width="334.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fff1e0" height="200.0" layoutX="490.0" layoutY="147.0" stroke="#ffa633" strokeType="INSIDE" width="334.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="200.0" layoutX="103.0" layoutY="147.0" stroke="#ffa633" strokeType="INSIDE" strokeWidth="4.0" width="334.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="200.0" layoutX="490.0" layoutY="147.0" stroke="#ffa633" strokeType="INSIDE" strokeWidth="4.0" width="334.0" />
       <Label layoutX="135.0" layoutY="186.0" text="Cash On Hand">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
       </Label>
       <Label layoutX="539.0" layoutY="186.0" text="On Card">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
       </Label>
       <Label layoutX="86.0" layoutY="382.0" text="Salary" textFill="#ffa633">
@@ -40,15 +40,25 @@
             <Font name="System Bold Italic" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblCash" layoutX="295.0" layoutY="263.0" textFill="#ffa633">
+      <Label fx:id="lblCash" layoutX="246.0" layoutY="263.0">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold" size="23.0" />
          </font>
       </Label>
-      <Label fx:id="lblCard" layoutX="749.0" layoutY="276.0" textFill="#ffa633">
+      <Label fx:id="lblCard" layoutX="633.0" layoutY="263.0">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold" size="23.0" />
          </font>
       </Label>
+      <ImageView fitHeight="182.0" fitWidth="170.0" layoutX="306.0" layoutY="71.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/cashIllustration.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="188.0" fitWidth="170.0" layoutX="696.0" layoutY="65.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/cardIllustration.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

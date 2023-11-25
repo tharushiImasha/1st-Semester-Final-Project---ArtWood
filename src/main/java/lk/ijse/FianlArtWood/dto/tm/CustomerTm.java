@@ -13,6 +13,7 @@ public class CustomerTm {
         private String id;
         private String name;
         private String address;
+        private int tel;
         private Button btn;
 
 }

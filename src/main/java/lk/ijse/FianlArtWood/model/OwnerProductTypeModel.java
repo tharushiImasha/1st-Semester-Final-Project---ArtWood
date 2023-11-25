@@ -66,6 +66,38 @@ public class OwnerProductTypeModel {
         return price;
     }
 
+    public static String getType(String productId) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "select wood_type FROM product_type WHERE product_id = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setString(1, productId);
+
+        String wood = "";
+
+        ResultSet resultSet = pstm.executeQuery();
+        while (resultSet.next()){
+            wood = resultSet.getString(1);
+        }
+        return wood;
+    }
+
+    public static String getQuality(String productId) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "select quality FROM product_type WHERE product_id = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setString(1, productId);
+
+        String quality = "";
+
+        ResultSet resultSet = pstm.executeQuery();
+        while (resultSet.next()){
+            quality = resultSet.getString(1);
+        }
+        return quality;
+    }
+
     public boolean deleteProduct(String id) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -101,8 +133,9 @@ public class OwnerProductTypeModel {
 
         pstm.setString(1, dto.getProduct_name());
         pstm.setString(2, dto.getQuality());
-        pstm.setString(3, String.valueOf(dto.getPrice()));
-        pstm.setString(4, dto.getProduct_id());
+        pstm.setString(3, dto.getWood_type());
+        pstm.setString(4, String.valueOf(dto.getPrice()));
+        pstm.setString(5, dto.getProduct_id());
 
         return pstm.executeUpdate() > 0;
     }

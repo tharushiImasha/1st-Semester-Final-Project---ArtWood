@@ -46,17 +46,18 @@ create table salary(
 
 
 create table customer(
-    cus_id varchar(20) primary key,
+    cus_id varchar(20),
 	name varchar(50) not null,
-	address varchar (50) not null
+	address varchar (50) not null,
+	tel int(10) primary key
 );
 
 
 create table orders(
     order_id varchar(20) primary key,
 	date date not null,
-    cus_id varchar(20) not null,
-    foreign key (cus_id) references customer (cus_id) on update cascade on delete cascade
+    tel int(10),
+    foreign key (tel) references customer (tel) on update cascade on delete cascade
 );
 
 

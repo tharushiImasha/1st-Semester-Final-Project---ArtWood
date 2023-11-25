@@ -93,7 +93,7 @@ public class DashboardPaneController {
     }
 
     @FXML
-    void lblAccountOnAction(MouseEvent event) {
+    void lblAccountOnAction(MouseEvent event) throws IOException {
         rectAccounts.setVisible(true);
         rectUsers.setVisible(false);
         rectOrders.setVisible(false);
@@ -102,6 +102,9 @@ public class DashboardPaneController {
         rectProduct.setVisible(false);
         rectEmployees.setVisible(false);
         rectDashboard.setVisible(false);
+
+        secondaryNode.getChildren().clear();
+        secondaryNode.getChildren().add(FXMLLoader.load(secondaryNode.getClass().getResource("/view/owner_finance.fxml")));
     }
 
     @FXML

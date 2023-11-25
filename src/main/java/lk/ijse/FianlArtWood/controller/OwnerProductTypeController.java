@@ -168,7 +168,7 @@ public class OwnerProductTypeController {
         }
 
         String price = txtPrice.getText();
-        boolean isValidPrice = Pattern.matches("[0-9]{3,}", price);
+        boolean isValidPrice = Pattern.matches("([0-9]{3,})", price);
 
         if (!isValidPrice){
             new Alert(Alert.AlertType.ERROR, "Invalid Price").show();

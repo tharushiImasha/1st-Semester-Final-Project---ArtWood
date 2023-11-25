@@ -1,11 +1,13 @@
 package lk.ijse.FianlArtWood.controller;
 
+import com.jfoenix.controls.JFXCheckBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -21,10 +23,20 @@ public class LoginFormController {
     private AnchorPane rootNode;
 
     @FXML
-    private TextField txtPw;
+    private PasswordField txtPw;
+
+    @FXML
+    private TextField txtPwShow;
 
     @FXML
     private TextField txtUserName;
+
+    @FXML
+    private JFXCheckBox chkHidePw;
+
+    public void initialize() {
+        txtPwShow.setVisible(false);
+    }
 
     @FXML
     void btnLoginOnAction(ActionEvent event) {
@@ -87,8 +99,22 @@ public class LoginFormController {
         Stage stage = new Stage();
 
         stage.setScene(scene);
-        stage.initStyle(StageStyle.UNDECORATED);
         stage.centerOnScreen();
         stage.show();
     }
+
+    @FXML
+    void showPwOnAction(ActionEvent event) {
+        if (chkHidePw.isSelected()){
+            String password = txtPw.getText();
+            txtPwShow.setText(password);
+
+            txtPw.setVisible(false);
+            txtPwShow.setVisible(true);
+        } else {
+            txtPwShow.setVisible(false);
+            txtPw.setVisible(true);
+        }
+    }
+
 }

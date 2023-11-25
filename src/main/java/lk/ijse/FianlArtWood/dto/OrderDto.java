@@ -17,15 +17,15 @@ public class OrderDto {
     private String orderId;
     private LocalDate date;
     private String pay_meth;
-    private String cusId;
+    private int tel;
     private double total;
     private List<OrderTm> tmList = new ArrayList<>();
 
-    public OrderDto(String orderId, LocalDate date, String pay_meth, String cusId){
+    public OrderDto(String orderId, LocalDate date, String pay_meth, String tel){
         this.orderId = orderId;
         this.date = date;
         this.pay_meth = pay_meth;
-        this.cusId = cusId;
+        this.tel = Integer.parseInt(tel);
     }
 
 }

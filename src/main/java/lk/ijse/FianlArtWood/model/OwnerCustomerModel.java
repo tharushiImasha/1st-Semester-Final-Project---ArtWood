@@ -60,8 +60,9 @@ public class OwnerCustomerModel {
             String cus_id = resultSet.getString(1);
             String cus_name = resultSet.getString(2);
             String cus_address = resultSet.getString(3);
+            int tel = Integer.parseInt(resultSet.getString(4));
 
-            var dto = new CustomerDto(cus_id, cus_name, cus_address);
+            var dto = new CustomerDto(cus_id, cus_name, cus_address, tel);
             dtoList.add(dto);
         }
         return dtoList;
@@ -70,12 +71,13 @@ public class OwnerCustomerModel {
     public boolean saveCustomer(CustomerDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
-        String sql = "INSERT INTO customer VALUES(?, ?, ?)";
+        String sql = "INSERT INTO customer VALUES(?, ?, ?, ?)";
         PreparedStatement pstm = connection.prepareStatement(sql);
 
         pstm.setString(1, dto.getId());
         pstm.setString(2, dto.getName());
         pstm.setString(3, dto.getAddress());
+        pstm.setString(4, String.valueOf(dto.getTel()));
 
         boolean isSaved = pstm.executeUpdate() > 0;
 
@@ -85,22 +87,23 @@ public class OwnerCustomerModel {
     public boolean updateCustomer(CustomerDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
-        String sql = "UPDATE customer SET name = ?, address = ? WHERE cus_id = ?";
+        String sql = "UPDATE customer SET name = ?, address = ?, tel = ? WHERE cus_id = ?";
         PreparedStatement pstm = connection.prepareStatement(sql);
 
         pstm.setString(1, dto.getName());
         pstm.setString(2, dto.getAddress());
         pstm.setString(3, dto.getId());
+        pstm.setString(4, String.valueOf(dto.getTel()));
 
         return pstm.executeUpdate() > 0;
     }
 
-    public CustomerDto searchCustomer(String id) throws SQLException {
+    public CustomerDto searchCustomer(String tel) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
-        String sql = "SELECT * FROM customer WHERE cus_id = ?";
+        String sql = "SELECT * FROM customer WHERE tel = ?";
         PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setString(1, id);
+        pstm.setString(1, tel);
 
         ResultSet resultSet = pstm.executeQuery();
 
@@ -110,8 +113,9 @@ public class OwnerCustomerModel {
             String cus_id = resultSet.getString(1);
             String cus_name = resultSet.getString(2);
             String cus_address = resultSet.getString(3);
+            int cus_tel = Integer.parseInt(resultSet.getString(4));
 
-            dto = new CustomerDto(cus_id, cus_name, cus_address);
+            dto = new CustomerDto(cus_id, cus_name, cus_address, cus_tel);
         }
 
         return dto;
