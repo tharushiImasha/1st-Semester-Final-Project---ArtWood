@@ -83,6 +83,22 @@ public class WoodPiecesStockModel {
         return pstm.executeUpdate() > 0;
     }
 
+    public static int getWoodCount() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT SUM(wood_amount) FROM wood_pieces_stock";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        int amount = 0;
+
+        if (resultSet.next()){
+            amount = resultSet.getInt(1);
+        }
+        return amount;
+    }
+
     public boolean saveWood(WoodPiecesDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 

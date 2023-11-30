@@ -4,6 +4,7 @@ import lk.ijse.FianlArtWood.db.DbConnection;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 public class OwnerOrderModel {
 
@@ -22,25 +23,22 @@ public class OwnerOrderModel {
     public static String generateNextOrderId() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
-        String sql = "SELECT order_id FROM orders ORDER BY order_id DESC LIMIT 1";
+        String sql = "SELECT order_id FROM orders";
         ResultSet resultSet = connection.prepareStatement(sql).executeQuery();
 
-        String currentOrderId = null;
+        int max = 0;
+        while (resultSet.next()){
+           String x = resultSet.getString(1);
+            String[] y = x.split("O");
+            int id = Integer.parseInt(y[1]);
 
-        if (resultSet.next()) {
-            currentOrderId = resultSet.getString(1);
-            return splitOrderId(currentOrderId);
+            if (max < id){
+                max = id;
+            }
+
         }
-        return splitOrderId(null);
+
+        return "O" + ++max;
     }
 
-    private static String splitOrderId(String currentOrderId) {
-        if (currentOrderId != null) {
-            String[] split = currentOrderId.split("O");
-            int id = Integer.parseInt(split[1]);    //008
-            id++;  //9
-            return "O" + id;
-        }
-        return "O1";
-    }
 }

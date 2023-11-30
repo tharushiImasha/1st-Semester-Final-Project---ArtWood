@@ -246,7 +246,7 @@ public class CashierOrderController {
     @FXML
     void btnPlaceOrderOnAction(ActionEvent event) {
         String orderId = lblOrderId.getText();
-        int tel = Integer.parseInt(lblCusId.getText());
+        int tel = Integer.parseInt(txtTel.getText());
         double total = Double.parseDouble(lblTotal.getText());
         LocalDate date = LocalDate.parse(lblOrderDate.getText());
 
@@ -262,6 +262,7 @@ public class CashierOrderController {
             boolean isSuccess = placeOrderModel.placeOrder(placeOrderDto);
             if(isSuccess) {
                 new Alert(Alert.AlertType.CONFIRMATION, "order completed!").show();
+                clearFields();
 
             } else {
                 new Alert(Alert.AlertType.CONFIRMATION, "order not completed!").show();
@@ -269,6 +270,25 @@ public class CashierOrderController {
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
+    }
+
+    private void clearFields() {
+        lblCusId.setText("");
+        lblPrice.setText("");
+        lblQuality.setText("");
+        lblWoodType.setText("");
+        lblProductName.setText("");
+        lblQtyOn.setText("");
+        lblTotal.setText("");
+        lblOrderId.setText("");
+        txtTel.setText("");
+        txtId.setText("");
+        txtQty.setText("");
+        txtTel.setText("");
+        cmbProductId.setValue("");
+        lblCusName.setText("");
+        radioCard.setSelected(false);
+        radioCash.setSelected(false);
     }
 
     @FXML

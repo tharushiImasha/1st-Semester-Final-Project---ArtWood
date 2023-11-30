@@ -25,7 +25,7 @@
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNewPw" accessibleRole="PASSWORD_FIELD" layoutX="189.0" layoutY="259.0" prefHeight="30.0" prefWidth="290.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="txtNewPw" accessibleRole="PASSWORD_FIELD" layoutX="189.0" layoutY="259.0" onKeyReleased="#newTxtOnReleased" prefHeight="30.0" prefWidth="290.0" style="-fx-background-radius: 5;">
          <effect>
             <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>
@@ -33,7 +33,7 @@
                </color>
             </DropShadow>
          </effect></TextField>
-      <TextField fx:id="txtVerifyPw" layoutX="189.0" layoutY="362.0" prefHeight="30.0" prefWidth="290.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="txtVerifyPw" layoutX="189.0" layoutY="362.0" onKeyReleased="#verTxtOnReleased" prefHeight="30.0" prefWidth="290.0" style="-fx-background-radius: 5;">
          <effect>
             <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>
@@ -76,7 +76,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXCheckBox>
-      <PasswordField fx:id="passNewPw" layoutX="189.0" layoutY="259.0" prefHeight="30.0" prefWidth="290.0" style="-fx-background-radius: 5;">
+      <PasswordField fx:id="passNewPw" layoutX="189.0" layoutY="259.0" onKeyReleased="#newPwOnReleased" prefHeight="30.0" prefWidth="290.0" style="-fx-background-radius: 5;">
          <effect>
             <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>
@@ -85,7 +85,7 @@
             </DropShadow>
          </effect>
       </PasswordField>
-      <PasswordField fx:id="passVerPw" layoutX="189.0" layoutY="362.0" prefHeight="30.0" prefWidth="290.0" style="-fx-background-radius: 5;">
+      <PasswordField fx:id="passVerPw" layoutX="189.0" layoutY="362.0" onKeyReleased="#verPwOnReleased" prefHeight="30.0" prefWidth="290.0" style="-fx-background-radius: 5;">
          <effect>
             <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>

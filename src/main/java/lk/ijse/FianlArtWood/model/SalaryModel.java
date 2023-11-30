@@ -16,26 +16,22 @@ public class SalaryModel {
     public static String generateNextCustomerId() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
-        String sql = "SELECT salary_id FROM salary ORDER BY salary_id DESC LIMIT 1";
+        String sql = "SELECT salary_id FROM salary";
         ResultSet resultSet = connection.prepareStatement(sql).executeQuery();
 
-        String currentCustomerId = null;
+        int max = 0;
+        while (resultSet.next()){
+            String x = resultSet.getString(1);
+            String[] y = x.split("SE");
+            int id = Integer.parseInt(y[1]);
 
-        if (resultSet.next()) {
-            currentCustomerId = resultSet.getString(1);
-            return splitCustomerId(currentCustomerId);
-        }
-        return splitCustomerId(null);
-    }
+            if (max < id){
+                max = id;
+            }
 
-    private static String splitCustomerId(String currentCustomerId) {    //O008
-        if (currentCustomerId != null) {
-            String[] split = currentCustomerId.split("SE");
-            int id = Integer.parseInt(split[1]);    //008
-            id++;  //9
-            return "SE" + id;
         }
-        return "SE1";
+
+        return "SE" + ++max;
     }
 
     public static boolean saveSalary(String empId) throws SQLException {

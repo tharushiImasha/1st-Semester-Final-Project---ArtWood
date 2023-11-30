@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="710.0" prefWidth="1133.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.FianlArtWood.controller.TestController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox prefHeight="710.0" prefWidth="402.0" styleClass="right-bar" stylesheets="@../test.css" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="106.0" prefWidth="297.0">
+                     <children>
+                        <Label alignment="CENTER" text="Carve Items" textFill="#ffa633">
+                           <font>
+                              <Font name="FreeSans Bold" size="30.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="51.0" prefWidth="255.0" stylesheets="@../test.css">
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </VBox.margin>
+                     <children>
+                        <TextField prefHeight="31.0" prefWidth="221.0" promptText="Search Here" styleClass="transparent" stylesheets="@../test.css">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <JFXButton styleClass="search-button" stylesheets="@../test.css" text="Search" />
+                     </children>
+                     <styleClass>
+                        <String fx:value="search-box" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </HBox>
+                  <Pane prefHeight="38.0" prefWidth="360.0" />
+                  <VBox fx:id="chosenCard" alignment="CENTER" prefHeight="473.0" prefWidth="286.0" stylesheets="@../test.css">
+                     <VBox.margin>
+                        <Insets left="45.0" right="45.0" />
+                     </VBox.margin>
+                     <children>
+                        <HBox prefHeight="50.0" prefWidth="292.0">
+                           <children>
+                              <Label fx:id="chosenName" prefHeight="43.0" prefWidth="248.0" text="Statue">
+                                 <font>
+                                    <Font name="System Bold Italic" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Label fx:id="chosenPrice" prefHeight="39.0" prefWidth="130.0" text="Rs. 7000">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="chosenImage" fitHeight="359.0" fitWidth="287.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/fisherm.png" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="21.0" prefWidth="270.0" />
+                     </children>
+                     <styleClass>
+                        <String fx:value="chosen-card" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </VBox>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="65.0" prefWidth="530.0">
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <ScrollPane fx:id="scroll" pannable="true" prefHeight="635.0" prefWidth="710.0" styleClass="transparent" stylesheets="@../test.css" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                           <content>
+                              <GridPane fx:id="grid" alignment="CENTER" prefHeight="0.0" prefWidth="28.0">
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                 </rowConstraints>
+                              </GridPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

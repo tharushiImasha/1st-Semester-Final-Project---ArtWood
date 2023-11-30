@@ -30,7 +30,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtAmountId" layoutX="227.0" layoutY="217.0" prefHeight="30.0" prefWidth="258.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="txtAmountId" layoutX="227.0" layoutY="217.0" prefHeight="30.0" prefWidth="258.0" style="-fx-background-radius: 5;" stylesheets="@../stylesheet/textField.css">
          <effect>
             <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" spread="0.02" width="0.0">
                <color>
@@ -55,7 +55,7 @@
          <font>
             <Font name="System Bold" size="13.0" />
          </font></JFXButton>
-      <TableView fx:id="tblFinished" layoutX="84.0" layoutY="432.0" prefHeight="200.0" prefWidth="762.0" style="-fx-background-radius: 5;">
+      <TableView fx:id="tblFinished" layoutX="84.0" layoutY="432.0" prefHeight="200.0" prefWidth="762.0" style="-fx-background-radius: 5;" stylesheets="@../stylesheet/table.css">
          <columns>
             <TableColumn fx:id="colFinishedId" prefWidth="192.0" text="Finished ID" />
             <TableColumn fx:id="colAmountId" prefWidth="201.0" text="Finished Amount" />
@@ -77,6 +77,6 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cmbProductId" editable="true" layoutX="227.0" layoutY="282.0" prefHeight="30.0" prefWidth="258.0" />
+      <ComboBox fx:id="cmbProductId" editable="true" layoutX="227.0" layoutY="282.0" prefHeight="30.0" prefWidth="258.0" stylesheets="@../stylesheet/textField.css" />
    </children>
 </AnchorPane>

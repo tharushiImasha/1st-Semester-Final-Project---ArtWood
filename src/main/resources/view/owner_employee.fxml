@@ -24,7 +24,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtId" layoutX="156.0" layoutY="149.0" onAction="#txtIdOnAction" prefHeight="30.0" prefWidth="242.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="txtId" layoutX="156.0" layoutY="149.0" onAction="#txtIdOnAction" prefHeight="30.0" prefWidth="242.0" style="-fx-background-radius: 5;" stylesheets="@../stylesheet/textField.css">
          <effect>
             <DropShadow height="1.61" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>
@@ -37,7 +37,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtName" layoutX="156.0" layoutY="207.0" prefHeight="30.0" prefWidth="242.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="txtName" layoutX="156.0" layoutY="207.0" prefHeight="30.0" prefWidth="242.0" style="-fx-background-radius: 5;" stylesheets="@../stylesheet/textField.css">
          <effect>
             <DropShadow height="1.61" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>
@@ -50,7 +50,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtAddress" layoutX="586.0" layoutY="207.0" prefHeight="30.0" prefWidth="242.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="txtAddress" layoutX="586.0" layoutY="207.0" prefHeight="30.0" prefWidth="242.0" style="-fx-background-radius: 5;" stylesheets="@../stylesheet/textField.css">
          <effect>
             <DropShadow height="1.61" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>
@@ -63,7 +63,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtTel" layoutX="586.0" layoutY="265.0" prefHeight="30.0" prefWidth="242.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="txtTel" layoutX="586.0" layoutY="265.0" prefHeight="30.0" prefWidth="242.0" style="-fx-background-radius: 5;" stylesheets="@../stylesheet/textField.css">
          <effect>
             <DropShadow height="1.61" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>
@@ -76,7 +76,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtJobRole" layoutX="156.0" layoutY="272.0" prefHeight="30.0" prefWidth="242.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="txtJobRole" layoutX="156.0" layoutY="272.0" prefHeight="30.0" prefWidth="242.0" style="-fx-background-radius: 5;" stylesheets="@../stylesheet/textField.css">
          <effect>
             <DropShadow height="1.61" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>
@@ -100,7 +100,7 @@
          <font>
             <Font name="System Bold" size="13.0" />
          </font></JFXButton>
-      <TableView fx:id="tblEmployee" layoutX="73.0" layoutY="402.0" prefHeight="236.0" prefWidth="784.0" style="-fx-background-radius: 5;">
+      <TableView fx:id="tblEmployee" layoutX="73.0" layoutY="402.0" prefHeight="236.0" prefWidth="784.0" style="-fx-background-radius: 5;" stylesheets="@../stylesheet/table.css">
          <columns>
             <TableColumn fx:id="colEmpId" prefWidth="99.0" text="Emp ID" />
             <TableColumn fx:id="colName" prefWidth="118.0" text="Name" />

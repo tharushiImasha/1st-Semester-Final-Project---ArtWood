@@ -80,6 +80,22 @@ public class FinishedStockModel {
         return pstm.executeUpdate() > 0;
     }
 
+    public static int getFinishedCount() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT SUM(finished_amount) FROM finished_stock";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        int amount = 0;
+
+        if (resultSet.next()){
+            amount = resultSet.getInt(1);
+        }
+        return amount;
+    }
+
     public boolean saveFinished(FinishedStockDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 

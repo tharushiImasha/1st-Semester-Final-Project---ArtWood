@@ -70,6 +70,22 @@ public class LogsStockModel {
         return "L1";
     }
 
+    public static int getLogCount() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT SUM(logs_amount) FROM log_stock";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        int amount = 0;
+
+        if (resultSet.next()){
+            amount = resultSet.getInt(1);
+        }
+        return amount;
+    }
+
     public boolean saveLogs(LogsDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -85,7 +101,7 @@ public class LogsStockModel {
         return isSaved;
     }
 
-    public boolean updateLogs(LogsDto dto) throws SQLException {
+    public static boolean updateLogs(LogsDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "UPDATE log_stock SET wood_type = ?, logs_amount = ? WHERE logs_id = ?";

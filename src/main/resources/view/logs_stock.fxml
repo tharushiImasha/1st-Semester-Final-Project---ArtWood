@@ -42,7 +42,7 @@
          <font>
             <Font name="System Bold" size="13.0" />
          </font></JFXButton>
-      <TableView fx:id="tblLog" layoutX="57.0" layoutY="407.0" prefHeight="231.0" prefWidth="811.0" style="-fx-background-radius: 5;" styleClass="table-tr" stylesheets="@../table.css">
+      <TableView fx:id="tblLog" layoutX="57.0" layoutY="407.0" prefHeight="231.0" prefWidth="811.0" style="-fx-background-radius: 5;" stylesheets="@../stylesheet/table.css">
          <columns>
             <TableColumn fx:id="colId" prefWidth="163.0" text="Log Id" />
             <TableColumn fx:id="colType" prefWidth="225.0" text="Type" />
@@ -64,7 +64,7 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cmbType" editable="true" layoutX="758.0" layoutY="274.0" prefHeight="30.0" prefWidth="125.0" style="-fx-background-radius: 5;">
+      <ComboBox fx:id="cmbType" editable="true" layoutX="758.0" layoutY="274.0" prefHeight="30.0" prefWidth="125.0" style="-fx-background-radius: 5;" stylesheets="@../stylesheet/textField.css">
          <effect>
             <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>
@@ -78,7 +78,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cmbSupId" editable="true" layoutX="162.0" layoutY="274.0" prefHeight="30.0" prefWidth="125.0" style="-fx-background-radius: 5;">
+      <ComboBox fx:id="cmbSupId" editable="true" layoutX="162.0" layoutY="274.0" prefHeight="30.0" prefWidth="125.0" style="-fx-background-radius: 5;" stylesheets="@../stylesheet/textField.css">
          <effect>
             <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>
@@ -92,7 +92,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cmbPatMethod" editable="true" layoutX="478.0" layoutY="274.0" prefHeight="30.0" prefWidth="125.0" style="-fx-background-radius: 5;">
+      <ComboBox fx:id="cmbPatMethod" editable="true" layoutX="478.0" layoutY="274.0" prefHeight="30.0" prefWidth="125.0" style="-fx-background-radius: 5;" stylesheets="@../stylesheet/textField.css">
          <effect>
             <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>
@@ -106,6 +106,6 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtPrice" layoutX="162.0" layoutY="220.0" prefHeight="30.0" prefWidth="172.0" />
+      <TextField fx:id="txtPrice" layoutX="162.0" layoutY="220.0" prefHeight="30.0" prefWidth="172.0" stylesheets="@../stylesheet/textField.css" />
    </children>
 </AnchorPane>

@@ -9,11 +9,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.FianlArtWood.db.DbConnection;
 import lk.ijse.FianlArtWood.dto.*;
 import lk.ijse.FianlArtWood.dto.tm.PendingStockTm;
 import lk.ijse.FianlArtWood.model.*;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
@@ -24,9 +26,6 @@ public class PendingStockController {
 
     @FXML
     private ComboBox<String> cmbFinshedId;
-
-    @FXML
-    private ComboBox<String> cmbProductId;
 
     @FXML
     private ComboBox<String> cmbWoodId;
@@ -45,9 +44,6 @@ public class PendingStockController {
 
     @FXML
     private TableColumn<?, ?> colPendingId;
-
-    @FXML
-    private TableColumn<?, ?> colProductId;
 
     @FXML
     private TableColumn<?, ?> colWoodPieceId;
@@ -175,7 +171,6 @@ public class PendingStockController {
                         int index = tblPending.getSelectionModel().getFocusedIndex();
                         String id = (String) colPendingId.getCellData(index);
 
-                        deletePending(id);
                         try {
                             finishedPending(id);
                         } catch (SQLException ex) {
@@ -183,7 +178,6 @@ public class PendingStockController {
                             throw new RuntimeException(ex);
                         }
 
-                        obList.remove(index);
                         tblPending.refresh();
                     }
 
@@ -205,23 +199,35 @@ public class PendingStockController {
     private void finishedPending(String id) throws SQLException {
         String finished_id = cmbFinshedId.getValue();
         String emp_id = cmbEmpId.getValue();
-        String wood_id = cmbWoodId.getValue();
 
-        boolean isUpdateFinished = FinishedStockModel.updateFinishedFromP(finished_id);
+        Connection connection = null;
 
-        if (isUpdateFinished){
-            boolean isSalarySaved = SalaryModel.saveSalary(emp_id);
+        try {
+            connection = DbConnection.getInstance().getConnection();
+            connection.setAutoCommit(false);
 
-            if (isSalarySaved) {
-                FinanceModel.reduceFinance("cash", 2000);
+            boolean isUpdateFinished = FinishedStockModel.updateFinishedFromP(finished_id);
 
-                boolean isWoodUpdated = WoodPiecesStockModel.reduceWood(wood_id);
+            if (isUpdateFinished){
+                boolean isSalarySaved = SalaryModel.saveSalary(emp_id);
 
-                if (isWoodUpdated) {
-                    deletePending(id);
+                if (isSalarySaved) {
+                    boolean isFinance = FinanceModel.reduceFinance("cash", 2000);
+
+                    if (isFinance) {
+                        deletePending(id);
+                        connection.commit();
+                    }
+
                 }
             }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            connection.rollback();
+        }finally {
+            connection.setAutoCommit(true);
         }
+
     }
 
     private void deletePending(String id) {
@@ -256,7 +262,7 @@ public class PendingStockController {
     }
 
     @FXML
-    void btnSaveOnAction(ActionEvent event) {
+    void btnSaveOnAction(ActionEvent event) throws SQLException {
         String pending_id = lblId.getText();
         String emp_id = cmbEmpId.getValue();
         String wood_piece_id = cmbWoodId.getValue();
@@ -265,14 +271,27 @@ public class PendingStockController {
         var dto = new PendingStockDto(pending_id, emp_id, wood_piece_id, finished_id);
 
         var model = new PendingStockModel();
+        Connection connection = null;
+
         try {
+            connection = DbConnection.getInstance().getConnection();
+            connection.setAutoCommit(false);
+
             boolean isSaved = model.savePending(dto);
             if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "pending saved!").show();
-                clearFields();
+                boolean isWoodUpdated = WoodPiecesStockModel.reduceWood(wood_piece_id);
+
+                if (isWoodUpdated) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "pending saved!").show();
+                    connection.commit();
+                    clearFields();
+                }
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            connection.rollback();
+        }finally {
+            connection.setAutoCommit(true);
         }
     }
 

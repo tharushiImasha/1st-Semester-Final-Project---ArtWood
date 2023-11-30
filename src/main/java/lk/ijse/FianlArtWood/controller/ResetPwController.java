@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.FianlArtWood.db.DbConnection;
@@ -43,6 +44,10 @@ public class ResetPwController {
 
     @FXML
     void btnResetOnAction(ActionEvent event) throws SQLException {
+
+        System.out.println(passNewPw.getText());
+        System.out.println(passVerPw.getText());
+
         if (passNewPw.getText().equals(passVerPw.getText())){
             Connection connection = DbConnection.getInstance().getConnection();
 
@@ -92,4 +97,25 @@ public class ResetPwController {
             passVerPw.setVisible(true);
         }
     }
+
+    @FXML
+    void newPwOnReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void newTxtOnReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void verPwOnReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void verTxtOnReleased(KeyEvent event) {
+
+    }
+
 }

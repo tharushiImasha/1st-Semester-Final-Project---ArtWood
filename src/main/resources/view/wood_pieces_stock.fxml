@@ -30,7 +30,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtLength" layoutX="167.0" layoutY="267.0" prefHeight="30.0" prefWidth="79.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="txtLength" layoutX="167.0" layoutY="267.0" prefHeight="30.0" prefWidth="79.0" style="-fx-background-radius: 5;" stylesheets="@../stylesheet/textField.css">
          <effect>
             <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>
@@ -50,7 +50,7 @@
          <font>
             <Font name="System Bold" size="13.0" />
          </font></JFXButton>
-      <TableView fx:id="tblWood" layoutX="81.0" layoutY="441.0" prefHeight="200.0" prefWidth="769.0" style="-fx-background-radius: 5;">
+      <TableView fx:id="tblWood" layoutX="81.0" layoutY="441.0" prefHeight="200.0" prefWidth="769.0" style="-fx-background-radius: 5;" stylesheets="@../stylesheet/table.css">
          <columns>
             <TableColumn fx:id="colId" prefWidth="75.0" text="Id" />
             <TableColumn fx:id="colType" prefWidth="142.0" text="Type" />
@@ -89,7 +89,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtRadius" layoutX="388.0" layoutY="267.0" prefHeight="30.0" prefWidth="79.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="txtRadius" layoutX="388.0" layoutY="267.0" prefHeight="30.0" prefWidth="79.0" style="-fx-background-radius: 5;" stylesheets="@../stylesheet/textField.css">
          <effect>
             <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>
@@ -103,7 +103,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtWeight" layoutX="611.0" layoutY="267.0" prefHeight="30.0" prefWidth="79.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="txtWeight" layoutX="611.0" layoutY="267.0" prefHeight="30.0" prefWidth="79.0" style="-fx-background-radius: 5;" stylesheets="@../stylesheet/textField.css">
          <effect>
             <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>
@@ -124,6 +124,6 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <ComboBox fx:id="cmbLogId" editable="true" layoutX="168.0" layoutY="209.0" prefHeight="30.0" prefWidth="205.0" />
+      <ComboBox fx:id="cmbLogId" editable="true" layoutX="168.0" layoutY="209.0" prefHeight="30.0" prefWidth="205.0" stylesheets="@../stylesheet/textField.css" />
    </children>
 </AnchorPane>

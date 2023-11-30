@@ -1,0 +1,56 @@
+/*.table-view.column-header-background{
+    -fx-background-color: #ffa633;
+    -fx-background-radius: 7;
+     -fx-background-insets: 0 0 7 0;
+}
+
+.table-view.column-header, .table-view .filler{
+    -fx-size: 50px;
+    -fx-border-width: 0 0 10 0;
+     -fx-background-color: transparent;
+}*/
+
+
+
+.search-box{
+    -fx-background-color: white;
+    -fx-background-radius: 100;
+}
+
+.transparent{
+        -fx-background-color: rgba(0,0,0,0);
+}
+
+.search-button{
+        -fx-background-color: #FFA633;
+        -fx-background-radius: 30;
+}
+
+.right-bar{
+    -fx-background-color: #FFF4DE;
+}
+
+.shadow{
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0, 0.0, 0.0, 10.0);
+}
+
+.chosen-card{
+     -fx-background-color: #FFC070;
+      -fx-background-radius: 30;
+}
+
+.comboBox{
+       -fx-background-color: rgba(255,255,255,0.3);
+       -fx-background-radius: 30;
+}
+
+.item{
+     -fx-background-color: #FFFFFF;
+     -fx-background-radius: 30;
+}
+
+/*.input[type=Text]: focus{
+    outline: 5px solid orange;
+}*/
+
+

@@ -26,7 +26,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtUserName" layoutX="187.0" layoutY="213.0" prefHeight="30.0" prefWidth="255.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="txtUserName" layoutX="187.0" layoutY="213.0" prefHeight="30.0" prefWidth="255.0" styleClass="text-field" stylesheets="@../stylesheet/textField.css">
          <effect>
             <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" spread="0.51" width="0.0">
                <color>
@@ -39,7 +39,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtPassword" layoutX="187.0" layoutY="288.0" prefHeight="30.0" prefWidth="255.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="txtPassword" layoutX="187.0" layoutY="288.0" prefHeight="30.0" prefWidth="255.0" styleClass="text-field" stylesheets="@../stylesheet/textField.css">
          <effect>
             <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" spread="0.21" width="0.0">
                <color>
@@ -87,7 +87,7 @@
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font></JFXButton>
-      <TableView fx:id="tblUsers" layoutX="86.0" layoutY="412.0" prefHeight="200.0" prefWidth="740.0" style="-fx-background-radius: 10;">
+      <TableView fx:id="tblUsers" layoutX="86.0" layoutY="412.0" prefHeight="200.0" prefWidth="740.0" style="-fx-background-radius: 10;" stylesheets="@../stylesheet/table.css">
          <columns>
             <TableColumn fx:id="colEmpId" prefWidth="196.0" text="Emp Id" />
             <TableColumn fx:id="colUserName" prefWidth="278.0" text="User Name" />
@@ -99,7 +99,7 @@
             <Image url="@../images/userIllustration.png" />
          </image>
       </ImageView>
-      <ComboBox fx:id="cmbId" editable="true" layoutX="190.0" layoutY="138.0" onAction="#cmbIdOnAction" prefHeight="30.0" prefWidth="255.0">
+      <ComboBox fx:id="cmbId" editable="true" layoutX="190.0" layoutY="138.0" onAction="#cmbIdOnAction" prefHeight="30.0" prefWidth="255.0" styleClass="text-field" stylesheets="@../stylesheet/textField.css">
          <effect>
             <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>

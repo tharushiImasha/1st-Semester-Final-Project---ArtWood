@@ -27,7 +27,7 @@
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtEmail" layoutX="161.0" layoutY="248.0" prefHeight="30.0" prefWidth="290.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="txtEmail" layoutX="161.0" layoutY="248.0" prefHeight="30.0" prefWidth="290.0" style="-fx-background-radius: 5;" stylesheets="@../stylesheet/textField.css">
          <effect>
             <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>
@@ -35,7 +35,7 @@
                </color>
             </DropShadow>
          </effect></TextField>
-      <TextField fx:id="txtCode" layoutX="159.0" layoutY="395.0" prefHeight="30.0" prefWidth="290.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="txtCode" layoutX="159.0" layoutY="395.0" prefHeight="30.0" prefWidth="290.0" style="-fx-background-radius: 5;" stylesheets="@../stylesheet/textField.css">
          <effect>
             <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
                <color>

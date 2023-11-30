@@ -7,6 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="rootNode" prefHeight="710.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.FianlArtWood.controller.OwnerDashboardController">
@@ -37,25 +38,84 @@
          </cursor>
       </JFXButton>
       <Line endX="-100.0" endY="637.0" layoutX="838.0" layoutY="36.0" startX="-100.0" stroke="#0000004c" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="56.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="203.0" layoutX="63.0" layoutY="140.0" stroke="#f3e8ff" strokeType="INSIDE" strokeWidth="10.0" width="277.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="203.0" layoutX="389.0" layoutY="140.0" stroke="#ffe2e5" strokeType="INSIDE" strokeWidth="10.0" width="277.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="203.0" layoutX="63.0" layoutY="376.0" stroke="#dcfce7" strokeType="INSIDE" strokeWidth="10.0" width="277.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="203.0" layoutX="389.0" layoutY="376.0" stroke="#fff4de" strokeType="INSIDE" strokeWidth="10.0" width="277.0" />
+      <Label layoutX="97.0" layoutY="179.0" text="Logs In Stock">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="427.0" layoutY="179.0" text="Wood In Stock">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="97.0" layoutY="423.0" text="Pending Stock">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="426.0" layoutY="423.0" text="Finished Stock">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblLogs" layoutX="240.0" layoutY="256.0">
+         <font>
+            <Font name="System Bold Italic" size="33.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPending" layoutX="240.0" layoutY="495.0">
+         <font>
+            <Font name="System Bold Italic" size="33.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblWood" layoutX="580.0" layoutY="256.0">
+         <font>
+            <Font name="System Bold Italic" size="33.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblFinished" layoutX="580.0" layoutY="495.0">
+         <font>
+            <Font name="System Bold Italic" size="33.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="152.0" fitWidth="152.0" layoutX="29.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/productdash.png" />
+            <Image url="@../images/purpleIllustration.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="278.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="136.0" fitWidth="136.0" layoutX="44.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/dashpending.png" />
+            <Image url="@../images/greenIllustration.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="499.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="156.0" fitWidth="152.0" layoutX="368.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/dashoreder.png" />
+            <Image url="@../images/pinkIllustration.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="364.0" fitWidth="642.0" layoutX="57.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="147.0" fitWidth="184.0" layoutX="352.0" layoutY="478.0" pickOnBounds="true">
          <image>
-            <Image url="@../images/graph.png" />
+            <Image url="@../images/yellowIllustration.png" />
          </image>
       </ImageView>
+      <Label fx:id="lblDate" layoutX="548.0" layoutY="91.0">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTime" layoutX="653.0" layoutY="91.0">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="639.0" layoutY="86.0" text="|">
+         <font>
+            <Font name="System Bold Italic" size="17.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -16,7 +16,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="tblFinance" layoutX="86.0" layoutY="426.0" prefHeight="231.0" prefWidth="759.0" style="-fx-background-radius: 5;">
+      <TableView fx:id="tblFinance" layoutX="86.0" layoutY="426.0" prefHeight="231.0" prefWidth="759.0" style="-fx-background-radius: 5;" stylesheets="@../stylesheet/table.css">
          <columns>
             <TableColumn fx:id="colSalaryId" prefWidth="230.0" text="Salary ID" />
             <TableColumn fx:id="colAmount" prefWidth="289.0" text="Amount" />
@@ -60,5 +60,15 @@
             <Image url="@../images/cardIllustration.png" />
          </image>
       </ImageView>
+      <Label layoutX="199.0" layoutY="263.0" text="Rs.">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="584.0" layoutY="263.0" text="Rs.">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

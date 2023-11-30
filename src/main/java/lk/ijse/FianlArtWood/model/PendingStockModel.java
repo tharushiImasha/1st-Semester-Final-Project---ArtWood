@@ -70,14 +70,32 @@ public class PendingStockModel {
         return pstm.executeUpdate() > 0;
     }
 
+    public static int getPendingCount() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT SUM(pending_amount) FROM pending_stock";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        int amount = 0;
+
+        if (resultSet.next()){
+            amount = resultSet.getInt(1);
+        }
+        return amount;
+    }
+
     public boolean savePending(PendingStockDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "INSERT INTO pending_stock VALUES(?, ?, ?, ?, ?)";
         PreparedStatement pstm = connection.prepareStatement(sql);
 
+        int amount = 1;
+
         pstm.setString(1, dto.getPending_id());
-        pstm.setString(2, String.valueOf(dto.getAmount()));
+        pstm.setString(2, String.valueOf(amount));
         pstm.setString(3, String.valueOf(dto.getEmp_id()));
         pstm.setString(4, String.valueOf(dto.getWood_piece_id()));
         pstm.setString(5, String.valueOf(dto.getFinished_id()));

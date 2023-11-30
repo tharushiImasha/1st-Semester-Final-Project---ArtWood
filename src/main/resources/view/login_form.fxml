@@ -44,7 +44,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtUserName" layoutX="181.0" layoutY="341.0" opacity="0.61" prefHeight="33.0" prefWidth="311.0">
+      <TextField fx:id="txtUserName" layoutX="181.0" layoutY="341.0" opacity="0.61" prefHeight="33.0" prefWidth="311.0" styleClass="text-field" stylesheets="@../stylesheet/textField.css">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
@@ -80,7 +80,7 @@
             <Image url="@../images/welcome.png" />
          </image>
       </ImageView>
-      <PasswordField fx:id="txtPw" layoutX="182.0" layoutY="439.0" opacity="0.61" prefHeight="33.0" prefWidth="311.0">
+      <PasswordField fx:id="txtPw" layoutX="182.0" layoutY="439.0" opacity="0.61" prefHeight="33.0" prefWidth="311.0" styleClass="text-field" stylesheets="@../stylesheet/textField.css">
          <effect>
             <ColorAdjust />
          </effect></PasswordField>
@@ -92,7 +92,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXCheckBox>
-      <TextField fx:id="txtPwShow" layoutX="182.0" layoutY="439.0" opacity="0.61" prefHeight="33.0" prefWidth="311.0">
+      <TextField fx:id="txtPwShow" layoutX="182.0" layoutY="439.0" opacity="0.61" prefHeight="33.0" prefWidth="311.0" styleClass="text-field" stylesheets="@../stylesheet/textField.css">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>

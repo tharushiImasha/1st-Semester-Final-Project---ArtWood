@@ -37,6 +37,21 @@ public class CashierDashboardPaneController {
     @FXML
     private AnchorPane secondaryNode;
 
+    public void initialize() throws IOException {
+
+        rectOrders.setVisible(false);
+        rectCustomers.setVisible(false);
+        rectDashboard.setVisible(true);
+
+        borderDashboard.setVisible(false);
+        borderCustomers.setVisible(false);
+        borderOrders.setVisible(false);
+
+        secondaryNode.getChildren().clear();
+        secondaryNode.getChildren().add(FXMLLoader.load(secondaryNode.getClass().getResource("/view/cashier_dashboard.fxml")));
+
+    }
+
 
     @FXML
     void lblCustomerEntered(MouseEvent event) {
@@ -44,7 +59,7 @@ public class CashierDashboardPaneController {
     }
 
     @FXML
-    void lblCustomerExited(MouseEvent event) {
+    void lblcustomerExited(MouseEvent event) {
         borderCustomers.setVisible(false);
     }
 

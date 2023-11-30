@@ -44,7 +44,7 @@
          <font>
             <Font name="System Bold" size="13.0" />
          </font></JFXButton>
-      <TableView fx:id="tblPending" layoutX="64.0" layoutY="423.0" prefHeight="200.0" prefWidth="815.0">
+      <TableView fx:id="tblPending" layoutX="64.0" layoutY="423.0" prefHeight="200.0" prefWidth="815.0" stylesheets="@../stylesheet/table.css">
          <columns>
             <TableColumn fx:id="colPendingId" prefWidth="112.0" text="Pending ID" />
             <TableColumn fx:id="colFinishedId" prefWidth="119.0" text="Finished ID" />
@@ -63,9 +63,9 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <ImageView fitHeight="217.0" fitWidth="301.0" layoutX="530.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="232.0" fitWidth="283.0" layoutX="583.0" layoutY="22.0" pickOnBounds="true">
          <image>
-            <Image url="@../images/pendingIlllustration.png" />
+            <Image url="@../images/pending.png" />
          </image>
       </ImageView>
       <Label fx:id="lblId" layoutX="224.0" layoutY="166.0" textFill="#ffa633">
@@ -73,8 +73,8 @@
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cmbFinshedId" editable="true" layoutX="224.0" layoutY="217.0" prefHeight="30.0" prefWidth="213.0" />
-      <ComboBox fx:id="cmbWoodId" editable="true" layoutX="224.0" layoutY="282.0" prefHeight="30.0" prefWidth="213.0" />
-      <ComboBox fx:id="cmbEmpId" editable="true" layoutX="618.0" layoutY="282.0" prefHeight="30.0" prefWidth="213.0" />
+      <ComboBox fx:id="cmbFinshedId" editable="true" layoutX="224.0" layoutY="217.0" prefHeight="30.0" prefWidth="213.0" stylesheets="@../stylesheet/textField.css" />
+      <ComboBox fx:id="cmbWoodId" editable="true" layoutX="224.0" layoutY="282.0" prefHeight="30.0" prefWidth="213.0" stylesheets="@../stylesheet/textField.css" />
+      <ComboBox fx:id="cmbEmpId" editable="true" layoutX="618.0" layoutY="282.0" prefHeight="30.0" prefWidth="213.0" stylesheets="@../stylesheet/textField.css" />
    </children>
 </AnchorPane>
