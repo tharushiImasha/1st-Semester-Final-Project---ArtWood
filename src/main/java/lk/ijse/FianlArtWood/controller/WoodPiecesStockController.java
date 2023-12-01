@@ -1,5 +1,8 @@
 package lk.ijse.FianlArtWood.controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import lk.ijse.FianlArtWood.dto.EmployeeDto;
 import lk.ijse.FianlArtWood.dto.LogsDto;
 import lk.ijse.FianlArtWood.dto.WoodPiecesDto;
@@ -84,7 +88,7 @@ public class WoodPiecesStockController {
 
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<LogsDto> list = LogsStockModel.getAllLogs();
+            List<LogsDto> list = LogsStockModel.getAllLogsForCombo();
 
             for (LogsDto dto : list) {
                 obList.add(dto.getLogs_id());
@@ -215,27 +219,63 @@ public class WoodPiecesStockController {
         boolean isValidLength = Pattern.matches("([0-9]{1,})", length);
 
         if (!isValidLength){
-            new Alert(Alert.AlertType.ERROR, "Invalid length").show();
-            return false;
+
+            if (txtLength.getText().isEmpty()){
+                flashBorder(txtLength);
+                return false;
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Invalid length").show();
+                return false;
+            }
         }
 
         String radius = txtRadius.getText();
         boolean isValidRadius = Pattern.matches("([0-9]{1,})", radius);
 
         if (!isValidRadius){
-            new Alert(Alert.AlertType.ERROR, "Invalid radius").show();
-            return false;
+
+            if (txtRadius.getText().isEmpty()){
+                flashBorder(txtRadius);
+                return false;
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Invalid radius").show();
+                return false;
+            }
         }
 
         String weight = txtWeight.getText();
         boolean isValidWeight = Pattern.matches("([0-9]{1,})", weight);
 
         if (!isValidWeight){
-            new Alert(Alert.AlertType.ERROR, "Invalid Weight").show();
-            return false;
+
+            if (txtWeight.getText().isEmpty()){
+                flashBorder(txtWeight);
+                return false;
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Invalid Weight").show();
+                return false;
+            }
         }
 
         return true;
+    }
+
+    private void flashBorder(TextField textField) {
+        textField.setStyle("-fx-border-color: #000000;-fx-background-color: rgba(255,0,0,0.13)");
+        setBorderResetAnimation(textField);
+    }
+
+    private void setBorderResetAnimation(TextField textField) {
+
+        Timeline timeline1 = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(textField.styleProperty(), "-fx-background-color:rgba(255,0,0,0.13);-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.1), new KeyValue(textField.styleProperty(), "-fx-background-color: white;-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.2), new KeyValue(textField.styleProperty(), "-fx-background-color:rgba(255,0,0,0.13);-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.3), new KeyValue(textField.styleProperty(), "-fx-background-color: white;-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.4), new KeyValue(textField.styleProperty(), "-fx-background-color:rgba(255,0,0,0.13);-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(textField.styleProperty(), "-fx-background-color: white;-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10"))
+        );
+        timeline1.play();
     }
 
     @FXML

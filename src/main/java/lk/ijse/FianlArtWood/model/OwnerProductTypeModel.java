@@ -34,14 +34,13 @@ public class OwnerProductTypeModel {
         return dtoList;
     }
 
-    public static String getName(String productId) throws SQLException {
+    public String getName(String productId) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
+        String product_name = "";
 
         String sql = "select product_name FROM product_type WHERE product_id = ?";
         PreparedStatement pstm = connection.prepareStatement(sql);
         pstm.setString(1, productId);
-
-        String product_name = "";
 
         ResultSet resultSet = pstm.executeQuery();
         while (resultSet.next()){

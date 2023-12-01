@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="620.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.FianlArtWood.controller.SalaryFormController">
+   <children>
+      <Label layoutX="257.0" layoutY="33.0" text="Salary">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="43.0" layoutY="139.0" text="Emp ID">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbEmpId" editable="true" layoutX="137.0" layoutY="133.0" onAction="#cmbIdOnAction" prefHeight="30.0" prefWidth="180.0" stylesheets="@../stylesheet/textField.css" />
+      <Label layoutX="41.0" layoutY="253.0" text="Payment Method">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbPatMethod" editable="true" layoutX="191.0" layoutY="248.0" prefHeight="30.0" prefWidth="125.0" style="-fx-background-radius: 5;" stylesheets="@../stylesheet/textField.css">
+         <effect>
+            <DropShadow height="0.0" offsetX="1.0" offsetY="1.0" radius="0.0" width="0.0">
+               <color>
+                  <Color opacity="0.2068965584039688" />
+               </color>
+            </DropShadow>
+         </effect>
+      </ComboBox>
+      <Label layoutX="378.0" layoutY="139.0" text="Job Role -">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblJobRole" layoutX="466.0" layoutY="140.0" />
+      <Label layoutX="43.0" layoutY="195.0" text="Amount">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtAmount" layoutX="137.0" layoutY="190.0" prefHeight="30.0" prefWidth="180.0" stylesheets="@../stylesheet/textField.css" />
+      <JFXButton layoutX="444.0" layoutY="320.0" onAction="#btnPayOnAction" prefHeight="30.0" prefWidth="101.0" style="-fx-background-color: ffa633; -fx-background-radius: 5;" text="Pay" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="tblFinance" layoutX="42.0" layoutY="381.0" prefHeight="204.0" prefWidth="521.0" style="-fx-background-radius: 5;" stylesheets="@../stylesheet/table.css">
+         <columns>
+            <TableColumn fx:id="colSalaryId" prefWidth="117.0" text="Salary ID" />
+            <TableColumn fx:id="colAmount" prefWidth="160.0" text="Amount" />
+            <TableColumn fx:id="colEmpId" prefWidth="118.0" text="Emp ID" />
+            <TableColumn fx:id="colAction" prefWidth="125.0" text="Action" />
+         </columns>
+      </TableView>
+      <ImageView fitHeight="127.0" fitWidth="125.0" layoutX="434.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/salaryIllustration.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="27.0" layoutX="431.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/salaryGif.gif" />
+         </image>
+      </ImageView>
+      <JFXButton layoutX="138.0" layoutY="324.0" onAction="#btnUpdateOnAction" prefHeight="27.0" prefWidth="76.0" style="-fx-background-color: ffa633; -fx-background-radius: 5;" text="Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="253.0" layoutY="324.0" onAction="#btnClearOnAction" prefHeight="27.0" prefWidth="76.0" style="-fx-background-color: ffa633; -fx-background-radius: 5;" text="Clear" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="43.0" layoutY="88.0" text="Salary ID">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblSalaryid" layoutX="137.0" layoutY="89.0" textFill="ORANGE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

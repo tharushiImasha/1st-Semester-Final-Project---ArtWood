@@ -65,4 +65,15 @@ public class FinanceModel {
 
         return amount;
     }
+
+    public static boolean reduceFinanceOtherSalary(String pay_method, double amount) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "UPDATE finance SET amount = amount - ? WHERE pay_method = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setDouble(1, amount);
+        pstm.setString(2, pay_method);
+
+        return pstm.executeUpdate() > 0;
+    }
 }

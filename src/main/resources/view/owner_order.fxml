@@ -107,26 +107,12 @@
             <TableColumn fx:id="colAction" prefWidth="160.0" text="Action" />
          </columns>
       </TableView>
-      <JFXButton fx:id="btnAddToCart" buttonType="RAISED" layoutX="757.0" layoutY="339.0" onAction="#btnAddToCartOnAction" prefHeight="33.0" prefWidth="120.0" style="-fx-background-color: #3498db;" text="Add to cart" textFill="WHITE">
-         <graphic>
-            <ImageView fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../Desktop/Project/thogakade-mvc/src/main/resources/icon/cart.png" />
-               </image>
-            </ImageView>
-         </graphic>
+      <JFXButton fx:id="btnAddToCart" buttonType="RAISED" layoutX="779.0" layoutY="339.0" onAction="#btnAddToCartOnAction" prefHeight="33.0" prefWidth="98.0" style="-fx-background-color: #3498db;" text="Add to cart" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="764.0" layoutY="641.0" onAction="#btnPlaceOrderOnAction" prefHeight="34.0" prefWidth="120.0" style="-fx-background-color: #34495e;" text="Place Order" textFill="WHITE">
-         <graphic>
-            <ImageView fitHeight="28.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../Desktop/Project/thogakade-mvc/src/main/resources/icon/make_order.png" />
-               </image>
-            </ImageView>
-         </graphic>
+      <JFXButton buttonType="RAISED" layoutX="786.0" layoutY="641.0" onAction="#btnPlaceOrderOnAction" prefHeight="34.0" prefWidth="98.0" style="-fx-background-color: #34495e;" text="Place Order" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -226,5 +212,10 @@
          </font>
       </JFXRadioButton>
       <Separator layoutX="349.0" layoutY="6.0" opacity="0.41" orientation="VERTICAL" prefHeight="138.0" prefWidth="4.0" style="-fx-background-color: orange;" />
+      <ImageView fitHeight="48.0" fitWidth="46.0" layoutX="726.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/cart.gif" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

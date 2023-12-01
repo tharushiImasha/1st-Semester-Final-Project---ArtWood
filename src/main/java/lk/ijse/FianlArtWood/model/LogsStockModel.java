@@ -35,6 +35,27 @@ public class LogsStockModel {
         return dtoList;
     }
 
+    public static List<LogsDto> getAllLogsForCombo() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT * FROM log_stock WHERE logs_amount = 1";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        List<LogsDto> dtoList = new ArrayList<>();
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        while (resultSet.next()) {
+            String log_id = resultSet.getString(1);
+            String wood_type = resultSet.getString(2);
+            int log_amount = Integer.parseInt(resultSet.getString(3));
+
+            var dto = new LogsDto(log_id, wood_type, log_amount);
+            dtoList.add(dto);
+        }
+        return dtoList;
+    }
+
     public static boolean deleteLogs(String id) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 

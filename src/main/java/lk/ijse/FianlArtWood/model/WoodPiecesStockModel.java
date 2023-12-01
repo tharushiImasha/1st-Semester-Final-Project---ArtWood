@@ -62,6 +62,29 @@ public class WoodPiecesStockModel {
         return dtoList;
     }
 
+    public static List<WoodPiecesDto> getAllWoodForCombo() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT * FROM wood_pieces_stock WHERE wood_amount > 0";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        List<WoodPiecesDto> dtoList = new ArrayList<>();
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        while (resultSet.next()) {
+            String id = resultSet.getString(1);
+            String quality = resultSet.getString(2);
+            int amount = Integer.parseInt(resultSet.getString(3));
+            String type = resultSet.getString(4);
+            String log_id = resultSet.getString(5);
+
+            var dto = new WoodPiecesDto(id, quality, amount, type, log_id);
+            dtoList.add(dto);
+        }
+        return dtoList;
+    }
+
     public static boolean deleteWood(String id) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -88,6 +111,24 @@ public class WoodPiecesStockModel {
 
         String sql = "SELECT SUM(wood_amount) FROM wood_pieces_stock";
         PreparedStatement pstm = connection.prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        int amount = 0;
+
+        if (resultSet.next()){
+            amount = resultSet.getInt(1);
+        }
+        return amount;
+    }
+    
+    public static int getWoodCountByType(String type) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT SUM(wood_amount) FROM wood_pieces_stock where wood_type = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        pstm.setString(1, type);
 
         ResultSet resultSet = pstm.executeQuery();
 

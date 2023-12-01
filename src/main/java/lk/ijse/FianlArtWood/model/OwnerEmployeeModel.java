@@ -1,9 +1,7 @@
 package lk.ijse.FianlArtWood.model;
 
 import lk.ijse.FianlArtWood.db.DbConnection;
-import lk.ijse.FianlArtWood.dto.CustomerDto;
 import lk.ijse.FianlArtWood.dto.EmployeeDto;
-import lk.ijse.FianlArtWood.dto.LoginDto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OwnerEmployeeModel {
+
+    public static boolean employeeAvailability(String emp_id, String availability) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "UPDATE employee SET status = ? WHERE emp_id = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setString(1, availability);
+        pstm.setString(2, emp_id);
+
+        return pstm.executeUpdate() > 0;
+    }
 
     public boolean deleteEmployee(String empId) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
@@ -100,7 +109,33 @@ public class OwnerEmployeeModel {
             String status = resultSet.getString(5);
             String job_role = resultSet.getString(6);
 
-            var dto = new EmployeeDto(emp_id, name, address, tel, job_role);
+            var dto = new EmployeeDto(emp_id, name, address, tel, status, job_role);
+            dtoList.add(dto);
+        }
+        return dtoList;
+    }
+
+    public static List<EmployeeDto> getAllEmployeesForCombo() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT * FROM employee WHERE status = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        pstm.setString(1, "Available");
+
+        List<EmployeeDto> dtoList = new ArrayList<>();
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        while (resultSet.next()) {
+            String emp_id = resultSet.getString(1);
+            String name = resultSet.getString(2);
+            String address = resultSet.getString(3);
+            int tel = Integer.parseInt(resultSet.getString(4));
+            String status = resultSet.getString(5);
+            String job_role = resultSet.getString(6);
+
+            var dto = new EmployeeDto(emp_id, name, address, tel, status, job_role);
             dtoList.add(dto);
         }
         return dtoList;

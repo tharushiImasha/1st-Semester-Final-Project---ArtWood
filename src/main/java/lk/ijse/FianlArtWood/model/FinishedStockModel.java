@@ -34,6 +34,27 @@ public class FinishedStockModel {
         return dtoList;
     }
 
+    public static List<FinishedStockDto> getAllFinishedStockForCombo() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT * FROM finished_stock WHERE finished_amount > 0";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        List<FinishedStockDto> dtoList = new ArrayList<>();
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        while (resultSet.next()) {
+            String finished_id = resultSet.getString(1);
+            int amount = Integer.parseInt(resultSet.getString(2));
+            String product_id = resultSet.getString(3);
+
+            var dto = new FinishedStockDto(finished_id, amount, product_id);
+            dtoList.add(dto);
+        }
+        return dtoList;
+    }
+
     public static boolean deleteFinished(String id) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 

@@ -70,7 +70,7 @@ public class PendingStockController {
     private void loadEmpId() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<EmployeeDto> list = OwnerEmployeeModel.getAllEmployees();
+            List<EmployeeDto> list = OwnerEmployeeModel.getAllEmployeesForCombo();
 
             for (EmployeeDto dto : list) {
                 obList.add(dto.getEmp_id());
@@ -100,7 +100,7 @@ public class PendingStockController {
     private void loadWoodId() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<WoodPiecesDto> list = WoodPiecesStockModel.getAllWood();
+            List<WoodPiecesDto> list = WoodPiecesStockModel.getAllWoodForCombo();
 
             for (WoodPiecesDto dto : list) {
                 obList.add(dto.getWood_piece_id());
@@ -215,8 +215,13 @@ public class PendingStockController {
                     boolean isFinance = FinanceModel.reduceFinance("cash", 2000);
 
                     if (isFinance) {
-                        deletePending(id);
-                        connection.commit();
+                        boolean isEmployeeUpdated = OwnerEmployeeModel.employeeAvailability(emp_id, "Available");
+
+                        if (isEmployeeUpdated) {
+                            deletePending(id);
+                            connection.commit();
+                        }
+
                     }
 
                 }
@@ -279,12 +284,18 @@ public class PendingStockController {
 
             boolean isSaved = model.savePending(dto);
             if (isSaved) {
-                boolean isWoodUpdated = WoodPiecesStockModel.reduceWood(wood_piece_id);
 
+                boolean isWoodUpdated = WoodPiecesStockModel.reduceWood(wood_piece_id);
                 if (isWoodUpdated) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "pending saved!").show();
-                    connection.commit();
-                    clearFields();
+
+                    boolean isEmployeeUpdated = OwnerEmployeeModel.employeeAvailability(emp_id, "Not Available");
+                    if (isEmployeeUpdated) {
+
+                        new Alert(Alert.AlertType.CONFIRMATION, "pending saved!").show();
+                        connection.commit();
+                        clearFields();
+
+                    }
                 }
             }
         } catch (SQLException e) {

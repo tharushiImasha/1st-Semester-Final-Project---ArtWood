@@ -1,15 +1,17 @@
 package lk.ijse.FianlArtWood.controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.control.TableColumn;
+import javafx.util.Duration;
 import lk.ijse.FianlArtWood.db.DbConnection;
 import lk.ijse.FianlArtWood.dto.EmployeeDto;
 import lk.ijse.FianlArtWood.dto.tm.EmployeeTm;
@@ -44,6 +46,10 @@ public class OwnerEmployeeController {
 
     @FXML
     private TableColumn<?, ?> colTelNo;
+
+    @FXML
+    private ComboBox<String> cmbJobRole;
+
     @FXML
     private AnchorPane rootNode;
 
@@ -57,9 +63,6 @@ public class OwnerEmployeeController {
     private TextField txtId;
 
     @FXML
-    private TextField txtJobRole;
-
-    @FXML
     private TextField txtName;
 
     @FXML
@@ -69,6 +72,13 @@ public class OwnerEmployeeController {
         setCellValueFactory();
         loadAllEmployees();
         setListener();
+        loadJobRole();
+    }
+
+    private void loadJobRole() {
+        cmbJobRole.getItems().add("cashier");
+        cmbJobRole.getItems().add("stockManager");
+        cmbJobRole.getItems().add("carveEmployee");
     }
 
     private void setCellValueFactory() {
@@ -102,7 +112,7 @@ public class OwnerEmployeeController {
     private void clearFields() {
         txtAddress.setText("");
         txtId.setText("");
-        txtJobRole.setText("");
+        cmbJobRole.setValue("");
         txtName.setText("");
         txtTel.setText("");
     }
@@ -136,8 +146,8 @@ public class OwnerEmployeeController {
         String name = txtName.getText();
         int tel = Integer.parseInt(txtTel.getText());
         String address = txtAddress.getText();
-        String job_role = txtJobRole.getText();
-        String status = "yes";
+        String job_role = cmbJobRole.getValue();
+        String status = "Available";
 
         var dto = new EmployeeDto(emp_id, name, address, tel, status, job_role);
 
@@ -164,43 +174,77 @@ public class OwnerEmployeeController {
         boolean isValid = Pattern.matches("[E][0-9]{1,}", id);
 
         if (!isValid){
-            new Alert(Alert.AlertType.ERROR, "Invalid ID").show();
-            return false;
+
+            if (txtId.getText().isEmpty()){
+                flashBorder(txtId);
+                return false;
+            }else {
+                new Alert(Alert.AlertType.CONFIRMATION, "Invalid ID").show();
+                return false;
+            }
         }
 
         String name = txtName.getText();
         boolean isValidName = Pattern.matches("([a-zA-Z\\s]+)", name);
 
         if (!isValidName){
-            new Alert(Alert.AlertType.ERROR, "Invalid Name").show();
-            return false;
+
+            if (txtName.getText().isEmpty()){
+                flashBorder(txtName);
+                return false;
+            }else {
+                new Alert(Alert.AlertType.CONFIRMATION, "Invalid Name").show();
+                return false;
+            }
         }
 
         String address = txtAddress.getText();
         boolean isValidAddress = Pattern.matches("([a-zA-Z0-9\\s]+)", address);
 
         if (!isValidAddress){
-            new Alert(Alert.AlertType.ERROR, "Invalid Address").show();
-            return false;
+
+            if (txtAddress.getText().isEmpty()){
+                flashBorder(txtAddress);
+                return false;
+            }else {
+                new Alert(Alert.AlertType.CONFIRMATION, "Invalid Address").show();
+                return false;
+            }
         }
 
         String tel = txtTel.getText();
         boolean isValidTel = Pattern.matches("[0-9]{10}", tel);
 
         if (!isValidTel){
-            new Alert(Alert.AlertType.ERROR, "Invalid Tel").show();
-            return false;
-        }
 
-        String job_role = txtJobRole.getText();
-        boolean isValidJob = Pattern.matches("([a-zA-Z\\s]+)", job_role);
-
-        if (!isValidJob){
-            new Alert(Alert.AlertType.ERROR, "Invalid").show();
-            return false;
+            if (txtTel.getText().isEmpty()){
+                flashBorder(txtTel);
+                return false;
+            }else {
+                new Alert(Alert.AlertType.CONFIRMATION, "Invalid Tel").show();
+                return false;
+            }
         }
 
         return true;
+    }
+
+    private void flashBorder(TextField textField) {
+        textField.setStyle("-fx-border-color: #000000;-fx-background-color: rgba(255,0,0,0.13)");
+        setBorderResetAnimation(textField);
+    }
+
+    private void setBorderResetAnimation(TextField textField) {
+
+        Timeline timeline1 = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(textField.styleProperty(), "-fx-background-color:rgba(255,0,0,0.13);-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.1), new KeyValue(textField.styleProperty(), "-fx-background-color: white;-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.2), new KeyValue(textField.styleProperty(), "-fx-background-color:rgba(255,0,0,0.13);-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.3), new KeyValue(textField.styleProperty(), "-fx-background-color: white;-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.4), new KeyValue(textField.styleProperty(), "-fx-background-color:rgba(255,0,0,0.13);-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(textField.styleProperty(), "-fx-background-color: white;-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10"))
+        );
+        timeline1.play();
     }
 
     @FXML
@@ -209,7 +253,7 @@ public class OwnerEmployeeController {
         String name = txtName.getText();
         String address = txtAddress.getText();
         int tel = Integer.parseInt(txtTel.getText());
-        String job_role = txtJobRole.getText();
+        String job_role = cmbJobRole.getValue();
 
         var dto = new EmployeeDto(emp_id,name,address,tel,job_role);
 
@@ -252,7 +296,7 @@ public class OwnerEmployeeController {
         txtName.setText(dto.getName());
         txtAddress.setText(dto.getAddress());
         txtTel.setText(String.valueOf(dto.getTel()));
-        txtJobRole.setText(dto.getJob_role());
+        cmbJobRole.setValue(dto.getJob_role());
     }
 
     private void setListener() {
@@ -274,7 +318,7 @@ public class OwnerEmployeeController {
         txtId.setText(dto.getEmp_id());
         txtName.setText(dto.getName());
         txtAddress.setText(dto.getAddress());
-        txtJobRole.setText(dto.getJob_role());
+        cmbJobRole.setValue(dto.getJob_role());
         txtTel.setText(String.valueOf(dto.getTel()));
     }
 

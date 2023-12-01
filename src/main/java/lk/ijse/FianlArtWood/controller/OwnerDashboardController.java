@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -51,6 +52,18 @@ public class OwnerDashboardController{
     private Label lblWood;
 
     @FXML
+    private Pane rosewoodEnough;
+
+    @FXML
+    private Pane rosewoodLow;
+
+    @FXML
+    private Pane teakEnough;
+
+    @FXML
+    private Pane teakLow;
+
+    @FXML
     private AnchorPane rootNode;
 
     @FXML
@@ -73,6 +86,15 @@ public class OwnerDashboardController{
         getWood();
         getPending();
         getFinished();
+
+        rosewoodEnough.setVisible(false);
+        rosewoodLow.setVisible(false);
+        teakEnough.setVisible(false);
+        teakLow.setVisible(false);
+
+        roseWoodStock();
+        teakWoodStock();
+
     }
 
     public void generateTime(){
@@ -103,6 +125,28 @@ public class OwnerDashboardController{
     private void getFinished() throws SQLException {
         int amount =  FinishedStockModel.getFinishedCount();
         lblFinished.setText(String.valueOf(amount));
+    }
+
+    private void roseWoodStock() throws SQLException {
+        int amount =  WoodPiecesStockModel.getWoodCountByType("Rosewood");
+        if (amount < 10){
+            rosewoodLow.setVisible(true);
+            rosewoodEnough.setVisible(false);
+        }else {
+            rosewoodLow.setVisible(false);
+            rosewoodEnough.setVisible(true);
+        }
+    }
+
+    private void teakWoodStock() throws SQLException {
+        int amount =  WoodPiecesStockModel.getWoodCountByType("Teak");
+        if (amount < 10){
+            teakLow.setVisible(true);
+            teakEnough.setVisible(false);
+        }else {
+            teakLow.setVisible(false);
+            teakEnough.setVisible(true);
+        }
     }
 
 }

@@ -152,7 +152,7 @@ public class CashierOrderController {
     private void loadItemCodes() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<FinishedStockDto> itemList = FinishedStockModel.getAllFinishedStock();
+            List<FinishedStockDto> itemList = FinishedStockModel.getAllFinishedStockForCombo();
 
             for (FinishedStockDto itemDto : itemList) {
                 obList.add(itemDto.getFinished_id());
@@ -285,7 +285,7 @@ public class CashierOrderController {
         txtId.setText("");
         txtQty.setText("");
         txtTel.setText("");
-        cmbProductId.setValue("");
+        cmbProductId.setValue(null);
         lblCusName.setText("");
         radioCard.setSelected(false);
         radioCash.setSelected(false);
@@ -293,6 +293,8 @@ public class CashierOrderController {
 
     @FXML
     void cmbItemOnAction(ActionEvent event)  {
+        OwnerProductTypeModel ownerProductTypeModel = new OwnerProductTypeModel();
+
         String code = cmbProductId.getValue();
 
         txtQty.requestFocus();
@@ -300,7 +302,7 @@ public class CashierOrderController {
         try {
             FinishedStockDto dto = itemModel.searchFinished(code);
 
-            String name = OwnerProductTypeModel.getName(dto.getProduct_id());
+            String name = ownerProductTypeModel.getName(dto.getProduct_id());
             double price = OwnerProductTypeModel.getPrice(dto.getProduct_id());
             String type = OwnerProductTypeModel.getType(dto.getProduct_id());
             String quality = OwnerProductTypeModel.getQuality(dto.getProduct_id());
@@ -312,7 +314,7 @@ public class CashierOrderController {
             lblQtyOn.setText(String.valueOf(dto.getAmount()));
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
 

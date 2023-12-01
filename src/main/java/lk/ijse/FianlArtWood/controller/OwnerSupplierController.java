@@ -1,5 +1,8 @@
 package lk.ijse.FianlArtWood.controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Duration;
 import lk.ijse.FianlArtWood.dto.SupplierDto;
 import lk.ijse.FianlArtWood.dto.tm.SupplierTm;
 import lk.ijse.FianlArtWood.model.OwnerSupplierModel;
@@ -135,35 +139,77 @@ public class OwnerSupplierController {
         boolean isValid = Pattern.matches("[S][0-9]{1,}", id);
 
         if (!isValid){
-            new Alert(Alert.AlertType.ERROR, "Invalid ID").show();
-            return false;
+
+            if (txtId.getText().isEmpty()){
+                flashBorder(txtId);
+                return false;
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Invalid ID").show();
+                return false;
+            }
         }
 
         String name = txtName.getText();
         boolean isValidName = Pattern.matches("([a-zA-Z\\s]+)", name);
 
         if (!isValidName){
-            new Alert(Alert.AlertType.ERROR, "Invalid Name").show();
-            return false;
+
+            if (txtName.getText().isEmpty()){
+                flashBorder(txtName);
+                return false;
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Invalid Name").show();
+                return false;
+            }
         }
 
         String address = txtAddress.getText();
         boolean isValidAddress = Pattern.matches("([a-zA-Z0-9\\s]+)", address);
 
         if (!isValidAddress){
-            new Alert(Alert.AlertType.ERROR, "Invalid Address").show();
-            return false;
+
+            if (txtAddress.getText().isEmpty()){
+                flashBorder(txtAddress);
+                return false;
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Invalid Address").show();
+                return false;
+            }
         }
 
         String email = txtEmail.getText();
         boolean isValidJob = Pattern.matches("(^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$)", email);
 
         if (!isValidJob){
-            new Alert(Alert.AlertType.ERROR, "Invalid Email").show();
-            return false;
+
+            if (txtEmail.getText().isEmpty()){
+                flashBorder(txtEmail);
+                return false;
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Invalid Email").show();
+                return false;
+            }
         }
 
         return true;
+    }
+
+    private void flashBorder(TextField textField) {
+        textField.setStyle("-fx-border-color: #000000;-fx-background-color: rgba(255,0,0,0.13)");
+        setBorderResetAnimation(textField);
+    }
+
+    private void setBorderResetAnimation(TextField textField) {
+
+        Timeline timeline1 = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(textField.styleProperty(), "-fx-background-color:rgba(255,0,0,0.13);-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.1), new KeyValue(textField.styleProperty(), "-fx-background-color: white;-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.2), new KeyValue(textField.styleProperty(), "-fx-background-color:rgba(255,0,0,0.13);-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.3), new KeyValue(textField.styleProperty(), "-fx-background-color: white;-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.4), new KeyValue(textField.styleProperty(), "-fx-background-color:rgba(255,0,0,0.13);-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(textField.styleProperty(), "-fx-background-color: white;-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10"))
+        );
+        timeline1.play();
     }
 
     @FXML

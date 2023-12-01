@@ -44,6 +44,13 @@ create table salary(
 	foreign key (emp_id) references employee(emp_id) on update cascade on delete cascade
 );
 
+create table otherSalary(
+    other_salary_id varchar(20) primary key,
+	amount double(7,2) not null,
+    emp_id varchar(50) not null,
+	foreign key (emp_id) references employee(emp_id) on update cascade on delete cascade
+);
+
 
 create table customer(
     cus_id varchar(20),

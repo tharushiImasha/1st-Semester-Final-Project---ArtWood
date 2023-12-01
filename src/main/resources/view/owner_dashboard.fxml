@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -17,27 +18,27 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="794.0" layoutY="106.0">
+      <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="796.0" layoutY="111.0">
          <image>
             <Image url="@../icons/profile.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblUser" layoutX="759.0" layoutY="182.0" text="Tharushi  Imasha">
+      <Label fx:id="lblUser" layoutX="760.0" layoutY="186.0" text="Tharushi  Imasha">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblJobRole" layoutX="783.0" layoutY="204.0" text="CEO/Owner" textFill="#ffa633">
+      <Label fx:id="lblJobRole" layoutX="784.0" layoutY="208.0" text="CEO/Owner" textFill="#ffa633">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <JFXButton layoutX="760.0" layoutY="252.0" onAction="#btnEditProfileOnAction" style="-fx-background-color: FFA633;" text="Edit Users Profiles" textFill="WHITE">
+      <JFXButton layoutX="760.0" layoutY="247.0" onAction="#btnEditProfileOnAction" style="-fx-background-color: FFA633;" text="Edit Users Profiles" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <Line endX="-100.0" endY="637.0" layoutX="838.0" layoutY="36.0" startX="-100.0" stroke="#0000004c" />
+      <Line endX="-100.0" endY="637.0" layoutX="822.0" layoutY="36.0" startX="-100.0" stroke="#0000004c" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="203.0" layoutX="63.0" layoutY="140.0" stroke="#f3e8ff" strokeType="INSIDE" strokeWidth="10.0" width="277.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="203.0" layoutX="389.0" layoutY="140.0" stroke="#ffe2e5" strokeType="INSIDE" strokeWidth="10.0" width="277.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="203.0" layoutX="63.0" layoutY="376.0" stroke="#dcfce7" strokeType="INSIDE" strokeWidth="10.0" width="277.0" />
@@ -102,20 +103,100 @@
             <Image url="@../images/yellowIllustration.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblDate" layoutX="548.0" layoutY="91.0">
+      <Label fx:id="lblDate" layoutX="527.0" layoutY="91.0" opacity="0.46">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="lblTime" layoutX="653.0" layoutY="91.0">
+      <Label fx:id="lblTime" layoutX="632.0" layoutY="91.0" opacity="0.46">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="639.0" layoutY="86.0" text="|">
+      <Label layoutX="618.0" layoutY="86.0" text="|">
          <font>
             <Font name="System Bold Italic" size="17.0" />
          </font>
       </Label>
+      <Pane fx:id="teakEnough" layoutX="734.0" layoutY="520.0" prefHeight="65.0" prefWidth="185.0" style="-fx-background-color: white;" styleClass="shadow" stylesheets="@../test.css">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#63e400" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
+            <Label layoutX="59.0" layoutY="14.0" opacity="0.7" text="Teak Wood stock">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="62.0" layoutY="35.0" text="IS ENOUGH" textFill="#329700">
+               <font>
+                  <Font name="System Bold Italic" size="10.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="18.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/stockEnough.gif" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="rosewoodEnough" layoutX="734.0" layoutY="422.0" prefHeight="65.0" prefWidth="185.0" style="-fx-background-color: white;" styleClass="shadow" stylesheets="@../test.css">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#63e400" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
+            <Label layoutX="59.0" layoutY="14.0" opacity="0.7" text="Rosewood stock">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="62.0" layoutY="35.0" text="IS ENOUGH" textFill="#329700">
+               <font>
+                  <Font name="System Bold Italic" size="10.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="18.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/stockEnough.gif" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="rosewoodLow" layoutX="734.0" layoutY="422.0" prefHeight="65.0" prefWidth="185.0" style="-fx-background-color: white;" styleClass="shadow" stylesheets="@../test.css">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff7878" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
+            <Label layoutX="59.0" layoutY="14.0" opacity="0.7" text="Rosewood stock">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="18.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/stockLow.gif" />
+               </image>
+            </ImageView>
+            <Label layoutX="62.0" layoutY="35.0" text="IS LOW" textFill="#ff7878">
+               <font>
+                  <Font name="System Bold Italic" size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="teakLow" layoutX="734.0" layoutY="520.0" prefHeight="65.0" prefWidth="185.0" style="-fx-background-color: white;" styleClass="shadow" stylesheets="@../test.css">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff7878" height="65.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
+            <Label layoutX="59.0" layoutY="14.0" opacity="0.7" text="Teak Wood stock">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="18.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/stockLow.gif" />
+               </image>
+            </ImageView>
+            <Label layoutX="62.0" layoutY="35.0" text="IS LOW" textFill="#ff7878">
+               <font>
+                  <Font name="System Bold Italic" size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
