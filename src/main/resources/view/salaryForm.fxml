@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="620.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.FianlArtWood.controller.SalaryFormController">
+<AnchorPane fx:id="rootNode" prefHeight="641.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.FianlArtWood.controller.SalaryFormController">
    <children>
       <Label layoutX="257.0" layoutY="33.0" text="Salary">
          <font>
@@ -57,7 +58,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <TableView fx:id="tblFinance" layoutX="42.0" layoutY="381.0" prefHeight="204.0" prefWidth="521.0" style="-fx-background-radius: 5;" stylesheets="@../stylesheet/table.css">
+      <TableView fx:id="tblFinance" layoutX="42.0" layoutY="376.0" prefHeight="204.0" prefWidth="521.0" style="-fx-background-radius: 5;" stylesheets="@../stylesheet/table.css">
          <columns>
             <TableColumn fx:id="colSalaryId" prefWidth="117.0" text="Salary ID" />
             <TableColumn fx:id="colAmount" prefWidth="160.0" text="Amount" />
@@ -95,5 +96,13 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
+      <JFXButton layoutX="487.0" layoutY="597.0" onAction="#btnBackOnAction" prefHeight="27.0" prefWidth="76.0" style="-fx-background-color: black; -fx-background-radius: 5;" text="Back" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
    </children>
 </AnchorPane>

@@ -51,8 +51,6 @@ public class FinishedStockController {
     @FXML
     private TableView<FinishedStockTm> tblFinished;
 
-    @FXML
-    private TextField txtAmountId;
 
     public void initialize() {
         setCellValueFactory();
@@ -160,16 +158,14 @@ public class FinishedStockController {
     }
 
     void clearFields() {
-        txtAmountId.setText("");
         cmbProductId.setValue("");
     }
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-        if (validateFinished()) {
 
             String finished_id = lblId.getText();
-            int amount = Integer.parseInt(txtAmountId.getText());
+            int amount = 0;
             String product_type = cmbProductId.getValue();
 
             var dto = new FinishedStockDto(finished_id, amount, product_type);
@@ -188,26 +184,13 @@ public class FinishedStockController {
             } catch (SQLException e) {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
-        }
-    }
 
-    private boolean validateFinished() {
-
-        String amount = txtAmountId.getText();
-        boolean isValidAmount = Pattern.matches("([0-9]{1,})", amount);
-
-        if (!isValidAmount){
-            new Alert(Alert.AlertType.ERROR, "Invalid amount").show();
-            return false;
-        }
-
-        return true;
     }
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
         String finished_id = lblId.getText();
-        int amount = Integer.parseInt(txtAmountId.getText());
+        int amount = 0;
         String product_id = cmbProductId.getValue();
 
         var dto = new FinishedStockDto(finished_id, amount, product_id);
@@ -239,7 +222,6 @@ public class FinishedStockController {
 
     private void setFields(FinishedStockDto dto) {
         lblId.setText(dto.getFinished_id());
-        txtAmountId.setText(String.valueOf(dto.getAmount()));
         cmbProductId.setValue(dto.getProduct_id());
     }
 

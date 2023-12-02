@@ -92,8 +92,9 @@ public class OwnerCustomerModel {
 
         pstm.setString(1, dto.getName());
         pstm.setString(2, dto.getAddress());
-        pstm.setString(3, dto.getId());
-        pstm.setString(4, String.valueOf(dto.getTel()));
+        pstm.setString(3, String.valueOf(dto.getTel()));
+        pstm.setString(4, dto.getId());
+
 
         return pstm.executeUpdate() > 0;
     }

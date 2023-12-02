@@ -25,17 +25,17 @@
             <Image url="@../images/ArtWood1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="borderOrders" fitHeight="45.0" fitWidth="200.0" layoutX="143.0" layoutY="445.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="borderOrders" fitHeight="45.0" fitWidth="200.0" layoutX="143.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/lblboarder.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="borderCustomers" fitHeight="45.0" fitWidth="200.0" layoutX="143.0" layoutY="605.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="borderCustomers" fitHeight="45.0" fitWidth="200.0" layoutX="143.0" layoutY="524.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/lblboarder.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="borderDashboard" fitHeight="45.0" fitWidth="200.0" layoutX="143.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="borderDashboard" fitHeight="45.0" fitWidth="200.0" layoutX="143.0" layoutY="325.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/lblboarder.png" />
          </image>
@@ -54,12 +54,12 @@
          </image>
       </ImageView>
       <AnchorPane fx:id="secondaryNode" layoutX="348.0" layoutY="105.0" prefHeight="710.0" prefWidth="930.0" />
-      <ImageView fx:id="rectDashboard" fitHeight="45.0" fitWidth="200.0" layoutX="143.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="rectDashboard" fitHeight="45.0" fitWidth="200.0" layoutX="143.0" layoutY="325.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Rectangle1.png" />
          </image>
       </ImageView>
-      <Label accessibleRole="BUTTON" layoutX="207.0" layoutY="300.0" text="Dashboard" textFill="WHITE">
+      <Label accessibleRole="BUTTON" layoutX="207.0" layoutY="337.0" text="Dashboard" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -67,22 +67,22 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <ImageView fitHeight="19.0" fitWidth="18.0" layoutX="169.0" layoutY="300.0">
+      <ImageView fitHeight="19.0" fitWidth="18.0" layoutX="169.0" layoutY="337.0">
          <image>
             <Image url="@../icons/dashboard.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="rectOrders" fitHeight="45.0" fitWidth="200.0" layoutX="143.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="rectOrders" fitHeight="45.0" fitWidth="200.0" layoutX="143.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Rectangle1.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="25.0" layoutX="151.0" layoutY="298.0" onMouseClicked="#lblDashboardOnAction" onMouseEntered="#lblDashboardEntered" onMouseExited="#lblDashboardExited" stroke="TRANSPARENT" strokeType="INSIDE" width="161.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="25.0" layoutX="151.0" layoutY="335.0" onMouseClicked="#lblDashboardOnAction" onMouseEntered="#lblDashboardEntered" onMouseExited="#lblDashboardExited" stroke="TRANSPARENT" strokeType="INSIDE" width="161.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Label layoutX="215.0" layoutY="458.0" text="Orders" textFill="WHITE">
+      <Label layoutX="215.0" layoutY="439.0" text="Orders" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -90,17 +90,17 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <ImageView fitHeight="23.0" fitWidth="25.0" layoutX="166.0" layoutY="456.0">
+      <ImageView fitHeight="23.0" fitWidth="25.0" layoutX="166.0" layoutY="437.0">
          <image>
             <Image url="@../icons/orders.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="rectCustomers" fitHeight="45.0" fitWidth="200.0" layoutX="143.0" layoutY="606.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="rectCustomers" fitHeight="45.0" fitWidth="200.0" layoutX="143.0" layoutY="524.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Rectangle1.png" />
          </image>
       </ImageView>
-      <Label layoutX="208.0" layoutY="618.0" text="Customers" textFill="WHITE">
+      <Label layoutX="208.0" layoutY="537.0" text="Customers" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -108,17 +108,17 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="170.0" layoutY="614.0">
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="170.0" layoutY="533.0">
          <image>
             <Image url="@../icons/customer.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="25.0" layoutX="153.0" layoutY="456.0" onMouseClicked="#lblOrdersOnAction" onMouseEntered="#lblOrdersEntered" onMouseExited="#lblOrdersExited" stroke="TRANSPARENT" strokeType="INSIDE" width="153.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="25.0" layoutX="155.0" layoutY="533.0" onMouseClicked="#lblCustomerOnAction" onMouseEntered="#lblCustomerEntered" onMouseExited="#lblcustomerExited" stroke="TRANSPARENT" strokeType="INSIDE" width="153.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="25.0" layoutX="155.0" layoutY="616.0" onMouseClicked="#lblCustomerOnAction" onMouseEntered="#lblCustomerEntered" onMouseExited="#lblcustomerExited" stroke="TRANSPARENT" strokeType="INSIDE" width="153.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="25.0" layoutX="155.0" layoutY="436.0" onMouseClicked="#lblOrdersOnAction" onMouseEntered="#lblOrdersEntered" onMouseExited="#lblOrdersExited" stroke="TRANSPARENT" strokeType="INSIDE" width="153.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

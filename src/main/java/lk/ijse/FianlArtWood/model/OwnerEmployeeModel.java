@@ -23,6 +23,24 @@ public class OwnerEmployeeModel {
         return pstm.executeUpdate() > 0;
     }
 
+    public static String getName(String job) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "select name from employee where job_role = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        pstm.setString(1, job);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        String name = "";
+
+        if (resultSet.next()){
+            name = resultSet.getString(1);
+        }
+        return name;
+    }
+
     public boolean deleteEmployee(String empId) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 

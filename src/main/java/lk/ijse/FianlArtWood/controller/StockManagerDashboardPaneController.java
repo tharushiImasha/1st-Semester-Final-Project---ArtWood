@@ -19,10 +19,16 @@ public class StockManagerDashboardPaneController {
     private ImageView borderStocks;
 
     @FXML
+    private ImageView borderUsers;
+
+    @FXML
     private ImageView rectDashboard;
 
     @FXML
     private ImageView rectStocks;
+
+    @FXML
+    private ImageView rectUsers;
 
     @FXML
     private AnchorPane rootNode;
@@ -30,13 +36,18 @@ public class StockManagerDashboardPaneController {
     @FXML
     private AnchorPane secondaryNode;
 
-    public void initialize(){
+    public void initialize() throws IOException {
 
         rectStocks.setVisible(false);
         rectDashboard.setVisible(true);
+        rectUsers.setVisible(false);
 
         borderDashboard.setVisible(false);
         borderStocks.setVisible(false);
+        borderUsers.setVisible(false);
+
+        secondaryNode.getChildren().clear();
+        secondaryNode.getChildren().add(FXMLLoader.load(secondaryNode.getClass().getResource("/view/stock_manager_dashboard.fxml")));
 
     }
 
@@ -55,6 +66,7 @@ public class StockManagerDashboardPaneController {
     void lblDashboardOnAction(MouseEvent event) throws IOException {
         rectDashboard.setVisible(true);
         rectStocks.setVisible(false);
+        rectUsers.setVisible(false);
 
         secondaryNode.getChildren().clear();
         secondaryNode.getChildren().add(FXMLLoader.load(secondaryNode.getClass().getResource("/view/stock_manager_dashboard.fxml")));
@@ -86,8 +98,27 @@ public class StockManagerDashboardPaneController {
     void lblStockOnAction(MouseEvent event) throws IOException {
         rectDashboard.setVisible(false);
         rectStocks.setVisible(true);
+        rectUsers.setVisible(false);
 
         secondaryNode.getChildren().clear();
         secondaryNode.getChildren().add(FXMLLoader.load(secondaryNode.getClass().getResource("/view/stock_manager_stock.fxml")));
+    }
+
+    @FXML
+    void lblSupOnAction(MouseEvent event) throws IOException {
+        rectStocks.setVisible(false);
+        rectDashboard.setVisible(false);
+        rectUsers.setVisible(true);
+
+        secondaryNode.getChildren().clear();
+        secondaryNode.getChildren().add(FXMLLoader.load(secondaryNode.getClass().getResource("/view/owner_supplier.fxml")));
+    }
+
+    public void lblUsersEntered(MouseEvent mouseEvent) {
+        borderUsers.setVisible(true);
+    }
+
+    public void lblUsersExited(MouseEvent mouseEvent) {
+        borderUsers.setVisible(false);
     }
 }

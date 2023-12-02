@@ -1,6 +1,7 @@
 package lk.ijse.FianlArtWood.controller;
 
 import com.jfoenix.controls.JFXCheckBox;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -45,9 +46,6 @@ public class ResetPwController {
     @FXML
     void btnResetOnAction(ActionEvent event) throws SQLException {
 
-        System.out.println(passNewPw.getText());
-        System.out.println(passVerPw.getText());
-
         if (passNewPw.getText().equals(passVerPw.getText())){
             Connection connection = DbConnection.getInstance().getConnection();
 
@@ -70,15 +68,22 @@ public class ResetPwController {
             new Alert(Alert.AlertType.INFORMATION, "Password Reset not Successfully").show();
         }
     }
+
+    String password = "";
+
     @FXML
     void chkShowNew(ActionEvent event) {
         if (chkNew.isSelected()){
-            String password = passNewPw.getText();
+ //           txtNewPw.textProperty().bind(Bindings.concat(passNewPw.getText()));
+            password = passNewPw.getText();
             txtNewPw.setText(password);
 
             passNewPw.setVisible(false);
             txtNewPw.setVisible(true);
         } else {
+            password = txtNewPw.getText();
+            passNewPw.setText(password);
+
             txtNewPw.setVisible(false);
             passNewPw.setVisible(true);
         }
@@ -87,35 +92,19 @@ public class ResetPwController {
     @FXML
     void chkShowVer(ActionEvent event) {
         if (chkVer.isSelected()){
-            String password = passVerPw.getText();
+ //           txtVerifyPw.textProperty().bind(Bindings.concat(passVerPw.getText()));
+            password = passVerPw.getText();
             txtVerifyPw.setText(password);
 
             passVerPw.setVisible(false);
             txtVerifyPw.setVisible(true);
         } else {
+            password = txtVerifyPw.getText();
+            passVerPw.setText(password);
+
             txtVerifyPw.setVisible(false);
             passVerPw.setVisible(true);
         }
-    }
-
-    @FXML
-    void newPwOnReleased(KeyEvent event) {
-
-    }
-
-    @FXML
-    void newTxtOnReleased(KeyEvent event) {
-
-    }
-
-    @FXML
-    void verPwOnReleased(KeyEvent event) {
-
-    }
-
-    @FXML
-    void verTxtOnReleased(KeyEvent event) {
-
     }
 
 }

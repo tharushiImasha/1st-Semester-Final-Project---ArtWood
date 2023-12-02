@@ -13,19 +13,16 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import lk.ijse.FianlArtWood.model.*;
 
-
-import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class OwnerDashboardController{
+public class StockManagerDashboardController {
 
     public Label lblUser;
     public Label lblJobRole;
@@ -63,20 +60,6 @@ public class OwnerDashboardController{
     @FXML
     private AnchorPane rootNode;
 
-    @FXML
-    void btnEditProfileOnAction(ActionEvent event) throws IOException {
-        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/edit_profile_form.fxml"));
-
-        Scene scene = new Scene(rootNode);
-
-        Stage stage = new Stage();
-
-        stage.setTitle("Edit Profiles");
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        stage.show();
-    }
-
     public void initialize() throws SQLException {
         generateTime();
         getLog();
@@ -97,7 +80,7 @@ public class OwnerDashboardController{
 
     public void generateTime(){
         lblDate.setText(LocalDate.now().toString());
-        Timeline timeline = new Timeline(new KeyFrame(javafx.util.Duration.ZERO, e -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss");
             lblTime.setText(LocalDateTime.now().format(formatter));
         }), new KeyFrame(Duration.seconds(1)));
@@ -148,7 +131,7 @@ public class OwnerDashboardController{
     }
 
     private void getName() throws SQLException {
-        String name = OwnerEmployeeModel.getName("owner");
+        String name = OwnerEmployeeModel.getName("stock_manager");
         lblUser.setText(name);
     }
 

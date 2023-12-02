@@ -16,7 +16,7 @@ public class StockManagerStockController {
     private AnchorPane rootNode;
 
     @FXML
-    void btnFinished1OnAction(ActionEvent event) throws IOException {
+    void btnFinishedOnAction(ActionEvent event) throws IOException {
         Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/finished_stock.fxml"));
 
         Scene scene = new Scene(rootNode);
@@ -30,7 +30,7 @@ public class StockManagerStockController {
     }
 
     @FXML
-    void btnLogs1OnAction(ActionEvent event) throws IOException {
+    void btnLogsOnAction(ActionEvent event) throws IOException {
         Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/logs_stock.fxml"));
 
         Scene scene = new Scene(rootNode);
@@ -44,7 +44,7 @@ public class StockManagerStockController {
     }
 
     @FXML
-    void btnPending1OnAction(ActionEvent event) throws IOException {
+    void btnPendingOnAction(ActionEvent event) throws IOException {
         Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/pending_stock.fxml"));
 
         Scene scene = new Scene(rootNode);
@@ -58,7 +58,7 @@ public class StockManagerStockController {
     }
 
     @FXML
-    void btnWoodPieces1OnAction(ActionEvent event) throws IOException {
+    void btnWoodPiecesOnAction(ActionEvent event) throws IOException {
         Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/wood_pieces_stock.fxml"));
 
         Scene scene = new Scene(rootNode);

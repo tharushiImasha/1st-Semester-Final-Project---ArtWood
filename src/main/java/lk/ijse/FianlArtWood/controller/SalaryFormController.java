@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import lk.ijse.FianlArtWood.dto.CustomerDto;
 import lk.ijse.FianlArtWood.dto.EmployeeDto;
 import lk.ijse.FianlArtWood.dto.OtherSalaryDto;
@@ -33,6 +35,9 @@ public class SalaryFormController {
 
     @FXML
     private Label lblSalaryid;
+
+    @FXML
+    private AnchorPane rootNode;
 
     @FXML
     private TableColumn<?, ?> colAction;
@@ -216,6 +221,8 @@ public class SalaryFormController {
         try {
             boolean isUpdated = model.updateSalary(dto);
 
+            System.out.println(isUpdated);
+
             if(isUpdated) {
                 tblFinance.refresh();
                 new Alert(Alert.AlertType.CONFIRMATION, "salary updated!").show();
@@ -225,6 +232,13 @@ public class SalaryFormController {
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
+    }
+
+    @FXML
+    void btnBackOnAction(ActionEvent event) {
+        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+
+        stage.close();
     }
 
 }

@@ -75,8 +75,10 @@ public class OtherEmployeeSalaryModel {
         PreparedStatement pstm = connection.prepareStatement(sql);
 
         pstm.setString(1, dto.getEmp_id());
-        pstm.setString(2, String.valueOf(dto.getAmount()));
+        pstm.setDouble(2, dto.getAmount());
         pstm.setString(3, dto.getOther_salary_id());
+
+        System.out.println(pstm.executeUpdate()>0);
 
         return pstm.executeUpdate() > 0;
     }

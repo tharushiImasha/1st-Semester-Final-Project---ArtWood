@@ -117,6 +117,24 @@ public class FinishedStockModel {
         return amount;
     }
 
+    public static int getProductCountByType(String type) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "select sum(f.finished_amount) from product_type p join finished_stock f on p.product_id = f.product_id where p.product_name = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        pstm.setString(1, type);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        int amount = 0;
+
+        if (resultSet.next()){
+            amount = resultSet.getInt(1);
+        }
+        return amount;
+    }
+
     public boolean saveFinished(FinishedStockDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 

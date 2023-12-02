@@ -264,6 +264,8 @@ public class OwnerCustomerController {
             if(isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "customer updated!").show();
                 tblCustomer.refresh();
+            }else {
+                new Alert(Alert.AlertType.CONFIRMATION, "customer not updated!").show();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -293,7 +295,7 @@ public class OwnerCustomerController {
     @FXML
     void btnReportOnAction(ActionEvent event) {
         try {
-            JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/reports/CustomerArtWood.jrxml");
+            JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/reports/CustomerReport.jrxml");
             JRDesignQuery query = new JRDesignQuery();
             query.setText("SELECT*FROM customer");
             jasperDesign.setQuery(query);

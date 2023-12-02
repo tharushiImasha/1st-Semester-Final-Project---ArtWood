@@ -93,7 +93,7 @@ public class LoginFormController {
 
     @FXML
     void lblForgotPwOnAction(MouseEvent event) throws IOException {
-        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/reset_pw.fxml"));
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/forgot_pw.fxml"));
 
         Scene scene = new Scene(rootNode);
         Stage stage = new Stage();
@@ -103,15 +103,20 @@ public class LoginFormController {
         stage.show();
     }
 
+    String password = "";
+
     @FXML
     void showPwOnAction(ActionEvent event) {
         if (chkHidePw.isSelected()){
-            String password = txtPw.getText();
+            password = txtPw.getText();
             txtPwShow.setText(password);
 
             txtPw.setVisible(false);
             txtPwShow.setVisible(true);
         } else {
+            password = txtPwShow.getText();
+            txtPw.setText(password);
+
             txtPwShow.setVisible(false);
             txtPw.setVisible(true);
         }
